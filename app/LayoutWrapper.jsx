@@ -1,19 +1,7 @@
-// app/LayoutWrapper.jsx
 "use client";
 
-import { usePathname } from "next/navigation";
-import Navbar from "./components/Navbar";
-import Footer from "./components/Footer";
+import { SessionProvider } from "next-auth/react";
 
 export default function LayoutWrapper({ children }) {
-  const pathname = usePathname();
-  const hideLayout = ["/login", "/signup"].includes(pathname);
-
-  return (
-    <>
-      {!hideLayout && <Navbar />}
-      {children}
-      {!hideLayout && <Footer />}
-    </>
-  );
+  return <SessionProvider> {children}</SessionProvider>;
 }
