@@ -32,7 +32,7 @@ const Navbar = () => {
   return (
     <div>
       <nav
-        className={`fixed w-full z-50 transition-all duration-300 ${
+        className={`fixed w-full z-55 transition-all duration-300 ${
           scrollY > 50 ? 'bg-black/80 backdrop-blur-lg shadow-lg' : 'bg-transparent'
         }`}
       >
@@ -44,7 +44,7 @@ const Navbar = () => {
                 <Stethoscope className="w-6 h-6 text-white" />
               </div>
               <div>
-                <span className="text-2xl font-bold bg-gradient-to-r from-blue-600 to-indigo-600 bg-clip-text text-transparent">
+                <span className="text-2xl font-bold bg-gradient-to-r text-white bg-clip-text ">
                   MedAI
                 </span>
                 <div className="text-xs text-white -mt-1">Diagnosis Assistant</div>

@@ -1,8 +1,8 @@
-import { Geist, Geist_Mono, Montserrat } from "next/font/google";
+// app/layout.js
 import "./globals.css";
-import Navbar from "./components/Navbar";
-import Footer from "./components/Footer";
+import { Montserrat } from "next/font/google";
 import { ThemeProvider } from "@/components/theme-provider";
+import LayoutWrapper from "./LayoutWrapper"; // client logic here
 
 const montserrat = Montserrat({
   subsets: ["latin"],
@@ -19,13 +19,9 @@ export default function RootLayout({ children }) {
   return (
     <html lang="en">
       <body className={`${montserrat.variable} font-sans`}>
-        
-          
-            <Navbar />
-         
-          {children}
-          <Footer />
-   
+        <ThemeProvider attribute="class" defaultTheme="system" enableSystem>
+          <LayoutWrapper>{children}</LayoutWrapper>
+        </ThemeProvider>
       </body>
     </html>
   );
