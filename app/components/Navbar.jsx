@@ -8,6 +8,7 @@ import { Button } from '@/components/ui/button';
 
 const Navbar = () => {
   const { data: session, status } = useSession();
+  console.log(session)
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   const [scrollY, setScrollY] = useState(0);
 
@@ -25,6 +26,9 @@ const Navbar = () => {
     { item: 'Testimonials', path: '#testimonials' },
     { item: 'Pricing', path: '#pricing' },
     { item: 'Contact', path: '#contact' },
+    {
+      item:"Dashboard",path:"/dashboard"
+    }
   ];
 
   return (
@@ -60,8 +64,9 @@ const Navbar = () => {
                   {item}
                   <span className="absolute -bottom-1 left-0 w-0 h-0.5 bg-gradient-to-r from-blue-600 to-indigo-600 group-hover:w-full transition-all duration-300"></span>
                 </Link>
+                
               ))}
-
+               
               {status === 'authenticated' && session?.user ? (
                 <div className="flex items-center space-x-3">
                   {session.user.image && (

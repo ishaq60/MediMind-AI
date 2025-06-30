@@ -8,7 +8,7 @@ import Footer from "./components/Footer";
 
 export default function AuthmainLayOut({ children }) {
   const pathname = usePathname();
-  const hideLayout = pathname.startsWith("/login") || pathname.startsWith("/signup");
+  const hideLayout = pathname.startsWith("/login") || pathname.startsWith("/signup") ||pathname.startsWith("/dashboard");
 
   return (
     <>

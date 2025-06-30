@@ -1,24 +1,39 @@
 'use client';
 
 import React, { useState } from 'react';
-import { Eye, EyeOff, Mail, Lock, User } from 'lucide-react'; // Make sure to install lucide-react
+import { Eye, EyeOff, Mail, Lock, User } from 'lucide-react';
 
 const SignUp = () => {
   const [showPassword, setShowPassword] = useState(false);
-  const [formData, setFormData] = useState({
-    name: '',
-    email: '',
-    password: '',
-  });
 
-  const handleChange = (e) => {
-    setFormData({ ...formData, [e.target.name]: e.target.value });
-  };
-
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
+
+    // Get input values directly from the form event target
+    const name = e.target.name.value;
+    const email = e.target.email.value;
+    let password = e.target.password.value;
+
+    // If you want numeric password only, uncomment below
+    // password = password.replace(/\D/g, '');
+
+    const formData = { name, email, password };
+
     console.log('Sign Up Form Data:', formData);
-    // Call signup API here
+
+    try {
+      const resp = await fetch("http://localhost:3000/signup/new-user", {
+        method: 'POST',
+        body: JSON.stringify(formData),
+        headers: { 'Content-Type': 'application/json' },
+      });
+
+      const result = await resp.json();
+      console.log('Server Response:', result);
+    } catch (error) {
+      console.error('Error during signup:', error);
+      alert("Signup failed!");
+    }
   };
 
   return (
@@ -38,8 +53,6 @@ const SignUp = () => {
               <input
                 type='text'
                 name='name'
-                value={formData.name}
-                onChange={handleChange}
                 className='w-full pl-10 pr-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent outline-none'
                 placeholder='Enter your name'
                 required
@@ -55,8 +68,6 @@ const SignUp = () => {
               <input
                 type='email'
                 name='email'
-                value={formData.email}
-                onChange={handleChange}
                 className='w-full pl-10 pr-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent outline-none'
                 placeholder='Enter your email'
                 required
@@ -72,8 +83,6 @@ const SignUp = () => {
               <input
                 type={showPassword ? 'text' : 'password'}
                 name='password'
-                value={formData.password}
-                onChange={handleChange}
                 className='w-full pl-10 pr-12 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent outline-none'
                 placeholder='Enter your password'
                 required
