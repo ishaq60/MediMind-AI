@@ -9,7 +9,7 @@ import { useRouter, useSearchParams } from "next/navigation";
 const Login = () => {
   const router = useRouter();
   const searchParams = useSearchParams();
-  const callbackUrl = searchParams.get("callbackUrl") || "/dashboard";
+  const callbackUrl = searchParams.get("callbackUrl") || "/";
 
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
@@ -127,12 +127,16 @@ const Login = () => {
         </div>
 
         <div className="flex flex-col space-y-3">
-          <button className="flex items-center justify-center gap-3 border border-gray-300 rounded-lg py-2 hover:bg-gray-100 transition">
-            <img src="/google-icon.svg" alt="Google" className="w-5 h-5" />
-            <span>Continue with Google</span>
-          </button>
+    <button
+  onClick={() => signIn("google", { callbackUrl })}
+  className="flex items-center justify-center gap-3 border border-gray-300 rounded-lg py-2 hover:bg-gray-100 transition"
+>
+  <img src="/google-icon.svg" alt="Google" className="w-5 h-5" />
+  <span>Continue with Google</span>
+</button>
 
-          <button className="flex items-center justify-center gap-3 border border-gray-300 rounded-lg py-2 hover:bg-gray-100 transition">
+
+          <button onClick={()=>signIn("github",{callbackUrl})} className="flex items-center justify-center gap-3 border border-gray-300 rounded-lg py-2 hover:bg-gray-100 transition">
             <img src="/github-icon.svg" alt="GitHub" className="w-5 h-5" />
             <span>Continue with GitHub</span>
           </button>
