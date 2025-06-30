@@ -2,39 +2,41 @@
 
 import React, { useState } from 'react';
 import { Eye, EyeOff, Mail, Lock, User } from 'lucide-react';
+import { toast } from 'react-toastify';
+;
 
 const SignUp = () => {
   const [showPassword, setShowPassword] = useState(false);
 
-  const handleSubmit = async (e) => {
-    e.preventDefault();
+ const handleSubmit = async (e) => {
+  e.preventDefault();
 
-    // Get input values directly from the form event target
-    const name = e.target.name.value;
-    const email = e.target.email.value;
-    let password = e.target.password.value;
+  const name = e.target.name.value;
+  const email = e.target.email.value;
+  let password = e.target.password.value;
 
-    // If you want numeric password only, uncomment below
-    // password = password.replace(/\D/g, '');
+  const formData = { name, email, password };
 
-    const formData = { name, email, password };
+  try {
+    const resp = await fetch("http://localhost:3000/signup/new-user", {
+      method: 'POST',
+      body: JSON.stringify(formData),
+      headers: { 'Content-Type': 'application/json' },
+    });
 
-    console.log('Sign Up Form Data:', formData);
+    const result = await resp.json();
 
-    try {
-      const resp = await fetch("http://localhost:3000/signup/new-user", {
-        method: 'POST',
-        body: JSON.stringify(formData),
-        headers: { 'Content-Type': 'application/json' },
-      });
-
-      const result = await resp.json();
-      console.log('Server Response:', result);
-    } catch (error) {
-      console.error('Error during signup:', error);
-      alert("Signup failed!");
+    if (!resp.ok) {
+      toast.error(result.error || "Signup failed");
+      return; // ✅ valid and necessary
     }
-  };
+
+    toast.success("User created successfully");
+  } catch (error) {
+    console.error('Error during signup:', error);
+    toast.error("Network error. Please try again.");
+  }
+};
 
   return (
     <div className='max-w-7xl mx-auto min-h-screen flex items-center justify-center'>

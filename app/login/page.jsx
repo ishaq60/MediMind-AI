@@ -2,9 +2,10 @@
 
 import { Eye, EyeOff, Heart, Lock, Mail } from "lucide-react";
 import Link from "next/link";
-import React, { useState } from "react";
-import { signIn } from "next-auth/react";
+import React, { useState, useEffect } from "react";
+import { signIn, useSession } from "next-auth/react";
 import { useRouter, useSearchParams } from "next/navigation";
+import { toast } from "react-toastify";
 
 const Login = () => {
   const router = useRouter();
@@ -16,6 +17,42 @@ const Login = () => {
   const [showPassword, setShowPassword] = useState(false);
   const [error, setError] = useState("");
 
+  const { data: session, status } = useSession();
+
+  // When session is ready (user logged in), send user data to your backend
+  useEffect(() => {
+    if (status === "authenticated" && session?.user) {
+      const formdata = {
+        name: session.user.name,
+        email: session.user.email,
+        image: session.user.image,
+        createTime:session.expires
+      };
+
+      const sendUserData = async () => {
+        try {
+          const resp = await fetch("http://localhost:3000/signup/new-user", {
+            method: "POST",
+            headers: { "Content-Type": "application/json" },
+            body: JSON.stringify(formdata),
+          });
+
+          if (!resp.ok) throw new Error("Failed to save user");
+
+          const result = await resp.json();
+          console.log("Server response:", result);
+        } catch (error) {
+          console.error("Error during signup:", error);
+          toast.error("Signup failed!");
+        }
+      };
+
+      sendUserData();
+      // Redirect after sending user data
+      router.push(callbackUrl);
+    }
+  }, [status, session, router, callbackUrl]);
+
   const handleLogin = async (e) => {
     e.preventDefault();
     setError("");
@@ -24,16 +61,21 @@ const Login = () => {
       redirect: false,
       email,
       password,
-      // pass callbackUrl here if you want next-auth redirect to handle it, but here handled manually
-      // callbackUrl,
     });
 
     if (res?.ok) {
-      router.push(callbackUrl);
+      // Successful login will trigger useEffect to send data & redirect
     } else {
       setError(res?.error || "Invalid email or password");
+      toast.error(res?.error || "Invalid email or password");
     }
   };
+
+  if (status === "loading") return <p>Loading...</p>;
+
+  // Show login form if no active session
+  if (status === "authenticated") return <p>Logging you in...</p>;
+
 
   return (
     <div className="max-w-7xl mx-auto min-h-screen flex items-center justify-center">

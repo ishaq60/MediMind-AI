@@ -1,9 +1,11 @@
+"use client"
 import React from 'react';
+import SymptomChecker from '../SyndromeChecker/SymptomChecker';
 
 const page = () => {
     return (
         <div className='container mx-auto min-h-screen'>
-            this is dashboard
+           <SymptomChecker></SymptomChecker>
         </div>
     );
 };

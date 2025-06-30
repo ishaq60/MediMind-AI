@@ -6,13 +6,9 @@ export const POST = async (request) => {
     const db = await connectDB();
     const userCollection = db.collection("user");
 
-    // 👇 Parse incoming request
     const newUser = await request.json();
-
-    // ✅ Log the received data
     console.log("Received user data:", newUser);
 
-    // ⚠️ Optional: Validate required fields
     if (!newUser.name || !newUser.email || !newUser.password) {
       return NextResponse.json(
         { error: "Missing required user fields" },
@@ -20,7 +16,17 @@ export const POST = async (request) => {
       );
     }
 
-    // ✅ Insert into MongoDB
+    // ✅ Check if user already exists
+    const existingUser = await userCollection.findOne({ email: newUser.email });
+
+    if (existingUser) {
+      return NextResponse.json(
+        { error: "User already exists with this email" },
+        { status: 409 } // 409 Conflict
+      );
+    }
+
+    // ✅ Insert new user
     const result = await userCollection.insertOne(newUser);
 
     return NextResponse.json(
@@ -28,7 +34,7 @@ export const POST = async (request) => {
       { status: 201 }
     );
   } catch (error) {
-    console.error("Error adding user:", error); // 👈 Log error
+    console.error("Error adding user:", error);
     return NextResponse.json(
       { error: "Failed to add user" },
       { status: 500 }
