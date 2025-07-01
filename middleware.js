@@ -16,5 +16,5 @@ export async function middleware(request) {
 }
 
 export const config = {
-  matcher: ["/dashboard", "/dashboard/:path*"], // apply middleware to dashboard routes
+  matcher: ["/dashboar", "/dashboar/:path*"], // apply middleware to dashboard routes
 };

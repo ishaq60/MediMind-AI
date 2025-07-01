@@ -1,57 +1,20 @@
 "use client";
 
-import { Eye, EyeOff, Heart, Lock, Mail } from "lucide-react";
-import Link from "next/link";
-import React, { useState, useEffect } from "react";
-import { signIn, useSession } from "next-auth/react";
+import React, { useState } from "react";
+import { signIn } from "next-auth/react";
 import { useRouter, useSearchParams } from "next/navigation";
-import { toast } from "react-toastify";
+import Link from "next/link";
+import { Eye, EyeOff, Heart, Lock, Mail } from "lucide-react";
 
 const Login = () => {
   const router = useRouter();
   const searchParams = useSearchParams();
-  const callbackUrl = searchParams.get("callbackUrl") || "/";
+  const callbackUrl = searchParams.get("callbackUrl") || "";
 
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [showPassword, setShowPassword] = useState(false);
   const [error, setError] = useState("");
-
-  const { data: session, status } = useSession();
-
-  // When session is ready (user logged in), send user data to your backend
-  useEffect(() => {
-    if (status === "authenticated" && session?.user) {
-      const formdata = {
-        name: session.user.name,
-        email: session.user.email,
-        image: session.user.image,
-        createTime:session.expires
-      };
-
-      const sendUserData = async () => {
-        try {
-          const resp = await fetch("http://localhost:3000/signup/new-user", {
-            method: "POST",
-            headers: { "Content-Type": "application/json" },
-            body: JSON.stringify(formdata),
-          });
-
-          if (!resp.ok) throw new Error("Failed to save user");
-
-          const result = await resp.json();
-          console.log("Server response:", result);
-        } catch (error) {
-          console.error("Error during signup:", error);
-          toast.error("Signup failed!");
-        }
-      };
-
-      sendUserData();
-      // Redirect after sending user data
-      router.push(callbackUrl);
-    }
-  }, [status, session, router, callbackUrl]);
 
   const handleLogin = async (e) => {
     e.preventDefault();
@@ -64,18 +27,11 @@ const Login = () => {
     });
 
     if (res?.ok) {
-      // Successful login will trigger useEffect to send data & redirect
+      router.push(callbackUrl);
     } else {
       setError(res?.error || "Invalid email or password");
-      toast.error(res?.error || "Invalid email or password");
     }
   };
-
-  if (status === "loading") return <p>Loading...</p>;
-
-  // Show login form if no active session
-  if (status === "authenticated") return <p>Logging you in...</p>;
-
 
   return (
     <div className="max-w-7xl mx-auto min-h-screen flex items-center justify-center">
@@ -91,14 +47,10 @@ const Login = () => {
         </div>
 
         <form onSubmit={handleLogin} className="space-y-4">
-          {error && (
-            <p className="text-red-600 text-center font-medium">{error}</p>
-          )}
+          {error && <p className="text-red-600 text-center font-medium">{error}</p>}
 
           <div>
-            <label className="block text-sm font-medium text-gray-700 mb-2">
-              Email Address
-            </label>
+            <label className="block text-sm font-medium text-gray-700 mb-2">Email Address</label>
             <div className="relative">
               <Mail className="absolute left-3 top-1/2 transform -translate-y-1/2 text-gray-400 w-5 h-5" />
               <input
@@ -113,9 +65,7 @@ const Login = () => {
           </div>
 
           <div>
-            <label className="block text-sm font-medium text-gray-700 mb-2">
-              Password
-            </label>
+            <label className="block text-sm font-medium text-gray-700 mb-2">Password</label>
             <div className="relative">
               <Lock className="absolute left-3 top-1/2 transform -translate-y-1/2 text-gray-400 w-5 h-5" />
               <input
@@ -169,16 +119,18 @@ const Login = () => {
         </div>
 
         <div className="flex flex-col space-y-3">
-    <button
-  onClick={() => signIn("google", { callbackUrl })}
-  className="flex items-center justify-center gap-3 border border-gray-300 rounded-lg py-2 hover:bg-gray-100 transition"
->
-  <img src="/google-icon.svg" alt="Google" className="w-5 h-5" />
-  <span>Continue with Google</span>
-</button>
+          <button
+            onClick={() => signIn("google", { callbackUrl })}
+            className="flex items-center justify-center gap-3 border border-gray-300 rounded-lg py-2 hover:bg-gray-100 transition"
+          >
+            <img src="/google-icon.svg" alt="Google" className="w-5 h-5" />
+            <span>Continue with Google</span>
+          </button>
 
-
-          <button onClick={()=>signIn("github",{callbackUrl})} className="flex items-center justify-center gap-3 border border-gray-300 rounded-lg py-2 hover:bg-gray-100 transition">
+          <button
+            onClick={() => signIn("github", { callbackUrl })}
+            className="flex items-center justify-center gap-3 border border-gray-300 rounded-lg py-2 hover:bg-gray-100 transition"
+          >
             <img src="/github-icon.svg" alt="GitHub" className="w-5 h-5" />
             <span>Continue with GitHub</span>
           </button>
@@ -187,10 +139,8 @@ const Login = () => {
         <div className="text-center">
           <p className="text-gray-600">
             Don't have an account?{" "}
-            <Link href={"/signup"}>
-              <button className="text-blue-600 hover:text-blue-500 font-medium">
-                Sign up here
-              </button>
+            <Link href={"/signup"} className="text-blue-600 hover:text-blue-500 font-medium">
+              Sign up here
             </Link>
           </p>
         </div>

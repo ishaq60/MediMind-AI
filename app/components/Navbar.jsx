@@ -8,7 +8,7 @@ import { Button } from '@/components/ui/button';
 
 const Navbar = () => {
   const { data: session, status } = useSession();
-  console.log(session)
+  
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   const [scrollY, setScrollY] = useState(0);
 

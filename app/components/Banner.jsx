@@ -1,3 +1,4 @@
+import Link from "next/link";
 import React from "react";
 
 const Banner = () => {
@@ -30,9 +31,9 @@ const Banner = () => {
               specialists instantly.
             </p>
             <div className="flex flex-col sm:flex-row gap-4">
-              <button className="bg-gradient-to-r from-cyan-400 to-blue-400 hover:from-cyan-300 hover:to-blue-300 text-slate-900 font-semibold px-8 py-3 rounded-lg transition-all duration-300 transform hover:scale-105 shadow-lg">
+              <Link href={'/dashboard'} className="bg-gradient-to-r from-cyan-400 to-blue-400 hover:from-cyan-300 hover:to-blue-300 text-slate-900 font-semibold px-8 py-3 rounded-lg transition-all duration-300 transform hover:scale-105 shadow-lg">
                 Symptom Checker
-              </button>
+              </Link>
               <button className="bg-transparent border-2 border-cyan-300 text-cyan-300 hover:bg-cyan-300 hover:text-slate-900 font-semibold px-8 py-3 rounded-lg transition-all duration-300">
                 Our Service
               </button>
