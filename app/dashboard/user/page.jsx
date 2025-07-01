@@ -1,9 +1,14 @@
-'use client'
+
+'use client';
+
 import React, { useState } from 'react';
 import {
-  Activity, Calendar, FileText, Brain, Star, AlertCircle, Menu, X, Heart, Search, Bell
+  Activity, Calendar, FileText, Brain, Star, AlertCircle, Menu, X, Heart, Search, Bell,
 } from 'lucide-react';
 import { useSession } from 'next-auth/react';
+import UserAppoitment from './UserAppoitment';
+import SymptomChecker from '../Components/SymptomChecker/SymptomChecker';
+import MedicalDiagnosis from '../Components/SymptomChecker/SymptomChecker';
 
 export default function UserDashboard() {
   const { data: session } = useSession();
@@ -23,18 +28,24 @@ export default function UserDashboard() {
     switch (activeTab) {
       case 'overview':
         return <h1 className="text-2xl font-bold">Welcome, {session?.user?.name || 'User'}!</h1>;
+      case 'appointments':
+        return <UserAppoitment></UserAppoitment>
+      case 'diagnosis':
+        return <MedicalDiagnosis></MedicalDiagnosis>
+      case 'reports':
+        return <div className="text-lg">📄 Medical Reports</div>;
+      case 'favorites':
+        return <div className="text-lg">⭐ Your Favorite Doctors</div>;
+      case 'help':
+        return <div className="text-lg">❓ Help Center and Support</div>;
       default:
-        return (
-          <div className="text-center mt-20">
-            <p className="text-gray-500">Coming Soon</p>
-          </div>
-        );
+        return <div className="text-gray-500 mt-10 text-center">Coming Soon</div>;
     }
   };
 
   return (
     <div className="flex min-h-screen bg-gray-50">
-      {/* Overlay */}
+      {/* Overlay for mobile sidebar */}
       {isSidebarOpen && (
         <div
           className="fixed inset-0 bg-black bg-opacity-40 z-40 lg:hidden"

@@ -12,9 +12,11 @@ const DashboardHomePage = () => {
   useEffect(() => {
     if (status === 'loading') return; // Wait for session to load
 
-    const userType = "doctor";
-
-     if (userType === 'admin') {
+    const userType = "admin";
+if (!session) {
+      router.push('/dashboard/user');
+}
+    else if (userType === 'admin') {
       router.push('/dashboard/admin');
     } else if (userType === 'user') {
       router.push('/dashboard/user');
