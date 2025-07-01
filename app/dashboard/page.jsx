@@ -12,22 +12,20 @@ const DashboardHomePage = () => {
   useEffect(() => {
     if (status === 'loading') return; // Wait for session to load
 
-    const userType = session?.user?.type;
-if (!session) {
-      router.push('/dashboard/user');
-}
-    else if (userType === 'admin') {
+    const userType = "doctor";
+
+     if (userType === 'admin') {
       router.push('/dashboard/admin');
     } else if (userType === 'user') {
       router.push('/dashboard/user');
-    } else if (userType === 'patient') {
-      router.push('/dashboard/patient');
+    } else if (userType === 'doctor') {
+      router.push('/dashboard/doctor');
     }
   }, [session, status, router]);
 
   return (
     <div className="container mx-auto min-h-screen flex items-center justify-center">
-   
+    <p className="text-lg font-semibold">Loading...</p>
 
 <Loading />
     </div>
