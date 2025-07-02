@@ -9,6 +9,7 @@ import { useSession } from 'next-auth/react';
 import UserAppoitment from './UserAppoitment';
 import SymptomChecker from '../Components/SymptomChecker/SymptomChecker';
 import MedicalDiagnosis from '../Components/SymptomChecker/SymptomChecker';
+import AskAI from './AskAI';
 
 export default function UserDashboard() {
   const { data: session } = useSession();
@@ -33,7 +34,7 @@ export default function UserDashboard() {
       case 'diagnosis':
         return <MedicalDiagnosis></MedicalDiagnosis>
       case 'reports':
-        return <div className="text-lg">📄 Medical Reports</div>;
+        return <div className="text-lg">📄<AskAI></AskAI></div>;
       case 'favorites':
         return <div className="text-lg">⭐ Your Favorite Doctors</div>;
       case 'help':
@@ -133,7 +134,7 @@ export default function UserDashboard() {
                   </span>
                 </div>
                 <div className="hidden sm:block">
-                  <p className="text-sm font-medium text-gray-900">{session?.user?.name || 'User'}</p>
+                  {/* <p className="text-sm font-medium text-gray-900">{session?.user?.name || 'User'}</p> */}
                   <p className="text-xs text-gray-500 capitalize">user</p>
                 </div>
               </div>

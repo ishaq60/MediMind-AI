@@ -1,10 +1,10 @@
 import { AlertCircle, CheckCircle } from 'lucide-react';
 import React from 'react';
 
-const Result = ({results}) => {
+const Result = ({result}) => {
     return (
         <div>
-            <div className="mt-8 bg-gradient-to-r from-green-50 to-blue-50 rounded-2xl p-6 border border-green-200">
+            {/* <div className="mt-8 bg-gradient-to-r from-green-50 to-blue-50 rounded-2xl p-6 border border-green-200">
                     <div className="flex items-center space-x-2 mb-4">
                       <CheckCircle className="w-6 h-6 text-green-600" />
                       <h3 className="text-xl font-semibold text-gray-900">Analysis Complete</h3>
@@ -66,7 +66,8 @@ const Result = ({results}) => {
                         </div>
                       </div>
                     </div>
-                  </div>
+                  </div> */}
+                  <h1>{result?.raw}</h1>
         </div>
     );
 };
