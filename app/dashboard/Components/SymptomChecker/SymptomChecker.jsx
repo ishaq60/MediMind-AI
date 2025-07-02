@@ -26,7 +26,49 @@ const SymptomChecker = () => {
 
     setIsAnalyzing(true);
     setResults(null);
+const structuredPrompt = `
+You are a caring and professional medical AI assistant.
 
+A patient reports the following symptoms:
+${symptoms}
+
+Please respond with a clear, stepwise explanation that includes:
+
+1. A short empathetic introduction acknowledging the symptoms.
+2. A bulleted list of common possible causes, with key terms in **bold**.
+3. A bulleted list of practical at-home care tips under the heading "**While you wait to see a doctor, you can try:**".
+4. A bulleted list of serious warning signs under the heading "**However, please seek immediate medical attention if you experience:**".
+5. A polite conclusion advising the patient to consult a healthcare professional.
+
+Use bullet points for lists, and bold key terms for emphasis.
+
+Example format:
+
+---
+
+I'm sorry to hear you're feeling tired and dizzy. These are common symptoms that can be caused by a variety of factors, but it's important to get them checked by a healthcare professional.
+
+Common possible causes include:
+- **Dehydration:** Not drinking enough water.
+- **Lack of Sleep:** Insufficient or poor quality sleep.
+- ... (other causes)
+
+While you wait to see a doctor, you can try:
+- **Staying hydrated:** Drink plenty of water.
+- **Getting adequate rest:** Prioritize sleep.
+- ...
+
+However, please seek immediate medical attention if you experience:
+- Severe dizziness or fainting spells
+- Chest pain or shortness of breath
+- ...
+
+Please make an appointment with your doctor soon to discuss your symptoms.
+
+---
+
+Please provide the advice in this clear, bullet-pointed, stepwise format.
+`;
     try {
       const res = await fetch("/api/chat", {
         method: "POST",
@@ -164,8 +206,7 @@ console.log(result)
                   </button>
                 </div>
 
-             <Result result={result} />
-
+               {<Result result={result} />}
 
               </div>
             )}
