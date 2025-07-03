@@ -7,9 +7,10 @@ import {
 } from 'lucide-react';
 import { useSession } from 'next-auth/react';
 import UserAppoitment from './UserAppoitment';
-import SymptomChecker from '../Components/SymptomChecker/SymptomChecker';
-import MedicalDiagnosis from '../Components/SymptomChecker/SymptomChecker';
+
+
 import AskAI from './AskAI';
+import SymptomChecker from '../Components/SymptomChecker/SymptomChecker';
 
 export default function UserDashboard() {
   const { data: session } = useSession();
@@ -32,7 +33,7 @@ export default function UserDashboard() {
       case 'appointments':
         return <UserAppoitment></UserAppoitment>
       case 'diagnosis':
-        return <MedicalDiagnosis></MedicalDiagnosis>
+        return <SymptomChecker></SymptomChecker>
       case 'reports':
         return <div className="text-lg">📄<AskAI></AskAI></div>;
       case 'favorites':

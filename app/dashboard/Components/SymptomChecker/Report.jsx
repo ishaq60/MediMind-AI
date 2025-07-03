@@ -1,7 +1,7 @@
 import { FileText, FileUp } from 'lucide-react';
 import React from 'react';
 
-const Report = ({handleFileUpload,FileText}) => {
+const Report = ({handleFileUpload}) => {
     return (
         <div>
              <div className="space-y-6">
