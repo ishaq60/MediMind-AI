@@ -1,157 +1,7 @@
-// "use client";
-
-// import {
-//   FileText,
-//   Activity,
-//   Brain,
-//   Stethoscope,
-//   Camera,
-// } from "lucide-react";
-// import Header from "./Header";
-// import Report from "./Report";
-// import ImagineFile from "./ImagineFile";
-// import UploadFiles from "./UploadFiles";
-// import Result from "./Result";
-// import { useState } from "react";
-// import SyndromParagrph from "./SyndromParagrph";
-
-// const SymptomChecker = () => {
-//   const [activeTab, setActiveTab] = useState("symptoms");
-//   const [symptoms, setSymptoms] = useState("");
-//   const [isAnalyzing, setIsAnalyzing] = useState(false);
-//   const [result, setResults] = useState(null);
-//   const [uploadedFiles, setUploadedFiles] = useState([]);
-
-//   // ✅ FORMAT FILE SIZE
-//   const formatFileSize = (bytes) => {
-//     if (bytes === 0) return "0 Bytes";
-//     const k = 1024;
-//     const sizes = ["Bytes", "KB", "MB", "GB"];
-//     const i = Math.floor(Math.log(bytes) / Math.log(k));
-//     return parseFloat((bytes / Math.pow(k, i)).toFixed(2)) + " " + sizes[i];
-//   };
-
-//   // ✅ SYMPTOM SUBMIT HANDLER
-//   const handleSymptomSubmit = async () => {
-//     if (!symptoms.trim()) return;
-
-//     setIsAnalyzing(true);
-//     setResults(null);
-
-//     const structuredPrompt = `
-// You are a caring and professional medical AI assistant.
-
-// A patient reports the following symptoms:
-// ${symptoms}
-
-// Please respond with a clear, stepwise explanation that includes:
-
-// 1. A short empathetic introduction acknowledging the symptoms.
-// 2. A bulleted list of common possible causes, with key terms in **bold**.
-// 3. A bulleted list of practical at-home care tips under the heading "**While you wait to see a doctor, you can try:**".
-// 4. A bulleted list of serious warning signs under the heading "**However, please seek immediate medical attention if you experience:**".
-// 5. A polite conclusion advising the patient to consult a healthcare professional.
-
-// Use bullet points for lists, and bold key terms for emphasis.
-// `;
-
-//     try {
-//       const res = await fetch("/api/chat", {
-//         method: "POST",
-//         headers: { "Content-Type": "application/json" },
-//         body: JSON.stringify({ message: structuredPrompt }),
-//       });
-
-//       const data = await res.json();
-
-//       if (data?.reply || data?.response) {
-//         setResults({ raw: data.reply || data.response });
-//       } else {
-//         setResults({ raw: "AI failed to respond properly." });
-//       }
-//     } catch (err) {
-//       setResults({ raw: "Something went wrong. Please try again." });
-//     }
-
-//     setIsAnalyzing(false);
-//   };
-
-//   // ✅ FILE UPLOAD
-//   const handleFileUpload = (event, type) => {
-//     const files = Array.from(event.target.files);
-//     const newFiles = files.map((file) => ({
-//       id: Date.now() + Math.random(),
-//       name: file.name,
-//       type: type,
-//       size: file.size,
-//       file: file,
-//     }));
-//     setUploadedFiles((prev) => [...prev, ...newFiles]);
-//   };
-
-//   const removeFile = (id) => {
-//     setUploadedFiles((prev) => prev.filter((file) => file.id !== id));
-//   };
-
-//   // ✅ PDF ANALYSIS
-// const handleAnalyzeFiles = async () => {
-//   if (uploadedFiles.length === 0) return;
-
-//   for (const file of uploadedFiles) {
-//     const reader = new FileReader();
-
-//     reader.onloadend = async () => {
-//       const base64Data = reader.result.split(",")[1];
-
-//       try {
-//         const res = await fetch("/api/pdf", {
-//           method: "POST",
-//           headers: { "Content-Type": "application/json" },
-//           body: JSON.stringify({
-//             prompt: `Summarize this medical document: ${file.name}`,
-//             base64: base64Data,
-//             fileName: file.name,
-//           }),
-//         });
-
-//         if (!res.ok) {
-//           const error = await res.text();
-//           console.error("❌ PDF API error:", error);
-//           setResults({ raw: "Error analyzing file." });
-//           return;
-//         }
-
-//         const data = await res.json();
-
-//         if (data?.response) {
-//           setResults((prev) => ({
-//             raw: (prev?.raw || "") + `\n\n📄 ${file.name}:\n` + data.response,
-//           }));
-//         } else {
-//           setResults({ raw: "No response from AI." });
-//         }
-//       } catch (err) {
-//         console.error("❌ AI analysis error:", err);
-//         setResults({ raw: "Something went wrong. Try again." });
-//       }
-//     };
-
-//     reader.readAsDataURL(file.file); // Triggers onloadend
-//   }
-// }
-// }
-
-
 // export default SymptomChecker;
 "use client";
 
-import {
-  FileText,
-  Activity,
-  Brain,
-  Stethoscope,
-  Camera,
-} from "lucide-react";
+import { FileText, Activity, Brain, Stethoscope, Camera } from "lucide-react";
 import Header from "./Header";
 import Report from "./Report";
 import ImagineFile from "./ImagineFile";
@@ -161,6 +11,8 @@ import { useState } from "react";
 import SyndromParagrph from "./SyndromParagrph";
 
 const SymptomChecker = () => {
+  const [isAnalyzingFiles, setIsAnalyzingFiles] = useState(false);
+
   const [activeTab, setActiveTab] = useState("symptoms");
   const [symptoms, setSymptoms] = useState("");
   const [isAnalyzing, setIsAnalyzing] = useState(false);
@@ -222,17 +74,97 @@ Use bullet points for lists, and bold key terms for emphasis.
   };
 
   // ✅ FILE UPLOAD
-  const handleFileUpload = (event, type) => {
-    const files = Array.from(event.target.files);
-    const newFiles = files.map((file) => ({
-      id: Date.now() + Math.random(),
-      name: file.name,
-      type: type,
-      size: file.size,
-      file: file,
-    }));
-    setUploadedFiles((prev) => [...prev, ...newFiles]);
-  };
+  // const handleFileUpload = (event, type) => {
+  //   const files = Array.from(event.target.files);
+  //   const newFiles = files.map((file) => ({
+  //     id: Date.now() + Math.random(),
+  //     name: file.name,
+  //     type: type,
+  //     size: file.size,
+  //     file: file,
+  //   }));
+  //   setUploadedFiles((prev) => [...prev, ...newFiles]);
+  // };
+const handleFileUpload = async (event, type) => {
+  const files = Array.from(event.target.files);
+
+  const newFiles = files.map((file) => ({
+    id: Date.now() + Math.random(),
+    name: file.name,
+    type: type,
+    size: file.size,
+    file: file,
+  }));
+
+  setUploadedFiles((prev) => [...prev, ...newFiles]);
+  setIsAnalyzing(true);
+  setResults(null);
+
+  const structuredPrompt = `
+You are a caring and professional medical AI assistant.
+
+A patient reports the following symptoms:
+${symptoms}
+
+Please respond with a clear, stepwise explanation that includes:
+
+1. A short empathetic introduction acknowledging the symptoms.
+2. A bulleted list of common possible causes, with key terms in **bold**.
+3. A bulleted list of practical at-home care tips under the heading "**While you wait to see a doctor, you can try:**".
+4. A bulleted list of serious warning signs under the heading "**However, please seek immediate medical attention if you experience:**".
+5. A polite conclusion advising the patient to consult a healthcare professional.
+
+Use bullet points for lists, and bold key terms for emphasis.
+`;
+
+  for (const file of newFiles) {
+    const reader = new FileReader();
+
+    reader.onloadend = async () => {
+      const base64Data = reader.result?.split(",")[1];
+
+      if (!base64Data || base64Data.length < 50) {
+        setResults((prev) => ({
+          raw: (prev?.raw || "") + `\n\n📄 ${file.name}: File is empty or corrupted.`,
+        }));
+        return;
+      }
+
+      try {
+        const res = await fetch("/api/pdf", {
+          method: "POST",
+          headers: { "Content-Type": "application/json" },
+          body: JSON.stringify({
+            prompt: structuredPrompt,
+            base64: base64Data,
+            fileName: file.name,
+          }),
+        });
+
+        const data = await res.json();
+
+        if (data?.response) {
+          setResults((prev) => ({
+            raw: (prev?.raw || "") + `\n\n📄 ${file.name}:\n${data.response}`,
+          }));
+        } else {
+          setResults((prev) => ({
+            raw: (prev?.raw || "") + `\n\n📄 ${file.name}: No response from AI.`,
+          }));
+        }
+      } catch (err) {
+        console.error("❌ AI analysis error:", err);
+        setResults((prev) => ({
+          raw: (prev?.raw || "") + `\n\n📄 ${file.name}: Something went wrong.`,
+        }));
+      }
+    };
+
+    reader.readAsDataURL(file.file);
+  }
+
+  setIsAnalyzing(false);
+};
 
   const removeFile = (id) => {
     setUploadedFiles((prev) => prev.filter((file) => file.id !== id));
@@ -241,41 +173,54 @@ Use bullet points for lists, and bold key terms for emphasis.
   // ✅ PDF ANALYSIS
   const delay = (ms) => new Promise((resolve) => setTimeout(resolve, ms));
 
-const handleAnalyzeFiles = async () => {
-  if (uploadedFiles.length === 0) return;
+  const handleAnalyzeFiles = async () => {
+    if (uploadedFiles.length === 0) return;
 
-  for (const file of uploadedFiles) {
-    const reader = new FileReader();
+    setIsAnalyzingFiles(true); // 🟡 Start loading
+    setResults(null);
 
-    reader.onloadend = async () => {
-      const base64Data = reader.result.split(",")[1];
+    for (const file of uploadedFiles) {
+      const reader = new FileReader();
 
-      try {
-        await delay(7000); // ✅ Wait 7 seconds between each API call
+      reader.onloadend = async () => {
+        const base64Data = reader.result.split(",")[1];
 
-        const res = await fetch("/api/pdf", {
-          method: "POST",
-          headers: { "Content-Type": "application/json" },
-          body: JSON.stringify({
-            prompt: `Summarize this medical document: ${file.name}`,
-            base64: base64Data,
-            fileName: file.name,
-          }),
-        });
+        try {
+          await delay(7000);
 
-        const data = await res.json();
-        setResults((prev) => ({ ...prev, [file.name]: data.response || "Failed" }));
-      } catch (error) {
-        console.error("AI analysis error:", error);
-        setResults((prev) => ({ ...prev, [file.name]: "Something went wrong." }));
-      }
-    };
+          const res = await fetch("/api/pdf", {
+            method: "POST",
+            headers: { "Content-Type": "application/json" },
+            body: JSON.stringify({
+              prompt: `Summarize this medical document: ${file.name}`,
+              base64: base64Data,
+              fileName: file.name,
+            }),
+          });
 
-    reader.readAsDataURL(file.file);
-  }
-};
+          const data = await res.json();
+          setResults((prev) => ({
+            raw:
+              (prev?.raw || "") +
+              `\n\n📄 ${file.name}:\n` +
+              (data.response || "Failed"),
+          }));
+        } catch (error) {
+          console.error("AI analysis error:", error);
+          setResults((prev) => ({
+            raw:
+              (prev?.raw || "") + `\n\n📄 ${file.name}:\nSomething went wrong.`,
+          }));
+        }
+      };
 
+      reader.readAsDataURL(file.file);
+    }
 
+    setIsAnalyzingFiles(false); // 🟢 Stop loading
+  };
+
+  console.log(result);
   return (
     <div className="min-h-screen bg-gradient-to-br from-blue-50 via-indigo-50 to-purple-50">
       <div className="bg-white shadow-sm border-b">
@@ -341,11 +286,13 @@ const handleAnalyzeFiles = async () => {
 
             {uploadedFiles.length > 0 && (
               <UploadFiles
+               result={result}
                 uploadedFiles={uploadedFiles}
                 removeFile={removeFile}
                 formatFileSize={formatFileSize}
                 handleFileUpload={handleFileUpload}
-                onAnalyzeFiles={handleAnalyzeFiles}
+             handleAnalyzeFiles={handleAnalyzeFiles}
+                isAnalyzingFiles={isAnalyzingFiles} // ✅ add this
               />
             )}
           </div>

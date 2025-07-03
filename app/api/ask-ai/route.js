@@ -1,59 +1,34 @@
-// // inside your POST handler
-const prompt = `
-You are a trusted medical AI assistant trained in clinical diagnosis.
+import { GoogleGenerativeAI } from "@google/generative-ai";
+import { NextResponse } from "next/server";
 
-A patient reports the following symptoms:
-${symptoms}
+export async function POST(req) {
+  try {
+    const { prompt, base64, fileName } = await req.json();
 
-Please analyze the symptoms and respond in this exact format:
+    if (!base64 || base64.length < 50) {
+      return NextResponse.json({ error: "Empty or invalid PDF base64." }, { status: 400 });
+    }
 
-Analysis Complete
+    const genAI = new GoogleGenerativeAI(process.env.GOOGLE_API_KEY);
 
-Possible Conditions
-[Condition 1]
-[Severity: Low/Medium/High]
-[Confidence: %]
+    const model = genAI.getGenerativeModel({ model: "gemini-2.5-flash" });
 
-[Condition 2]
-[Severity]
-[Confidence]
+    const result = await model.generateContent([
+      { text: prompt },
+      {
+        inlineData: {
+          mimeType: "application/pdf",
+          data: base64, // ✅ No prefix
+        },
+      },
+    ]);
 
-[Condition 3]
-[Severity]
-[Confidence]
+    const response = await result.response;
+    const text = response.text();
 
-Identified Syndromes with Codes
-[Syndrome Name 1] - [Code 1]
-[Syndrome Name 2] - [Code 2]
-
-Doctor's Recommendations
-- Medicines Needed:
-  [List medicines or drug classes recommended]
-- Tests Required:
-  [List diagnostic tests, e.g., blood tests, imaging, pathology]
-- Specialist Consultations:
-  [List types of doctors the patient should see, e.g., cardiologist, dermatologist]
-- At-home Care:
-  [Practical care suggestions to do at home]
-- When to Seek Emergency Care:
-  [Conditions or symptoms that require urgent physician visit]
-
-
-Medical Disclaimer
-This AI-generated advice is for informational purposes only and should not be considered a substitute for professional medical consultation.
-`;
-
-const result = await ai.models.generateContent({
-  model: "gemini-2.5-flash",
-  contents: [{ role: "user", parts: [{ text: prompt }] }],
-});
-
-const generated = await result.response.text();
-
-return new Response(
-  JSON.stringify({ response: generated }),
-  {
-    status: 200,
-    headers: { "Content-Type": "application/json" },
+    return NextResponse.json({ response: text });
+  } catch (err) {
+    console.error("❌ PDF Analysis Error:", err);
+    return NextResponse.json({ error: err.message }, { status: 500 });
   }
-);
+}
