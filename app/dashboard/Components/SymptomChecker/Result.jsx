@@ -1,3 +1,4 @@
+import Link from 'next/link';
 import React from 'react';
 import ReactMarkdown from 'react-markdown';
 
@@ -26,6 +27,9 @@ const Result = ({ result }) => {
         >
           {result.raw}
         </ReactMarkdown>
+     
+          <Link className='text-white bg-green-500 p-4 rounded-sm' href="/doctor">Find Doctor</Link>
+      
       </div>
     </div>
   );

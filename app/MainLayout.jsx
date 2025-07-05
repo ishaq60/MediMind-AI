@@ -10,6 +10,8 @@ export default function AuthmainLayOut({ children }) {
   const hideLayout =
     pathname.startsWith("/login") ||
     pathname.startsWith("/signup") ||
+    pathname.startsWith("/doctor") ||
+
     pathname.startsWith("/dashboard") ||
     pathname.includes("not-found") ||
     pathname.includes("error") ||

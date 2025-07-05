@@ -18,8 +18,10 @@ export default function Home() {
     <HowItWorks></HowItWorks>
     <Testmonalsection></Testmonalsection>
      <Doctors></Doctors>
+     
     <Priceing></Priceing>
     <Contact></Contact>
+    
  
     {/* <ServicesSection></ServicesSection>
     <About></About> */}
