@@ -118,7 +118,7 @@ Based on your symptoms, here are some **potential causes**:
   ];
 
   return (
-    <div className="h-screen bg-gradient-to-br from-blue-50 to-indigo-100 flex flex-col">
+    <div className="lg:h-[900px] md:h-[900px] sm:h-[650px] bg-gradient-to-br from-blue-50 to-indigo-100 flex flex-col">
       {/* Header - Hidden on mobile for more space */}
       <div className="hidden sm:block bg-white shadow-sm border-b border-gray-200 p-4">
         <div className="max-w-4xl mx-auto flex items-center justify-between">
