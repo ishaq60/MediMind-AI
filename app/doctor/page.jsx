@@ -1,11 +1,13 @@
 "use client"
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import { 
   Search, Filter, MapPin, Clock, Star, Calendar, 
   User, Phone, Mail, Heart, Brain, Eye, Bone,
   Activity, Stethoscope, Baby, UserCheck, Shield,
   ChevronDown, ChevronRight, Video, MessageCircle
 } from 'lucide-react';
+import Link from 'next/link';
+import useDoctors from '@/hooks/useDoctors';
 
 const DoctorAppointmentSection = () => {
   const [selectedCategory, setSelectedCategory] = useState('all');
@@ -14,6 +16,30 @@ const DoctorAppointmentSection = () => {
   const [showBookingModal, setShowBookingModal] = useState(false);
   const [selectedDate, setSelectedDate] = useState('');
   const [selectedTime, setSelectedTime] = useState('');
+// const [setDoctors,doctor]=useState()
+
+
+//   useEffect(() => {
+//     const fetchDoctors = async () => {
+//       try {
+//         const res = await fetch("http://localhost:3000/services/api/get-all");
+//         const data = await res.json();
+//         console.log("✅ Doctors fetchedddd:", data);
+//         setDoctors(data ); // adjust based on API response
+//       } catch (error) {
+//         console.error("Failed to fetch doctors", error);
+//       }
+//     };
+
+//     fetchDoctors();
+//   }, []);
+
+
+
+// console.log(doctor)
+const [doctorslist, refetch, isLoading] = useDoctors();
+console.log("sss"  ,doctorslist);
+
 
   const categories = [
     { id: 'all', name: 'All Specialists', icon: Stethoscope, count: 156 },
@@ -222,6 +248,7 @@ const DoctorAppointmentSection = () => {
         <div className="grid lg:grid-cols-2 gap-6 mb-12">
           {filteredDoctors.map((doctor) => (
             <div key={doctor.id} className="bg-white rounded-3xl shadow-lg border border-gray-100 hover:shadow-xl transition-all duration-300 p-6">
+              <Link href={`/doctor/${doctor.id}`}>
               <div className="flex flex-col md:flex-row md:items-start space-y-4 md:space-y-0 md:space-x-6">
                 {/* Doctor Photo */}
                 <div className="flex-shrink-0">
@@ -306,6 +333,8 @@ const DoctorAppointmentSection = () => {
                   </div>
                 </div>
               </div>
+              
+              </Link>
             </div>
           ))}
         </div>
