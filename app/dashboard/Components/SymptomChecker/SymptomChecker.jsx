@@ -18,6 +18,7 @@ const SymptomChecker = () => {
   const [isAnalyzing, setIsAnalyzing] = useState(false);
   const [result, setResults] = useState(null);
   const [uploadedFiles, setUploadedFiles] = useState([]);
+  const [uploadedFileimage, setUploadedFileimage] = useState([]);
 
   // ✅ FORMAT FILE SIZE
   const formatFileSize = (bytes) => {
@@ -220,6 +221,83 @@ Use bullet points for lists, and bold key terms for emphasis.
     setIsAnalyzingFiles(false); // 🟢 Stop loading
   };
 
+// const handaleImageFile=async()=>{
+//  if (uploadedFiles.length === 0) return;
+
+//     setIsAnalyzingFiles(true); // 🟡 Start loading
+//     setResults(null);
+// }
+const handaleImageFile = async () => {
+  if (uploadedFileimage.length === 0) return;
+
+  setIsAnalyzingFiles(true);
+  setResults(null);
+
+  const imageFiles = uploadedFileimage.filter((file) =>
+    file.type === "image"
+  );
+
+  const structuredPrompt = `
+You are a medical imaging expert AI.
+
+Analyze the uploaded medical image and describe:
+
+1. The visible anatomical features.
+2. Any abnormal findings or areas of concern (e.g. fractures, tumors, inflammation).
+3. The possible medical implications.
+4. A disclaimer that the analysis is not a substitute for professional diagnosis.
+`;
+
+  for (const file of imageFiles) {
+    const reader = new FileReader();
+
+    reader.onloadend = async () => {
+      const base64Data = reader.result?.split(",")[1];
+
+      if (!base64Data || base64Data.length < 50) {
+        setResults((prev) => ({
+          raw: (prev?.raw || "") + `\n🖼️ ${file.name}: Invalid or empty image file.`,
+        }));
+        return;
+      }
+
+      try {
+        const res = await fetch("/api/x-image", {
+          method: "POST",
+          headers: { "Content-Type": "application/json" },
+          body: JSON.stringify({
+            prompt: structuredPrompt,
+            base64: base64Data,
+            fileName: file.name,
+          }),
+        });
+
+        const data = await res.json();
+
+        if (data?.response) {
+          setResults((prev) => ({
+            raw: (prev?.raw || "") + `\n🖼️ ${file.name}:\n${data.response}`,
+          }));
+        } else {
+          setResults((prev) => ({
+            raw: (prev?.raw || "") + `\n🖼️ ${file.name}: No response from AI.`,
+          }));
+        }
+      } catch (err) {
+        console.error("❌ Image analysis error:", err);
+        setResults((prev) => ({
+          raw: (prev?.raw || "") + `\n🖼️ ${file.name}: Something went wrong.`,
+        }));
+      }
+    };
+
+    reader.readAsDataURL(file.file);
+  }
+
+  setIsAnalyzingFiles(false);
+};
+
+
   console.log(result);
   return (
     <div className="min-h-screen bg-gradient-to-br from-blue-50 via-indigo-50 to-purple-50">
@@ -262,6 +340,9 @@ Use bullet points for lists, and bold key terms for emphasis.
             </nav>
           </div>
 
+
+
+{/* chat/Messsage */}
           <div className="p-6">
             {activeTab === "symptoms" && (
               <SyndromParagrph
@@ -280,10 +361,24 @@ Use bullet points for lists, and bold key terms for emphasis.
               />
             )}
 
+
+
+{/* Image */}
+
+
             {activeTab === "imaging" && (
-              <ImagineFile handleFileUpload={handleFileUpload} />
+              
+              <ImagineFile uploadedFiles={uploadedFiles}
+  handleFileUpload={handleFileUpload}
+  handaleImageFile={handaleImageFile}
+  result={result} />
             )}
 
+
+
+
+
+{/* pdf/Doc */}
             {uploadedFiles.length > 0 && (
               <UploadFiles
                result={result}

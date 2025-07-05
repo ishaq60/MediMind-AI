@@ -11,6 +11,7 @@ import UserAppoitment from './UserAppoitment';
 
 import AskAI from './AskAI';
 import SymptomChecker from '../Components/SymptomChecker/SymptomChecker';
+import MedicalChatAssistant from '../Components/chatAssistance/chatBox';
 
 export default function UserDashboard() {
   const { data: session } = useSession();
@@ -35,7 +36,7 @@ export default function UserDashboard() {
       case 'diagnosis':
         return <SymptomChecker></SymptomChecker>
       case 'reports':
-        return <div className="text-lg">📄<AskAI></AskAI></div>;
+        return <div className="text-lg">📄<MedicalChatAssistant></MedicalChatAssistant></div>;
       case 'favorites':
         return <div className="text-lg">⭐ Your Favorite Doctors</div>;
       case 'help':
