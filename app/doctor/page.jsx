@@ -8,8 +8,13 @@ import DoctorCard from "../components/doctorDetails/DoctorCard";
 import Loading from "../components/Loading";
 import ShowBookingModal from "../components/doctorDetails/ShowBookingModal";
 import { toast } from "react-toastify";
+import { useSession } from "next-auth/react";
+import { useRouter } from "next/navigation";
 
 const DoctorAppointmentSection = () => {
+const router = useRouter();
+  const session=useSession()
+  console.log("sessin",session)
   const [selectedCategory, setSelectedCategory] = useState("all");
   const [searchTerm, setSearchTerm] = useState("");
   const [selectedType, setSelectedType] = useState("");
@@ -36,6 +41,11 @@ const DoctorAppointmentSection = () => {
   });
 
   const handleBooking = (doctor) => {
+     if (session.status !== "authenticated") {
+    toast.error("Please log in to book an appointment.");
+     router.push("/login"); 
+     return
+  }
     setSelectedDoctor(doctor);
     setShowBookingModal(true);
   };

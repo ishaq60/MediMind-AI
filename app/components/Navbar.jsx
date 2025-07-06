@@ -22,7 +22,7 @@ const Navbar = () => {
     { item: 'Home', path: '#home' },
     { item: 'Features', path: '#features' },
     { item: 'How It Works', path: '#how-it-works' },
-    { item: 'Doctor', path: '/doctor' },
+    { item: 'Doctors', path: '/doctor' },
     { item: 'Testimonials', path: '#testimonials' },
     { item: 'Pricing', path: '#pricing' },
     { item: 'Contact', path: '#contact' },
