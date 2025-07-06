@@ -44,6 +44,18 @@ const DoctorAppointmentSection = () => {
     setSelectedTime('');
   };
 
+
+
+
+
+  
+
+
+
+
+
+
+
   return (
     <div className="min-h-screen bg-gradient-to-br from-blue-50 via-white to-indigo-50 py-12 px-4">
       <div className="max-w-7xl mx-auto">
@@ -69,10 +81,24 @@ const DoctorAppointmentSection = () => {
           </div>
         </div>
 
+
+
+
+
+  <div>
+       <DoctorCard filteredDoctors={filteredDoctors}> </DoctorCard>
+        </div>
+
+
+
+
+
+
+
         {/* Doctor Cards */}
-       <DoctorCard
+       {/* <DoctorCard
          filteredDoctors={filteredDoctors}
-       ></DoctorCard>
+       ></DoctorCard> */}
 
         {/* Booking Modal */}
         {showBookingModal && selectedDoctor && (

@@ -1,16 +1,21 @@
 "use client"
-import Link from 'daisyui/components/link';
+
 import { Clock, MapPin, Phone, Star, User, Video } from 'lucide-react';
+import Link from 'next/link';
 import React from 'react';
 
 const DoctorCard = ({filteredDoctors}) => {
+  const handleBooking=()=>{
+
+  }
     return (
         <div>
             <div className="grid lg:grid-cols-2 gap-6 mb-12">
           {filteredDoctors.map((doctor) => (
+          
+           
             <div key={doctor._id} className="bg-white rounded-3xl shadow-lg border border-gray-100 hover:shadow-xl transition-all duration-300 p-6">
-             
-              {/*   filteredDoctors={filteredDoctors} */}
+       
                 <div className="flex flex-col md:flex-row md:items-start space-y-4 md:space-y-0 md:space-x-6">
                   {/* Doctor Photo */}
                   <div className="flex-shrink-0">
@@ -86,20 +91,22 @@ const DoctorCard = ({filteredDoctors}) => {
                     </div>
 
                     <div className="flex space-x-3 mt-6">
-                      <button
-                        onClick={() => handleBooking(doctor)}
-                        className="flex-1 px-6 py-3 bg-gradient-to-r from-blue-500 to-indigo-400 text-white rounded-xl font-semibold hover:shadow-lg transform hover:scale-105 transition-all duration-200"
+                      <Link href={`/doctor/${doctor._id}`}
+                       
+                        className="flex-1 px-6 py-3 bg-gradient-to-r from-blue-600 to-indigo-600 text-white rounded-xl font-semibold hover:shadow-lg transform hover:scale-105 transition-all duration-200"
                       >
                         Book Appointment
-                      </button>
+                      </Link>
                       <button className="px-6 py-3 border-2 border-blue-600 text-blue-600 rounded-xl font-semibold hover:bg-blue-50 transition-all duration-200">
                         View Profile
                       </button>
                     </div>
                   </div>
+                 
                 </div>
             
             </div>
+       
           ))}
         </div> 
         </div>
