@@ -1,13 +1,13 @@
 "use client"
 
+import { Button } from '@/components/ui/button';
 import { Clock, MapPin, Phone, Star, User, Video } from 'lucide-react';
+import Image from 'next/image';
 import Link from 'next/link';
 import React from 'react';
 
-const DoctorCard = ({filteredDoctors}) => {
-  const handleBooking=()=>{
+const DoctorCard = ({filteredDoctors,handleBooking}) => {
 
-  }
     return (
         <div>
             <div className="grid lg:grid-cols-2 gap-6 mb-12">
@@ -20,8 +20,14 @@ const DoctorCard = ({filteredDoctors}) => {
                   {/* Doctor Photo */}
                   <div className="flex-shrink-0">
                     <div className="w-20 h-20 bg-gradient-to-br from-blue-100 to-indigo-100 rounded-2xl flex items-center justify-center">
-                      <User className="w-10 h-10 text-blue-600" />
-                    </div>
+<Image 
+  src={doctor.image.trim()} 
+  alt={`Image of ${doctor.name}`} 
+  width={80}
+  height={80}
+  className="object-cover rounded-2xl"
+/>
+        </div>
                   </div>
 
                   {/* Doctor Info */}
@@ -53,7 +59,7 @@ const DoctorCard = ({filteredDoctors}) => {
                     {/* Specializes in */}
                     <div className="mb-4">
                       <h4 className="text-sm font-semibold text-gray-900 mb-2">Specializes in:</h4>
-                      {/* <div className="flex flex-wrap gap-2">
+                      <div className="flex flex-wrap gap-2">
                         {doctor.conditions.slice(0, 3).map((condition, idx) => (
                           <span
                             key={idx}
@@ -67,7 +73,7 @@ const DoctorCard = ({filteredDoctors}) => {
                             +{doctor.conditions.length - 3} more
                           </span>
                         )}
-                      </div> */}
+                      </div>
                     </div>
 
                     {/* Availability & Booking */}
@@ -91,15 +97,15 @@ const DoctorCard = ({filteredDoctors}) => {
                     </div>
 
                     <div className="flex space-x-3 mt-6">
-                      <Link href={`/doctor/${doctor._id}`}
+                      <Button  onClick={() => handleBooking(doctor)}
                        
-                        className="flex-1 px-6 py-3 bg-gradient-to-r from-blue-600 to-indigo-600 text-white rounded-xl font-semibold hover:shadow-lg transform hover:scale-105 transition-all duration-200"
+                        className="flex-1 px-6 py-3 bg-gradient-to-r from-blue-500 to-indigo-400 text-white rounded-xl font-semibold hover:shadow-lg transform hover:scale-105 transition-all duration-200"
                       >
                         Book Appointment
-                      </Link>
-                      <button className="px-6 py-3 border-2 border-blue-600 text-blue-600 rounded-xl font-semibold hover:bg-blue-50 transition-all duration-200">
+                      </Button>
+                      <Link href={`/doctor/${doctor._id}`} className="px-6 py-3 border-2 border-blue-600 text-blue-600 rounded-xl font-semibold hover:bg-blue-50 transition-all duration-200">
                         View Profile
-                      </button>
+                      </Link>
                     </div>
                   </div>
                  
