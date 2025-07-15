@@ -98,9 +98,9 @@ const Doctors = () => {
               ))}
             </div>
             <div className="text-center mt-8">
-              <but className="px-8 py-3 border-2 border-blue-600 text-blue-600 rounded-full font-semibold hover:bg-blue-50 transition-all duration-200">
+              <button className="px-8 py-3 border-2 border-blue-600 text-blue-600 rounded-full font-semibold hover:bg-blue-50 transition-all duration-200">
                 View All Doctors
-              </but>
+              </button>
             </div>
           </div>
         </div>

@@ -27,7 +27,7 @@ export default function DoctorDashboard() {
         return <h1 className="text-2xl font-bold">Welcome, Dr. {session?.user?.name || ''}!</h1>;
       default:
         return (
-          <div className="text-center mt-20 text-gray-500">
+          <div className="text-center m -20 text-gray-500">
             <p>Coming Soon</p>
           </div>
         );

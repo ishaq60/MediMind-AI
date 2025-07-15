@@ -5,6 +5,7 @@ import {
   Menu, X, Heart, Search, Bell
 } from 'lucide-react';
 import { useSession } from 'next-auth/react';
+import Link from 'next/link';
 
 export default function AdminDashboard() {
   const { data: session } = useSession();
@@ -54,9 +55,12 @@ export default function AdminDashboard() {
             <div className="w-7 h-7 bg-gradient-to-r from-blue-500 to-purple-600 rounded-lg flex items-center justify-center">
               <Heart className="w-4 h-4 text-white" />
             </div>
+          <Link href="/">
             <span className="text-lg font-bold bg-gradient-to-r from-blue-600 to-purple-600 bg-clip-text text-transparent">
               MediAI Admin
             </span>
+          
+          </Link>
           </div>
           <button onClick={() => setIsSidebarOpen(false)} className="lg:hidden p-2 hover:bg-gray-100 rounded-lg">
             <X className="w-5 h-5 text-gray-500" />

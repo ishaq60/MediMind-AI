@@ -14,7 +14,8 @@ import { useRouter } from "next/navigation";
 const DoctorAppointmentSection = () => {
 const router = useRouter();
   const session=useSession()
-  console.log("sessin",session)
+  
+  
   const [selectedCategory, setSelectedCategory] = useState("all");
   const [searchTerm, setSearchTerm] = useState("");
   const [selectedType, setSelectedType] = useState("");

@@ -21,6 +21,8 @@ import UserAppoitment from "./UserAppoitment";
 import AskAI from "./AskAI";
 import SymptomChecker from "../Components/SymptomChecker/SymptomChecker";
 import MedicalChatAssistant from "../Components/chatAssistance/chatBox";
+import Link from "next/link";
+import Myreport from "./Myreport";
 
 export default function UserDashboard() {
   const { data: session } = useSession();
@@ -39,6 +41,7 @@ export default function UserDashboard() {
     { id: "help", label: "Help Center", icon: AlertCircle },
   ];
 
+  console.log(session)
   const renderContent = () => {
     switch (activeTab) {
       case "overview":
@@ -58,6 +61,8 @@ export default function UserDashboard() {
         );
         case "disease-detector":
         return <SymptomChecker></SymptomChecker>;
+         case "reports":
+        return <Myreport></Myreport>;
       case "favorites":
         return <div className="text-lg">⭐ Your Favorite Doctors</div>;
       case "help":
@@ -90,9 +95,11 @@ export default function UserDashboard() {
             <div className="w-7 h-7 bg-gradient-to-r from-blue-500 to-purple-600 rounded-lg flex items-center justify-center">
               <Heart className="w-4 h-4 text-white" />
             </div>
+            <Link href={"/"}>
             <span className="text-lg font-bold bg-gradient-to-r from-blue-600 to-purple-600 bg-clip-text text-transparent">
               MediAI
             </span>
+            </Link>
           </div>
           <button
             onClick={() => setIsSidebarOpen(false)}

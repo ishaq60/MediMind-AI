@@ -31,7 +31,7 @@ export default function Sidebar({ setIsSidebarOpen }) {
       id: 'reports',
       label: 'My Reports',
       icon: FileText,
-      href: '/dashboard/reports',
+      href: '/dashboard/user/ reports',
     },
     {
       id: 'favorites',

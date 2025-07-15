@@ -23,8 +23,6 @@ const Navbar = () => {
     { item: 'Features', path: '#features' },
     { item: 'How It Works', path: '#how-it-works' },
     { item: 'Doctors', path: '/doctor' },
-    { item: 'Testimonials', path: '#testimonials' },
-    { item: 'Pricing', path: '#pricing' },
     { item: 'Contact', path: '#contact' },
     {
       item:"Dashboard",path:"/dashboard"
@@ -48,7 +46,7 @@ const Navbar = () => {
                 <Stethoscope className="w-6 h-6 text-white" />
               </div>
               <div>
-                <span className="text-2xl font-bold text-white">MedAI</span>
+                <Link href="/"><span className="text-2xl font-bold text-white">MedAI</span></Link>
                 <div className="text-xs text-white -mt-1">Diagnosis Assistant</div>
               </div>
             </div>

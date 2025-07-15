@@ -20,3 +20,14 @@ export const getServicesDetails = async (id) => {
     return {};
   }
 };
+
+
+
+export const getAlluser = async (id) => {
+  try {
+    const res = await axios.get(`${BASE_URL}/services/api/user`);
+    return res.data;
+  } catch (error) {
+    return {};
+  }
+};
