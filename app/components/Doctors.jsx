@@ -36,6 +36,9 @@ const Doctors = () => {
     fetchDoctors();
   }, []);
 
+
+
+  
   return (
     <div>
       <section id="doctor" className="py-20 px-4 bg-white">

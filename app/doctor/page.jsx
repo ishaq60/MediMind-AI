@@ -15,7 +15,7 @@ const DoctorAppointmentSection = () => {
 const router = useRouter();
   const session=useSession()
   
-  
+
   const [selectedCategory, setSelectedCategory] = useState("all");
   const [searchTerm, setSearchTerm] = useState("");
   const [selectedType, setSelectedType] = useState("");
@@ -51,14 +51,49 @@ const router = useRouter();
     setShowBookingModal(true);
   };
 
-  const confirmBooking = () => {
-    toast.success("successfully")
-    toast.success( `Appointment booked with ${selectedDoctor.name} on ${selectedDate} at ${selectedTime}`)
+const bookingdata = {
+  Dname: selectedDoctor,
+  appointmentTime: selectedTime,
+  bookingtype: selectedType,
+  date: selectedDate,
+ user: session
+};
 
-    setShowBookingModal(false);
-    setSelectedDate("");
-    setSelectedTime("");
-  };
+console.log("booking data form", bookingdata);
+
+const confirmBooking = async () => {
+  try {
+    const response = await fetch("/api/booking", {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify(bookingdata),
+    });
+
+    const result = await response.json();
+
+    if (response.ok) {
+     
+      toast.success(
+        `Appointment booked with ${selectedDoctor.name} on ${selectedDate} at ${selectedTime}`
+      );
+
+      setShowBookingModal(false);
+      setSelectedDate("");
+      setSelectedTime("");
+    } else {
+      toast.error("Booking failed: " + result.error);
+    }
+  } catch (error) {
+    console.error("Booking error:", error);
+    toast.error("Something went wrong while booking.");
+  }
+};
+
+
+
+
 
   return (
     <div className="min-h-screen bg-gradient-to-br from-blue-50 via-white to-indigo-50 py-12 px-4">

@@ -24,6 +24,7 @@ import MedicalChatAssistant from "../Components/chatAssistance/chatBox";
 import Link from "next/link";
 import Myreport from "./Myreport";
 
+
 export default function UserDashboard() {
   const { data: session } = useSession();
   const [activeTab, setActiveTab] = useState("overview");
@@ -65,6 +66,7 @@ export default function UserDashboard() {
         return <Myreport></Myreport>;
       case "favorites":
         return <div className="text-lg">⭐ Your Favorite Doctors</div>;
+    
       case "help":
         return <div className="text-lg">❓ Help Center and Support</div>;
       default:

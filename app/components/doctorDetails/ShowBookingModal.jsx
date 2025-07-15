@@ -10,6 +10,7 @@ setShowBookingModal,
 confirmBooking,
   
 }) => {
+  console.log(selectedDate,selectedDoctor.name,selectedTime,selectedType)
     return (
         <div>
             <div className="fixed inset-0   bg-opacity-50 flex items-center justify-center z-50 p-4">
