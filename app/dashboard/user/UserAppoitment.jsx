@@ -5,6 +5,7 @@ import { useSession } from 'next-auth/react';
 import { toast } from 'react-toastify';
 import { useRouter } from "next/navigation";
 import { Calendar, Clock, DollarSign, Video, Phone, User, X, Loader2, Star, MapPin, Building2 } from 'lucide-react';
+import Loading from '@/app/components/Loading';
 
 const UserAppoitment = () => {
   const [appointments, setAppointments] = useState([]);
@@ -145,7 +146,7 @@ const UserAppoitment = () => {
       <div className="w-full max-w-7xl mx-auto p-3 sm:p-4 md:p-6 lg:p-8 bg-gray-50 min-h-screen">
         <div className="flex items-center justify-center py-12">
           <Loader2 className="h-8 w-8 animate-spin text-blue-600" />
-          <span className="ml-2 text-gray-600">Loading appointments...</span>
+          <span className="ml-2 text-gray-600"><Loading></Loading></span>
         </div>
       </div>
     );

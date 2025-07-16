@@ -42,7 +42,7 @@ export default function UserDashboard() {
     { id: "help", label: "Help Center", icon: AlertCircle },
   ];
 
-  console.log(session)
+
   const renderContent = () => {
     switch (activeTab) {
       case "overview":

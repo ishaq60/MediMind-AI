@@ -1,12 +1,13 @@
 import connectDB from "@/app/lib/connectDb";
 
-export async function GET(req, context) {
-  const { email } = await context.params;
+export async function GET(req, { params }) {
+  const { email } = params;
+  console.log(email)
 
   try {
     const db = await connectDB();
-    const userCollection = db.collection("user");
-    const user = await userCollection.findOne({ email });
+    const reportCollection = db.collection("report");
+    const user = await reportCollection.findOne({user: email });
 
     if (!user) {
       return new Response(JSON.stringify({ error: "User not found" }), {

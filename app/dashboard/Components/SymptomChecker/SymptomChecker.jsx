@@ -6,10 +6,13 @@ import Report from "./Report";
 import ImagineFile from "./ImagineFile";
 import UploadFiles from "./UploadFiles";
 import Result from "./Result";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import SyndromParagrph from "./SyndromParagrph";
+import { useSession } from "next-auth/react";
+import { toast } from "react-toastify";
 
 const SymptomChecker = () => {
+  const session=useSession()
   const [isAnalyzingFiles, setIsAnalyzingFiles] = useState(false);
   const [activeTab, setActiveTab] = useState("symptoms");
   const [symptoms, setSymptoms] = useState("");
@@ -252,6 +255,69 @@ Please format your response clearly with sections and bullet points.
 
     setIsAnalyzingFiles(false);
   };
+
+//post result
+
+
+
+
+
+
+
+  const [savedReportId, setSavedReportId] = useState(null);
+
+  useEffect(() => {
+    if (typeof result?.raw === "string" && result.raw.trim() !== "") {
+      // Use a unique identifier for the report you want to save,
+      // for example, a hash of the report text or a timestamp.
+      // Here, we'll just use the raw text for simplicity.
+      const reportId = result.raw;
+
+      // If this report was already saved, skip saving again
+      if (savedReportId === reportId) {
+        console.log("Report already saved, skipping.");
+        return;
+      }
+
+      const reportData = {
+        user: session?.data?.user?.email || "anonymous",
+        report: result.raw,
+        createdAt: new Date().toISOString(),
+      };
+
+      const saveReport = async () => {
+        try {
+          const response = await fetch("/api/report", {
+            method: "POST",
+            headers: { "Content-Type": "application/json" },
+            body: JSON.stringify(reportData),
+          });
+
+          const data = await response.json();
+
+          if (response.ok) {
+            toast.success("Report saved successfully!");
+            setSavedReportId(reportId); // mark this report as saved
+            console.log("Server response:", data);
+          } else {
+            toast.error("Something went wrong: " + data.error);
+          }
+        } catch (error) {
+          console.error("Report saving error:", error);
+          toast.error("Something went wrong while saving report.");
+        }
+      };
+
+      saveReport();
+    } else {
+      console.log("No valid report data to save.");
+    }
+  }, [result, session, savedReportId]);
+
+
+
+
+
 
   return (
     <div className="min-h-screen bg-gradient-to-br from-blue-50 via-indigo-50 to-purple-50">

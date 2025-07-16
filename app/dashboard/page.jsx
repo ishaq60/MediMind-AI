@@ -22,7 +22,7 @@ const DashboardHomePage = () => {
         const res = await fetch(`/api/user/${email}`);
         const data = await res.json();
         setUsers(data);
-        console.log("Fetched user:", data);
+      
       } catch (error) {
         console.error("Fetch error:", error);
       }
