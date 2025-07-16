@@ -15,7 +15,7 @@ const Priceing = () => {
 
           <div className="grid md:grid-cols-3 gap-8">
             {[
-              { name: "Basic", price: "Free", features: ["5 diagnoses/month", "Basic symptom checker", "Email support"], popular: false },
+              { name: "Basic", price: "Free", features: ["15 diagnoses/month", "Basic symptom checker", "Email support"], popular: false },
               { name: "Pro", price: "$29", features: ["Unlimited diagnoses", "Advanced AI analysis", "Priority support", "Report uploads"], popular: true },
               { name: "Enterprise", price: "$99", features: ["Everything in Pro", "API access", "Custom integrations", "24/7 phone support"], popular: false }
             ].map((plan, idx) => (
@@ -47,7 +47,7 @@ const Priceing = () => {
 
                 <button className={`w-full py-3 px-6 rounded-full font-semibold transition-all duration-200 ${
                   plan.popular 
-                    ? 'bg-gradient-to-r from-blue-600 to-indigo-600 text-white hover:shadow-lg' 
+                    ? 'flex-1 px-6 py-3 bg-gradient-to-r from-blue-500 to-indigo-400 text-white rounded-xl font-semibold hover:shadow-lg transform hover:scale-105 transition-all duration-200' 
                     : 'border-2 border-blue-600 text-blue-600 hover:bg-blue-50'
                 }`}>
                   {plan.price === "Free" ? "Get Started" : "Choose Plan"}

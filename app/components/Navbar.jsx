@@ -83,12 +83,15 @@ const Navbar = () => {
                   </Button>
                 </div>
               ) : (
+              <Link href={'/dashboard'}>
+              
                 <Button
-                  onClick={() => signIn()}
+                  
                   className="px-6 py-2 bg-gradient-to-r from-blue-600 to-indigo-600 text-white rounded-full font-semibold hover:shadow-lg transform hover:scale-105 transition-all duration-200"
                 >
                   Get Started
                 </Button>
+              </Link>
               )}
             </div>
 

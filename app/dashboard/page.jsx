@@ -49,9 +49,7 @@ const DashboardHomePage = () => {
   return (
     <div className="container mx-auto min-h-screen flex flex-col items-center justify-center p-4">
       {users ? (
-        <pre className="bg-gray-100 p-4 rounded w-full max-w-3xl overflow-x-auto">
-          {JSON.stringify(users, null, 2)}
-        </pre>
+      <Loading></Loading>
       ) : (
         <>
       
