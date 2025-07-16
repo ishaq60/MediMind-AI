@@ -2,10 +2,14 @@
 import React, { useState } from 'react';
 import {
   Activity, Calendar, FileText, UserCog, BarChart3, Settings,
-  Menu, X, Heart, Search, Bell
+  Menu, X, Heart, Search, Bell,
+  Star,
+  Pen,
+  User
 } from 'lucide-react';
 import { useSession } from 'next-auth/react';
 import Link from 'next/link';
+import UserManagement from './UserManagement';
 
 export default function AdminDashboard() {
   const { data: session } = useSession();
@@ -14,17 +18,20 @@ export default function AdminDashboard() {
 
   const sidebarItemsAdmin = [
     { id: 'overview', label: 'Overview', icon: Activity },
-    { id: 'manageUsers', label: 'Manage Users', icon: UserCog },
-    { id: 'appointments', label: 'All Appointments', icon: Calendar },
+    { id: 'manageusers', label: 'Manage Users', icon: UserCog },
+    // { id: 'appointments', label: 'All Appointments', icon: Calendar },
+    { id: 'Aifeedback', label: 'Ai Feedback Review', icon: Star },
     { id: 'analytics', label: 'System Analytics', icon: BarChart3 },
-    { id: 'reports', label: 'Reports', icon: FileText },
-    { id: 'settings', label: 'Settings', icon: Settings },
+    { id: 'content ', label: 'content Moderation', icon: FileText },
+    { id: 'Profile', label: 'Admin Profile', icon: User },
   ];
 
   const renderContent = () => {
     switch (activeTab) {
       case 'overview':
         return <h1 className="text-2xl font-bold">Welcome, Admin {session?.user?.name || ''}!</h1>;
+        case "manageusers":
+        return <UserManagement></UserManagement>
       default:
         return (
           <div className="text-center mt-20 text-gray-500">
