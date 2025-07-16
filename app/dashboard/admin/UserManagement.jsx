@@ -3,6 +3,9 @@
 import React, { useState, useEffect } from 'react';
 import { Edit, Trash2, Plus, Search, User, Stethoscope } from 'lucide-react';
 
+import { toast, ToastContainer } from 'react-toastify';
+import Swal from 'sweetalert2';
+
 const UserManagementTable = () => {
   const [users, setUsers] = useState([]);
   const [doctors, setDoctors] = useState([]);
@@ -63,28 +66,48 @@ const UserManagementTable = () => {
     return matchesSearch && matchesRole;
   });
 
-  const handleDelete = async (id, role) => {
-    try {
-      const endpoint = role === 'Doctor' ? '/api/deletedoctor' : '/api/deleteuser';
-      const res = await fetch(endpoint, {
-        method: 'DELETE',
-        headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({ id }),
-      });
+const handleDelete = async (id, role) => {
+  console.log(id, role);
 
-      if (res.ok) {
-        if (role === 'Doctor') {
-          setDoctors(doctors.filter(d => d._id !== id));
-        } else {
-          setUsers(users.filter(u => u._id !== id));
-        }
+  Swal.fire({
+  title: "Are you sure?",
+  text: `You want to delete the  ${role}`,
+  icon: "warning",
+  showCancelButton: true,
+  confirmButtonColor: "#3085d6",
+  cancelButtonColor: "#d33",
+  confirmButtonText: "Yes, delete it!"
+}).then (async(result) => {
+  if (result.isConfirmed) {
+
+     try {
+    const endpoint = role === 'Doctor'
+      ? `/api/deletedoctor/${id}`
+      : `/api/deleteuser/${id}`;
+
+    const res = await fetch(endpoint, {
+      method: 'DELETE',
+    });
+
+    if (res.ok) {
+      if (role === 'Doctor') {
+        setDoctors(doctors.filter(d => d._id !== id));
+        toast.success("Doctor deleted successfully")
       } else {
-        console.error('Failed to delete user');
+        setUsers(users.filter(u => u._id !== id));
+           toast.success("user deleted successfully")
       }
-    } catch (err) {
-      console.error('Error deleting user:', err);
+    } else {
+      console.error('Failed to delete user');
     }
-  };
+  } catch (err) {
+    console.error('Error deleting user:', err);
+  }
+  
+  }
+});
+ 
+};
 
   const handleEdit = (id) => {
     console.log('Edit user:', id);
@@ -93,6 +116,51 @@ const UserManagementTable = () => {
   const handleCreate = () => {
     console.log('Create new user');
   };
+
+
+ const handleMakeAdmin = async (id, role) => {
+  Swal.fire({
+    title: "Are you sure?",
+    text: `You want to make this ${role} an Admin?`,
+    icon: "warning",
+    showCancelButton: true,
+    confirmButtonColor: "#3085d6",
+    cancelButtonColor: "#d33",
+    confirmButtonText: "Yes, make Admin!"
+  }).then(async (result) => {
+    if (result.isConfirmed) {
+      try {
+        const res = await fetch(`/api/makeadmin/${id}`, {
+          method: "PATCH",
+          headers: {
+            "Content-Type": "application/json"
+          },
+          body: JSON.stringify({ role: "admin" })
+        });
+
+        if (res.ok) {
+          // ✅ Update local state here
+          setUsers(users.map(u =>
+            u._id === id ? { ...u, role: "admin" } : u
+          ));
+
+       
+
+          Swal.fire({
+            title: "Updated!",
+            text: "The user is now an Admin.",
+            icon: "success"
+          });
+        } else {
+          Swal.fire("Error", "Failed to make Admin.", "error");
+        }
+      } catch (err) {
+        console.error(err);
+        Swal.fire("Error", "Something went wrong.", "error");
+      }
+    }
+  });
+};
 
   return (
     <div className="min-h-screen bg-gray-50 p-4">
@@ -187,11 +255,11 @@ const UserManagementTable = () => {
                           </td>
                           <td className="py-4 px-4 hidden sm:table-cell">
                             <span className={`inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-medium ${
-                              user.role === 'Doctor'
+                              user.type === 'Doctor'
                                 ? 'bg-purple-100 text-purple-800'
                                 : 'bg-blue-100 text-blue-800'
                             }`}>
-                              {user.role}
+                              {user.type}
                             </span>
                           </td>
                           <td className="py-4 px-4 text-sm text-gray-900 hidden md:table-cell">
@@ -217,6 +285,11 @@ const UserManagementTable = () => {
                               <button onClick={() => handleDelete(user._id, user.role)} className="inline-flex items-center p-2 text-red-600 hover:text-red-800 hover:bg-red-50 rounded-lg transition-colors" title="Delete user">
                                 <Trash2 className="h-4 w-4" />
                               </button>
+                              {
+                                user?.type==="admin" ? 
+                                 <button className='rounded-xl p-4  bg-indigo-400 text-whit  '>{user.type}</button>
+                                :<button onClick={() => handleMakeAdmin(user._id, user.role)} className=' rounded-xl p-2  bg-gradient-to-r from-blue-500 to-indigo-400 text-white'>MakeAdmin</button>
+                              }
                             </div>
                           </td>
                         </tr>
