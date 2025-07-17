@@ -5,6 +5,7 @@ import { Edit, Trash2, Plus, Search, User, Stethoscope } from 'lucide-react';
 
 import { toast, ToastContainer } from 'react-toastify';
 import Swal from 'sweetalert2';
+import Link from 'next/link';
 
 const UserManagementTable = () => {
   const [users, setUsers] = useState([]);
@@ -162,6 +163,11 @@ const handleDelete = async (id, role) => {
   });
 };
 
+
+const handleCreateDoctor = () => {
+  router.push('/dashboard/admin/addoctor');
+};
+
   return (
     <div className="min-h-screen bg-gray-50 p-4">
       <div className="max-w-7xl mx-auto">
@@ -176,9 +182,19 @@ const handleDelete = async (id, role) => {
               onClick={handleCreate}
               className="inline-flex items-center px-4 py-2 bg-blue-600 text-white rounded-lg hover:bg-blue-700 transition-colors shadow-sm"
             >
-              <Plus className="w-5 h-5 mr-2" />
+              <Plus className="w-5 h-5 mr-2 rounded-xl p-2  bg-gradient-to-r from-blue-500 to-indigo-400 text-white" />
               Add New User
             </button>
+           <Link href="/dashboard/admin/addoctor">
+            <button
+              onClick={handleCreate}
+              className="inline-flex items-center px-4 py-2 bg-blue-600 text-white rounded-lg hover:bg-blue-700 transition-colors shadow-sm"
+            >
+              <Plus className="w-5 h-5 mr-2 rounded-xl p-2  bg-gradient-to-r from-blue-500 to-indigo-400 text-white" />
+              Add New Doctor
+            </button>
+           
+           </Link>
           </div>
         </div>
 
@@ -287,7 +303,7 @@ const handleDelete = async (id, role) => {
                               </button>
                               {
                                 user?.type==="admin" ? 
-                                 <button className='rounded-xl p-4  bg-indigo-400 text-whit  '>{user.type}</button>
+                                 <button className='rounded-xl p-4  bg-indigo-400 text-white  '>{user.type}</button>
                                 :<button onClick={() => handleMakeAdmin(user._id, user.role)} className=' rounded-xl p-2  bg-gradient-to-r from-blue-500 to-indigo-400 text-white'>MakeAdmin</button>
                               }
                             </div>
