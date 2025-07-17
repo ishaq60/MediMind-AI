@@ -17,13 +17,14 @@ import {
 } from "lucide-react";
 import useUserEmail from "@/hooks/useOneuser";
 import { useSession } from "next-auth/react";
-import Image from "next/image";
+
 
 export default function AdminProfilePage() {
   const [isEditing, setIsEditing] = useState(false);
   const [activeTab, setActiveTab] = useState("profile");
 
   const { data: session, status } = useSession();
+ 
   const email = session?.user.email;
 
   const { users } = useUserEmail(email);
@@ -91,12 +92,7 @@ export default function AdminProfilePage() {
               <div className="relative">
                 <div className="w-32 h-32 rounded-full bg-white p-1 shadow-lg">
                   <div className="w-full h-full rounded-full bg-gradient-to-br from-blue-500 to-purple-600 flex items-center justify-center">
-                    <Image
-                      src={users?.image}
-                      alt="Doctor Image"
-                      width={200}
-                      height={200}
-                    />
+                 
                   </div>
                 </div>
                 <button className="absolute bottom-2 right-2 bg-white rounded-full p-2 shadow-lg hover:shadow-xl transition-shadow">
