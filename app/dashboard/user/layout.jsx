@@ -30,7 +30,7 @@ export default function UserDashboardLayout({ children }) {
     { id: "appointments", label: "My Appointments", href: "/dashboard/user/appointments", icon: Calendar },
     { id: "reports", label: "My Reports", href: "/dashboard/user/reports", icon: FileText },
     { id: "favorites", label: "Favorites", href: "/dashboard/user/favorites", icon: Star },
-    { id: "help", label: "Help Center", href: "/dashboard/user/help", icon: AlertCircle },
+    { id: "profile", label: "Profile", href: "/dashboard/user/profile", icon: AlertCircle },
   ];
 
   return (

@@ -1,6 +1,7 @@
 "use client"
 import React, { useState } from 'react';
 import { Plus, X, Upload, Calendar, Clock, MapPin, Star, DollarSign } from 'lucide-react';
+import { toast } from 'react-toastify';
 
 const DoctorRegistrationForm = () => {
   const [formData, setFormData] = useState({
@@ -100,49 +101,58 @@ const DoctorRegistrationForm = () => {
     return Object.keys(newErrors).length === 0;
   };
 
-  const handleSubmit = () => {
-    
-    if (validateForm()) {
-      // Filter out empty strings from arrays
-      const cleanedData = {
-        ...formData,
-        conditions: formData.conditions.filter(c => c.trim()),
-        consultationTypes: formData.consultationTypes.filter(c => c.trim()),
-        availability: formData.availability.filter(a => a.trim()),
-        rating: parseFloat(formData.rating),
-        reviews: parseInt(formData.reviews)
-      };
-      
-      console.log('Doctor data submitted:', cleanedData);
-      alert('Doctor registered successfully!');
-      
-      // Reset form
+const handleSubmit = async () => {
+  if (validateForm()) {
+    const cleanedData = {
+      ...formData,
+      conditions: formData.conditions.filter((c) => c.trim()),
+      consultationTypes: formData.consultationTypes.filter((c) => c.trim()),
+      availability: formData.availability.filter((a) => a.trim()),
+      rating: parseFloat(formData.rating),
+      reviews: parseInt(formData.reviews),
+    };
+
+    console.log("Doctor data submitted:", cleanedData);
+
+    const res = await fetch("/api/doctors", {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify(cleanedData),
+    });
+
+    if (res.ok) {
+      toast.success("Doctor registered successfully!")
+
+      // Reset
       setFormData({
-        name: '',
-        specialty: '',
-        category: '',
-        experience: '',
-        hospital: '',
-        location: '',
-        description: '',
-        price: '',
-        image: '',
+        name: "",
+        specialty: "",
+        category: "",
+        experience: "",
+        hospital: "",
+        location: "",
+        description: "",
+        price: "",
+        image: "",
         rating: 5.0,
         reviews: 0,
-        nextSlot: '',
-        conditions: [''],
-        consultationTypes: [''],
-        availability: ['']
+        nextSlot: "",
+        conditions: [""],
+        consultationTypes: [""],
+        availability: [""],
       });
+    } else {
+      console.error("Failed to register doctor");
     }
-  };
+  }
+};
 
   return (
-    <div className="min-h-screen bg-gradient-to-br from-blue-50 to-indigo-100 py-8 px-4">
+    <div className="min-h-screen bg-gradient-to-br   from-blue-50 to-indigo-100  px-4">
       <div className="max-w-4xl mx-auto">
         <div className="bg-white rounded-2xl shadow-xl overflow-hidden">
           {/* Header */}
-          <div className="bg-gradient-to-r from-blue-600 to-indigo-600 px-8 py-6">
+          <div className="bg-gradient-to-r from-blue-600 to-indigo-600 px-8 py-4">
             <h1 className="text-3xl font-bold text-white flex items-center gap-3">
               <Plus className="w-8 h-8" />
               Doctor Registration
@@ -150,18 +160,18 @@ const DoctorRegistrationForm = () => {
             <p className="text-blue-100 mt-2">Add a new doctor to the system</p>
           </div>
 
-          <div className="p-8 space-y-8">
+          <div className="p-8 space-y-4">
             {/* Basic Information */}
             <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
               <div>
-                <label className="block text-sm font-medium text-gray-700 mb-2">
+                <label className="block text-sm font-medium text-gray-700 ">
                   Doctor Name *
                 </label>
                 <input
                   type="text"
                   value={formData.name}
                   onChange={(e) => handleInputChange('name', e.target.value)}
-                  className={`w-full px-4 py-3 border rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-blue-500 transition-colors ${
+                  className={`w-full px-4 py-2 border rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-blue-500 transition-colors ${
                     errors.name ? 'border-red-500' : 'border-gray-300'
                   }`}
                   placeholder="Enter doctor's full name"
@@ -170,13 +180,13 @@ const DoctorRegistrationForm = () => {
               </div>
 
               <div>
-                <label className="block text-sm font-medium text-gray-700 mb-2">
+                <label className="block text-sm font-medium text-gray-700 ">
                   Specialty *
                 </label>
                 <select
                   value={formData.specialty}
                   onChange={(e) => handleInputChange('specialty', e.target.value)}
-                  className={`w-full px-4 py-3 border rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-blue-500 transition-colors ${
+                  className={`w-full px-4 py-2 border rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-blue-500 transition-colors ${
                     errors.specialty ? 'border-red-500' : 'border-gray-300'
                   }`}
                 >
@@ -195,7 +205,7 @@ const DoctorRegistrationForm = () => {
                 <select
                   value={formData.category}
                   onChange={(e) => handleInputChange('category', e.target.value)}
-                  className={`w-full px-4 py-3 border rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-blue-500 transition-colors ${
+                  className={`w-full px-4 py-2 border rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-blue-500 transition-colors ${
                     errors.category ? 'border-red-500' : 'border-gray-300'
                   }`}
                 >
@@ -215,7 +225,7 @@ const DoctorRegistrationForm = () => {
                   type="text"
                   value={formData.experience}
                   onChange={(e) => handleInputChange('experience', e.target.value)}
-                  className={`w-full px-4 py-3 border rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-blue-500 transition-colors ${
+                  className={`w-full px-4 py-2 border rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-blue-500 transition-colors ${
                     errors.experience ? 'border-red-500' : 'border-gray-300'
                   }`}
                   placeholder="e.g., 15 years"
@@ -232,7 +242,7 @@ const DoctorRegistrationForm = () => {
                   type="text"
                   value={formData.hospital}
                   onChange={(e) => handleInputChange('hospital', e.target.value)}
-                  className={`w-full px-4 py-3 border rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-blue-500 transition-colors ${
+                  className={`w-full px-4 py-2 border rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-blue-500 transition-colors ${
                     errors.hospital ? 'border-red-500' : 'border-gray-300'
                   }`}
                   placeholder="Hospital name"
@@ -248,7 +258,7 @@ const DoctorRegistrationForm = () => {
                   type="text"
                   value={formData.location}
                   onChange={(e) => handleInputChange('location', e.target.value)}
-                  className={`w-full px-4 py-3 border rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-blue-500 transition-colors ${
+                  className={`w-full px-4 py-2 border rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-blue-500 transition-colors ${
                     errors.location ? 'border-red-500' : 'border-gray-300'
                   }`}
                   placeholder="e.g., Dhaka, Bangladesh"
@@ -265,7 +275,7 @@ const DoctorRegistrationForm = () => {
                   type="text"
                   value={formData.price}
                   onChange={(e) => handleInputChange('price', e.target.value)}
-                  className={`w-full px-4 py-3 border rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-blue-500 transition-colors ${
+                  className={`w-full px-4 py-2 border rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-blue-500 transition-colors ${
                     errors.price ? 'border-red-500' : 'border-gray-300'
                   }`}
                   placeholder="e.g., Tk. 1500"
@@ -282,7 +292,7 @@ const DoctorRegistrationForm = () => {
                   type="text"
                   value={formData.nextSlot}
                   onChange={(e) => handleInputChange('nextSlot', e.target.value)}
-                  className={`w-full px-4 py-3 border rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-blue-500 transition-colors ${
+                  className={`w-full px-4 py-2 border rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-blue-500 transition-colors ${
                     errors.nextSlot ? 'border-red-500' : 'border-gray-300'
                   }`}
                   placeholder="e.g., 2:30 PM Today"
@@ -300,7 +310,7 @@ const DoctorRegistrationForm = () => {
                 value={formData.description}
                 onChange={(e) => handleInputChange('description', e.target.value)}
                 rows={4}
-                className={`w-full px-4 py-3 border rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-blue-500 transition-colors ${
+                className={`w-full px-4 py-2 border rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-blue-500 transition-colors ${
                   errors.description ? 'border-red-500' : 'border-gray-300'
                 }`}
                 placeholder="Enter detailed description about the doctor's experience and expertise..."
@@ -318,7 +328,7 @@ const DoctorRegistrationForm = () => {
                 type="url"
                 value={formData.image}
                 onChange={(e) => handleInputChange('image', e.target.value)}
-                className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-blue-500 transition-colors"
+                className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-blue-500 transition-colors"
                 placeholder="https://example.com/doctor-image.jpg"
               />
             </div>
@@ -337,7 +347,7 @@ const DoctorRegistrationForm = () => {
                   step="0.1"
                   value={formData.rating}
                   onChange={(e) => handleInputChange('rating', e.target.value)}
-                  className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-blue-500 transition-colors"
+                  className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-blue-500 transition-colors"
                 />
               </div>
 
@@ -350,7 +360,7 @@ const DoctorRegistrationForm = () => {
                   min="0"
                   value={formData.reviews}
                   onChange={(e) => handleInputChange('reviews', e.target.value)}
-                  className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-blue-500 transition-colors"
+                  className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-blue-500 transition-colors"
                 />
               </div>
             </div>
@@ -366,14 +376,14 @@ const DoctorRegistrationForm = () => {
                     type="text"
                     value={condition}
                     onChange={(e) => handleArrayChange('conditions', index, e.target.value)}
-                    className="flex-1 px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-blue-500 transition-colors"
+                    className="flex-1 px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-blue-500 transition-colors"
                     placeholder="e.g., Heart Disease"
                   />
                   {formData.conditions.length > 1 && (
                     <button
                       type="button"
                       onClick={() => removeArrayItem('conditions', index)}
-                      className="px-3 py-3 bg-red-500 text-white rounded-lg hover:bg-red-600 transition-colors"
+                      className="px-3 py-2 bg-red-500 text-white rounded-lg hover:bg-red-600 transition-colors"
                     >
                       <X className="w-4 h-4" />
                     </button>
@@ -401,7 +411,7 @@ const DoctorRegistrationForm = () => {
                   <select
                     value={type}
                     onChange={(e) => handleArrayChange('consultationTypes', index, e.target.value)}
-                    className="flex-1 px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-blue-500 transition-colors"
+                    className="flex-1 px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-blue-500 transition-colors"
                   >
                     <option value="">Select consultation type</option>
                     {consultationOptions.map(option => (
@@ -412,7 +422,7 @@ const DoctorRegistrationForm = () => {
                     <button
                       type="button"
                       onClick={() => removeArrayItem('consultationTypes', index)}
-                      className="px-3 py-3 bg-red-500 text-white rounded-lg hover:bg-red-600 transition-colors"
+                      className="px-3 py-2 bg-red-500 text-white rounded-lg hover:bg-red-600 transition-colors"
                     >
                       <X className="w-4 h-4" />
                     </button>
@@ -441,7 +451,7 @@ const DoctorRegistrationForm = () => {
                   <select
                     value={slot}
                     onChange={(e) => handleArrayChange('availability', index, e.target.value)}
-                    className="flex-1 px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-blue-500 transition-colors"
+                    className="flex-1 px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-blue-500 transition-colors"
                   >
                     <option value="">Select availability</option>
                     {availabilityOptions.map(option => (
@@ -452,7 +462,7 @@ const DoctorRegistrationForm = () => {
                     <button
                       type="button"
                       onClick={() => removeArrayItem('availability', index)}
-                      className="px-3 py-3 bg-red-500 text-white rounded-lg hover:bg-red-600 transition-colors"
+                      className="px-3 py-2 bg-red-500 text-white rounded-lg hover:bg-red-600 transition-colors"
                     >
                       <X className="w-4 h-4" />
                     </button>
@@ -475,7 +485,7 @@ const DoctorRegistrationForm = () => {
               <button
                 type="button"
                 onClick={handleSubmit}
-                className="px-8 py-3 bg-gradient-to-r from-blue-600 to-indigo-600 text-white font-semibold rounded-lg hover:from-blue-700 hover:to-indigo-700 transition-all duration-200 shadow-lg hover:shadow-xl flex items-center gap-2"
+                className="px-8 py-2 bg-gradient-to-r from-blue-600 to-indigo-600 text-white font-semibold rounded-lg hover:from-blue-700 hover:to-indigo-700 transition-all duration-200 shadow-lg hover:shadow-xl flex items-center gap-2"
               >
                 <Plus className="w-5 h-5" />
                 Register Doctor
