@@ -13,8 +13,6 @@ export default function AuthmainLayOut({ children }) {
     pathname.startsWith("/doctor") ||
 
     pathname.startsWith("/dashboard") ||
-    pathname.includes("not-found") ||
-    pathname.includes("error") ||
     pathname === "/404";
 
   return (

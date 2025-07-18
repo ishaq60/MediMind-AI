@@ -1,11 +1,10 @@
 "use client"
 import React from 'react';
-import Loading from '../../loading';
 
 const page = () => {
     return (
         <div>
-        <Loading></Loading>
+            patient
         </div>
     );
 };
