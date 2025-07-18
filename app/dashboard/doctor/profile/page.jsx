@@ -1,5 +1,5 @@
 "use client";
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import {
   Edit3,
   Save,
@@ -22,35 +22,58 @@ import {
   Users,
   TrendingUp,
 } from "lucide-react";
+
 import useDoctorfind from "@/hooks/useOneDoctor";
 import { useSession } from "next-auth/react";
 
 const DoctorDashboardProfile = () => {
   const [isEditing, setIsEditing] = useState(false);
   const { session } = useSession();
-  console.log(session);
-  const name="Dr. Md. Rahman Khan"
+  const name = "Dr. Md. Rahman Khan";
   const { doctor } = useDoctorfind(name);
-  console.log(doctor)
+
   const [profileData, setProfileData] = useState({
- name: doctor.name,
-      specialty: doctor.specialty,
-      category: doctor.category,
-      experience: doctor.experience,
-      hospital: doctor.hospital,
-      location: doctor.location,
-      description: doctor.description,
-      price: doctor.price,
-      image: doctor.image,
-      rating: doctor.rating,
-      reviews: doctor.reviews,
-      nextSlot: doctor.nextSlot,
-      conditions: doctor.conditions,
-      consultationTypes: doctor.consultationTypes,
-      availability: doctor.availability,
+    name: "",
+    specialty: "",
+    category: "",
+    experience: "",
+    hospital: "",
+    location: "",
+    description: "",
+    price: "",
+    image: "",
+    rating: "",
+    reviews: "",
+    nextSlot: "",
+    conditions: [],
+    consultationTypes: [],
+    availability: [],
   });
 
   const [editData, setEditData] = useState({ ...profileData });
+
+  // ✅ Update state when doctor data loads
+  useEffect(() => {
+    if (doctor) {
+      setProfileData({
+        name: doctor.name,
+        specialty: doctor.specialty,
+        category: doctor.category,
+        experience: doctor.experience,
+        hospital: doctor.hospital,
+        location: doctor.location,
+        description: doctor.description,
+        price: doctor.price,
+        image: doctor.image,
+        rating: doctor.rating,
+        reviews: doctor.reviews,
+        nextSlot: doctor.nextSlot,
+        conditions: doctor.conditions || [],
+        consultationTypes: doctor.consultationTypes || [],
+        availability: doctor.availability || [],
+      });
+    }
+  }, [doctor]);
 
   const handleEdit = () => {
     setIsEditing(true);
@@ -112,7 +135,7 @@ const DoctorDashboardProfile = () => {
         {/* Header */}
         <div className="flex justify-between items-center mb-8">
           <div>
-            <h1 className="text-3xl font-bold text-gray-800"><span className="text-blue-500">{doctor?.name}</span> ----Profile</h1>
+            <h1 className="text-3xl font-bold text-gray-800"><span className="text-blue-400">{doctor?.name}</span> ----Profile</h1>
             <p className="text-gray-600 mt-1">
               Manage your professional information
             </p>
