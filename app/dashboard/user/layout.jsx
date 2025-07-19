@@ -29,7 +29,6 @@ export default function UserDashboardLayout({ children }) {
     { id: "disease-detector", label: "Diagnosis", href: "/dashboard/user/disease-detector", icon: Brain },
     { id: "appointments", label: "My Appointments", href: "/dashboard/user/appointments", icon: Calendar },
     { id: "reports", label: "My Reports", href: "/dashboard/user/reports", icon: FileText },
-    { id: "favorites", label: "Favorites", href: "/dashboard/user/favorites", icon: Star },
     { id: "profile", label: "Profile", href: "/dashboard/user/profile", icon: AlertCircle },
   ];
 

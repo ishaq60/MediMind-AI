@@ -15,6 +15,7 @@ import UploadFiles from "../../Components/SymptomChecker/UploadFiles";
 import ImagineFile from "../../Components/SymptomChecker/ImagineFile";
 import Result from "../../Components/SymptomChecker/Result";
 import SyndromParagrph from "../../Components/SymptomChecker/SyndromParagrph";
+import Report from "../../Components/SymptomChecker/Report";
 
 const SymptomChecker = () => {
   const session=useSession()
