@@ -88,11 +88,11 @@ const quickActions = [
         <div className="mb-8">
          <div className='flex  justify-between'>
            <h1 className="text-3xl font-bold text-gray-900 mb-2">
-            Welcome back, {userName.split(' ')[0]}! 👋
+            Welcome back, ! 👋
           </h1>
           <div>
             <Link href={"user/disease-detector"}>
-             <button className='text-2xl bg-gradient-to-r p-3 rounded-xl from-blue-500 to-purple-600 text-white shadow '> Diagnosis</button>
+             <button className='text-2xl bg-gradient-to-r p-3 rounded-xl from-blue-500 to-purple-600 text-white '> Diagnosis</button>
             </Link>
            
           </div>

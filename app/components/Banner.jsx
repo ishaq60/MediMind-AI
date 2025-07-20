@@ -1,5 +1,6 @@
 import Link from "next/link";
 import React from "react";
+import MyTypeAnimation from "./MyTypeAnimation";
 
 const Banner = () => {
   return (
@@ -16,14 +17,10 @@ const Banner = () => {
         <div className="flex flex-col lg:flex-row items-center justify-between h-full min-h-[700px] gap-8">
           {/* Left Content */}
           <div className="flex-1 text-white z-20 pt-16 lg:pt-0">
-            <h1 className="text-5xl lg:text-7xl font-bold mb-6 leading-tight">
-              <span className="text-white">AI-Powered</span>
-              <br />
-              <span className="bg-gradient-to-r from-cyan-300 to-blue-300 bg-clip-text text-transparent">
-                Medical Diagnosis
-              </span>
-            </h1>
-
+      <h1 className="text-5xl lg:text-7xl font-bold mb-6 leading-tight">
+  <span className="text-white">AI-Powered&nbsp;</span>
+  <MyTypeAnimation />
+</h1>
             <p className="text-xl text-blue-100 mb-8 max-w-2xl leading-relaxed">
               Get instant, accurate health insights with our advanced AI. Upload
               symptoms, medical reports, or X-rays and receive
@@ -31,7 +28,10 @@ const Banner = () => {
               specialists instantly.
             </p>
             <div className="flex flex-col sm:flex-row gap-4">
-              <Link href={'/dashboard'} className="bg-gradient-to-r from-cyan-400 to-blue-400 hover:from-cyan-300 hover:to-blue-300 text-slate-900 font-semibold px-8 py-3 rounded-lg transition-all duration-300 transform hover:scale-105 shadow-lg">
+              <Link
+                href={"/dashboard"}
+                className="bg-gradient-to-r from-cyan-400 to-blue-400 hover:from-cyan-300 hover:to-blue-300 text-slate-900 font-semibold px-8 py-3 rounded-lg transition-all duration-300 transform hover:scale-105 shadow-lg"
+              >
                 Symptom Checker
               </Link>
               <button className="bg-transparent border-2 border-cyan-300 text-cyan-300 hover:bg-cyan-300 hover:text-slate-900 font-semibold px-8 py-3 rounded-lg transition-all duration-300">

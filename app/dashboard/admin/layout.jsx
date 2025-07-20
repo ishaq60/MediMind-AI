@@ -50,7 +50,7 @@ export default function AdminDashboardLayout({ children }) {
               <Heart className="w-4 h-4 text-white" />
             </div>
             <Link href="/">
-              <span className="text-lg font-bold bg-gradient-to-r from-blue-600 to-purple-600 bg-clip-text text-transparent">
+              <span className="text-2xl font-bold bg-gradient-to-r from-blue-600 to-purple-600 bg-clip-text text-transparent">
                 MediAI Admin
               </span>
             </Link>

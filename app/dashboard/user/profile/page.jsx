@@ -61,7 +61,7 @@ const UserProfile = () => {
   return (
     <div className="min-h-screen bg-gradient-to-br from-blue-50 to-indigo-100">
       {/* Header */}
-      <div className="bg-white shadow-lg">
+      <div className="bg-white shadow-sm">
         <div className="max-w-6xl mx-auto px-6 py-4">
           <div className="flex items-center justify-between">
             <div className="flex items-center space-x-4">
@@ -75,7 +75,7 @@ const UserProfile = () => {
                     e.target.nextSibling.style.display = 'flex';
                   }}
                 />
-                <div className="w-full h-full bg-indigo-500 text-white flex items-center justify-center text-xl font-bold" style={{display: 'none'}}>
+                <div className="w-full h-fullbg-gradient-to-r p-3 rounded-xl from-blue-500 to-purple-600  text-white flex items-center justify-center text-xl font-bold" style={{display: 'none'}}>
                   {userProfile.name.charAt(0)}
                 </div>
               </div>
@@ -95,7 +95,7 @@ const UserProfile = () => {
             </div>
             <button
               onClick={() => isEditing ? handleCancel() : setIsEditing(true)}
-              className="flex items-center space-x-2 px-4 py-2 bg-indigo-600 text-white rounded-lg hover:bg-indigo-700 transition-colors"
+              className="flex items-center space-x-2 px-4 py-2 bg-gradient-to-r p-3 rounded-xl from-blue-500 to-purple-600 text-white"
             >
               {isEditing ? <X className="w-4 h-4" /> : <Edit3 className="w-4 h-4" />}
               <span>{isEditing ? 'Cancel' : 'Edit Profile'}</span>
