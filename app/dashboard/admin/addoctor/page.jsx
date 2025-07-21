@@ -485,7 +485,7 @@ const handleSubmit = async () => {
               <button
                 type="button"
                 onClick={handleSubmit}
-                className="px-8 py-2 bg-gradient-to-r from-blue-600 to-indigo-600 text-white font-semibold rounded-lg hover:from-blue-700 hover:to-indigo-700 transition-all duration-200 shadow-lg hover:shadow-xl flex items-center gap-2"
+                className="px-8 py-2 bg-gradient-to-r from-blue-500 to-purple-600 text-white font-semibold rounded-lg hover:from-blue-700 hover:to-indigo-700 transition-all duration-200 shadow-lg hover:shadow-xl flex items-center gap-2"
               >
                 <Plus className="w-5 h-5" />
                 Register Doctor

@@ -224,17 +224,17 @@ const Doctors = () => {
                   </div>
 
                   <div className="flex flex-col sm:flex-row sm:space-x-3 mt-6 gap-3">
-                    <button
+                    {/* <button
                       onClick={() => handleBooking(doctor)}
-                      className="flex-1 px-6 py-3 bg-gradient-to-r from-blue-500 to-indigo-400 text-white rounded-xl font-semibold hover:shadow-lg transform hover:scale-105 transition-all duration-200"
+                      className="flex-1 px-6 py-3  bg-gradient-to-r from-blue-500 to-purple-600 text-white rounded-xl font-semibold hover:shadow-lg transform hover:scale-105 transition-all duration-200"
                     >
                       Book Appointment
-                    </button>
+                    </button> */}
                     <Link
                       href={`/doctor/${doctor._id}`}
-                      className="flex-1 text-center px-6 py-3 border-2 border-blue-600 text-blue-600 rounded-xl font-semibold hover:bg-blue-50 transition-all duration-200"
+                      className="flex-1 text-center px-6 py-3 border-2 border-purple-600 text-text- rounded-xl font-semibold hover:bg-blue-50 transition-all duration-200"
                     >
-                      View Profile
+                      View Details
                     </Link>
                   </div>
                 </div>
@@ -243,11 +243,11 @@ const Doctors = () => {
           ))}
         </div>
         <div className="w-full flex justify-center mt-8">
-        <Link href={"/doctor"}>
+        <Link href={"/doctor"} className="w-full">
         
           <button
            
-            className="flex-1 px-8 py-3 bg-gradient-to-r from-blue-500 to-indigo-400 text-white rounded-xl font-semibold hover:shadow-lg transform hover:scale-105 transition-all duration-200"
+            className="flex-1 px-8 py-3 bg-gradient-to-r w-full from-blue-500 to-purple-600   text-white rounded-xl font-semibold hover:shadow-lg transform hover:scale-105 transition-all duration-200"
           >
             See All
           </button>

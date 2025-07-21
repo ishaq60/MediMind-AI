@@ -61,7 +61,7 @@ const Contact = () => {
               </div>
               <button
                 onClick={() => alert('Message sent! We\'ll get back to you soon.')}
-                className="w-full px-8 py-4 bg-gradient-to-r from-blue-600 to-indigo-600 text-white rounded-2xl font-semibold hover:shadow-lg transform hover:scale-105 transition-all duration-300"
+                className="w-full px-8 py-4   bg-gradient-to-r from-blue-500 to-purple-600 text-white  rounded-2xl font-semibold hover:shadow-lg transform hover:scale-105 transition-all duration-300"
               >
                 Send Message
               </button>

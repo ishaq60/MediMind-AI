@@ -99,7 +99,7 @@ const DoctorCard = ({filteredDoctors,handleBooking}) => {
                     <div className="flex space-x-3 mt-6">
                       <Button  onClick={() => handleBooking(doctor)}
                        
-                        className="flex-1 px-6 py-3 bg-gradient-to-r from-blue-500 to-indigo-400 text-white rounded-xl font-semibold hover:shadow-lg transform hover:scale-105 transition-all duration-200"
+                        className="flex-1 px-6 py-3  bg-gradient-to-r from-blue-500 to-purple-600 text-white rounded-xl font-semibold hover:shadow-lg transform hover:scale-105 transition-all duration-200"
                       >
                         Book Appointment
                       </Button>

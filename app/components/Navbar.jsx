@@ -85,7 +85,7 @@ const Navbar = () => {
               ) : (
                 <Button
                   onClick={() => signIn()}
-                  className="px-6 py-2 bg-gradient-to-r from-blue-600 to-indigo-600 text-white rounded-full font-semibold hover:shadow-lg transform hover:scale-105 transition-all duration-200"
+                  className="px-6 py-2 bg-gradient-to-r from-blue-500 to-purple-600 text-white rounded-full font-semibold hover:shadow-lg transform hover:scale-105 transition-all duration-200"
                 >
                   Login
                 </Button>
@@ -141,7 +141,7 @@ const Navbar = () => {
                       signIn();
                       setIsMenuOpen(false);
                     }}
-                    className="w-full mt-4 px-6 py-3 bg-gradient-to-r from-blue-600 to-indigo-600 text-white rounded-full font-semibold"
+                    className="w-full mt-4 px-6 py-3 bg-gradient-to-r from-blue-500 to-purple-600 text-white rounded-full font-semibold"
                   >
                     Get Started
                   </Button>

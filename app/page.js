@@ -46,20 +46,23 @@ export default function Home() {
         <Priceing />
       </motion.div>
 
+
+   <motion.div {...fadeUp}>
+        <About />
+      </motion.div>
+      
       <motion.div {...fadeUp}>
         <Contact />
       </motion.div>
 
-      {/* Optional sections commented out */}
-      {/* 
+
+      
       <motion.div {...fadeUp}>
         <ServicesSection />
       </motion.div>
 
-      <motion.div {...fadeUp}>
-        <About />
-      </motion.div>
-      */}
+   
+     
     </div>
   );
 }

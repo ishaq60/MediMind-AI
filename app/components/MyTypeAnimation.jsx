@@ -1,19 +1,31 @@
-"use client";
+// "use client";
 
-import { TypeAnimation } from 'react-type-animation';
+// import { TypeAnimation } from 'react-type-animation';
 
-export default function MyTypeAnimation() {
+// export default function MyTypeAnimation() {
+//   return (
+//     <TypeAnimation
+//       wrapper="span"
+//       className="bg-gradient-to-r from-cyan-300 to-blue-300 bg-clip-text text-transparent"
+//       sequence={[
+//         'Medical Assistance',
+//         2000,
+//         '',
+//       ]}
+//       speed={50}
+//       repeat={Infinity}
+//     />
+//   );
+// }
+
+import React from 'react';
+
+const MyTypeAnimation = () => {
   return (
-    <TypeAnimation
-      wrapper="span"
-      className="bg-gradient-to-r from-cyan-300 to-blue-300 bg-clip-text text-transparent"
-      sequence={[
-        'Medical Assistance',
-        2000,
-        '',
-      ]}
-      speed={50}
-      repeat={Infinity}
-    />
+    <div>
+      
+    </div>
   );
-}
+};
+
+export default MyTypeAnimation;

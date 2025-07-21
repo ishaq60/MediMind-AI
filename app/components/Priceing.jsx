@@ -23,7 +23,7 @@ const Priceing = () => {
                 plan.popular ? 'border-blue-500 scale-105' : 'border-gray-200'
               }`}>
                 {plan.popular && (
-                  <div className="absolute -top-4 left-1/2 transform -translate-x-1/2 px-4 py-2 bg-gradient-to-r from-blue-600 to-indigo-600 text-white text-sm font-semibold rounded-full">
+                  <div className="absolute -top-4 left-1/2 transform -translate-x-1/2 px-4 py-2 bg-gradient-to-r from-blue-500 to-purple-600 text-white text-sm font-semibold rounded-full">
                     Most Popular
                   </div>
                 )}
@@ -47,7 +47,7 @@ const Priceing = () => {
 
                 <button className={`w-full py-3 px-6 rounded-full font-semibold transition-all duration-200 ${
                   plan.popular 
-                    ? 'flex-1 px-6 py-3 bg-gradient-to-r from-blue-500 to-indigo-400 text-white rounded-xl font-semibold hover:shadow-lg transform hover:scale-105 transition-all duration-200' 
+                    ? 'flex-1 px-6 py-3  bg-gradient-to-r from-blue-500 to-purple-600 text-white rounded-xl font-semibold hover:shadow-lg transform hover:scale-105 transition-all duration-200' 
                     : 'border-2 border-blue-600 text-blue-600 hover:bg-blue-50'
                 }`}>
                   {plan.price === "Free" ? "Get Started" : "Choose Plan"}
