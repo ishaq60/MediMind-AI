@@ -27,10 +27,10 @@ const Page = () => {
     </div>
   );
 };
-
+const port = process.env.NEXT_PUBLIC_API_PORT || 3000;
 const getDoctor = async () => {
   try {
-    const res = await fetch("http://localhost:3000/services/api/get-all");
+  const res = await fetch(`http://localhost:${port}/services/api/get-all`);
     if (!res.ok) throw new Error("Failed to fetch");
     const doc = await res.json(); // Could be array
     return doc;

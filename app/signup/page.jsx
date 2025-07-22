@@ -16,9 +16,9 @@ const SignUp = () => {
   let password = e.target.password.value;
 
   const formData = { name, email, password };
-
+const port = process.env.NEXT_PUBLIC_API_PORT || "3000";
   try {
-    const resp = await fetch("http://localhost:3000/signup/new-user", {
+    const resp = await fetch(`http://localhost:${port}/signup/new-user`, {
       method: 'POST',
       body: JSON.stringify(formData),
       headers: { 'Content-Type': 'application/json' },
