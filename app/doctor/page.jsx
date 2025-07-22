@@ -6,10 +6,11 @@ import { useSession } from "next-auth/react";
 import { useRouter } from "next/navigation";
 
 import useDoctors from "@/hooks/useDoctors";
-import DoctorHeader from "../components/doctorDetails/doctorHeader";
+
 import DoctorCard from "../components/doctorDetails/DoctorCard";
 import Loading from "../components/Loading";
 import ShowBookingModal from "../components/doctorDetails/ShowBookingModal";
+import DoctorHeader from "../components/doctorDetails/DoctorHeader";
 
 const DoctorAppointmentSection = () => {
   const router = useRouter();
