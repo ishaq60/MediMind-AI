@@ -26,6 +26,13 @@ import {
   LogOut
 } from 'lucide-react';
 
+export const metadata = {
+  title: "Doctor|MediMind AI ",
+  description: "Empowering healthcare with intelligent diagnostic support",
+};
+
+
+
 const DoctorOverviewDashboard = () => {
   const { data: session, status } = useSession();
   const [currentTime, setCurrentTime] = useState(new Date());

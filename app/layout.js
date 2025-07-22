@@ -4,7 +4,6 @@ import LayoutWrapper from "./LayoutWrapper";
 import AuthmainLayOut from "./MainLayout";
 import Providers from "@/components/Providers";
 
-
 const montserrat = Montserrat({
   subsets: ["latin"],
   variable: "--font-montserrat",
@@ -12,7 +11,10 @@ const montserrat = Montserrat({
 });
 
 export const metadata = {
-  title: "AI Medical Assistant",
+  title: {
+    default: "MediMind AI",
+    template: "%s | MediMind AI", // ✅ fixed template
+  },
   description: "Empowering healthcare with intelligent diagnostic support",
 };
 

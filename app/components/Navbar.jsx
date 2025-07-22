@@ -44,14 +44,14 @@ const Navbar = () => {
           <div className="flex justify-between items-center py-4">
             {/* Logo */}
             <div className="flex items-center space-x-3">
-              <div className="w-10 h-10 bg-gradient-to-r from-blue-600 to-indigo-600 rounded-xl flex items-center justify-center">
+              <div className="w-20 h-15 bg-gradient-to-r from-blue-600 to-indigo-600 rounded-xl flex items-center justify-center">
                 <Stethoscope className="w-6 h-6 text-white" />
               </div>
               <div>
                 <Link href="/">
-                  <span className="text-2xl font-bold text-white">MedAI</span>
+                  <span className="text-2xl font-bold text-white">MediMind AI</span>
                 </Link>
-                <div className="text-xs text-white -mt-1">Diagnosis Assistant</div>
+                <div className="text-xs text-white -mt-1">AI-Powered Clinical Decision Support System</div>
               </div>
             </div>
 

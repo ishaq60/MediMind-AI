@@ -1,10 +1,11 @@
 import Link from "next/link";
 import React from "react";
+import MyTypeAnimation from "./MyTypeAnimation";
 
 
 const Banner = () => {
   return (
-    <div className="relative mt-4 min-h-[700px] bg-gradient-to-r from-slate-900 via-blue-900 to-indigo-800 overflow-hidden">
+    <div className="relative mt-4 min-h-[800px] bg-gradient-to-r from-slate-900 via-blue-900 to-indigo-800 overflow-hidden">
       {/* Background decorative elements */}
       <div className="absolute inset-0">
         <div className="absolute top-10 right-20 w-32 h-32 bg-blue-400/10 rounded-full blur-xl"></div>
@@ -16,9 +17,10 @@ const Banner = () => {
       <div className="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 h-full">
         <div className="flex flex-col lg:flex-row items-center justify-between h-full min-h-[700px] gap-8">
           {/* Left Content */}
-          <div className="flex-1 text-white z-20 pt-16 lg:pt-0">
+          <div className="flex-1 text-white z-20 pt-16 mt-8 lg:pt-0">
             <h1 className="text-5xl lg:text-7xl font-bold mb-6 leading-tight">
-              <span className="text-white">AI-Powered&nbsp;</span>
+              <span className="text-white">&nbsp;</span>
+              <MyTypeAnimation></MyTypeAnimation>
       
             </h1>
             <p className="text-xl text-blue-100 mb-8 max-w-2xl leading-relaxed">

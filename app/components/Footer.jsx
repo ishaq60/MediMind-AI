@@ -13,7 +13,7 @@ const Footer = () => {
                   <Stethoscope className="w-6 h-6 text-white" />
                 </div>
                 <div>
-                  <span className="text-xl font-bold">MedAI</span>
+                  <span className="text-xl font-bold">MediMind AI</span>
                   <div className="text-xs text-gray-400">Diagnosis Assistant</div>
                 </div>
               </div>
@@ -54,7 +54,7 @@ const Footer = () => {
           </div>
           
           <div className="border-t border-gray-800 pt-8 text-center text-gray-400">
-            <p>&copy; 2025 MedAI Diagnosis Assistant. All rights reserved.</p>
+            <p>&copy; 2025 MediMind AI Diagnosis Assistant. All rights reserved.</p>
           </div>
         </div>
       </footer>

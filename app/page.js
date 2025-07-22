@@ -1,5 +1,6 @@
 "use client"
 import Image from "next/image";
+export const dynamic = "force-dynamic";
 import Banner from "./components/Banner";
 import ServicesSection from "./components/ServicesSection";
 import About from "./components/About";

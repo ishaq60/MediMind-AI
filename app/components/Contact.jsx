@@ -28,7 +28,7 @@ const Contact = () => {
                 <Mail className="w-6 h-6 text-blue-600" />
                 <div>
                   <p className="font-semibold text-gray-900">Email Support</p>
-                  <p className="text-gray-600">support@medai.com</p>
+                  <p className="text-gray-600">support@MediMind AI.com</p>
                 </div>
               </div>
               <div className="p-6 bg-gradient-to-r from-blue-50 to-indigo-50 rounded-2xl">
