@@ -171,7 +171,7 @@ const UserAppoitment = () => {
         /* Appointments List */
         <div className="space-y-3 sm:space-y-4">
           {appointments.map((appointment, index) => {
-            const doctor = appointment.Dname || {};
+            const doctor = appointment?.Dname || {};
             return (
               <div key={appointment._id || index} className="bg-white rounded-lg shadow-sm border border-gray-200 hover:shadow-md transition-shadow duration-200">
                 {/* Mobile Layout */}
