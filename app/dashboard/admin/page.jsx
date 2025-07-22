@@ -33,7 +33,7 @@ export default function AdminOverviewDashboard() {
    const [doctors]=useDoctorsList()
    console.log(doctors)
    const {alluser}=useUsersList()
-   console.log(session?.user)
+ 
    const email = session?.user.email;
    console.log(email)
   // Sample data - in real app, this would come from your API

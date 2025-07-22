@@ -2,16 +2,27 @@
 
 import React, { useEffect, useState } from "react";
 
+const baseUrl = process.env.NEXT_PUBLIC_API_URL;
+
+const getDoctor = async () => {
+  try {
+    const res = await fetch(`${baseUrl}/services/api/get-all`);
+    if (!res.ok) throw new Error("Failed to fetch");
+    const json = await res.json();
+    return json.res || []; // ✅ safe
+  } catch (err) {
+    console.error("Fetch error:", err);
+    return []; // fallback
+  }
+};
+
 const Page = () => {
   const [doctors, setDoctors] = useState([]);
 
   useEffect(() => {
     const fetchDoctors = async () => {
-      const data = await getDoctor();
-      if (data) {
-        console.log("✅ Doctors fetched:", data);
-        setDoctors(data); // no `.res`
-      }
+      const doctorsList = await getDoctor();
+      setDoctors(doctorsList);
     };
     fetchDoctors();
   }, []);
@@ -27,19 +38,5 @@ const Page = () => {
     </div>
   );
 };
-const baseUrl = process.env.NEXT_PUBLIC_API_URL;
-
-const getDoctor = async () => {
-  try {
-    const res = await fetch(`${baseUrl}/services/api/get-all`);
-    if (!res.ok) throw new Error("Failed to fetch");
-    const doc = await res.json();
-    return doc;
-  } catch (err) {
-    console.error("Fetch error:", err);
-    return null;
-  }
-};
-
 
 export default Page;

@@ -35,6 +35,7 @@ const DashboardMainPage = () => {
     fetchUser();
   }, [session, status]);
 console.log(session)
+console.log(users?.type)
   // Redirect based on user type
   useEffect(() => {
     if (status === "loading" || !users);  

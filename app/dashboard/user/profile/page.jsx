@@ -1,19 +1,25 @@
-"use client"
-import React, { useState } from 'react';
-import { User, Edit3, Save, X, Phone, MapPin, Calendar, Shield, Heart, Clock, FileText, Star } from 'lucide-react';
+"use client";
+import React, { useEffect, useState } from 'react';
+import {
+  User, Edit3, Save, X, Phone, MapPin, Calendar, Shield,
+  Heart, Clock, FileText, Star
+} from 'lucide-react';
+
+import { useSession } from 'next-auth/react';
+import { useRouter } from 'next/navigation';
+import { toast } from 'react-toastify';
+import Loading from '../../loading';
 
 const UserProfile = () => {
   const [isEditing, setIsEditing] = useState(false);
   const [activeTab, setActiveTab] = useState('personal');
-  
-  // User data with the specified information plus additional medical platform fields
+
   const [userProfile, setUserProfile] = useState({
-    _id: "6875d6ffeff138ff875c0fbd",
-    name: "Ishaq Shamim",
-    email: "ishaqshamim243@gmail.com",
-    image: "https://lh3.googleusercontent.com/a/ACg8ocIxVz9iWm-IPMMxetycSPMLtEO-h",
+    _id: '',
+    name: '',
+    email: '',
+    image: '',
     type: "user",
-    // Additional fields for medical platform
     phone: "+880 1712-345678",
     dateOfBirth: "1990-05-15",
     gender: "Male",
@@ -32,15 +38,49 @@ const UserProfile = () => {
     membershipTier: "Premium"
   });
 
-  const [editedProfile, setEditedProfile] = useState({...userProfile});
+  const [editedProfile, setEditedProfile] = useState({ ...userProfile });
+
+  const router = useRouter();
+  const { data: session, status } = useSession();
+
+  useEffect(() => {
+    if (status === "unauthenticated") {
+      toast.error("Please login to see profile.");
+      router.push("/login");
+    }
+  }, [status, router]);
+
+  useEffect(() => {
+    if (session?.user) {
+      setUserProfile(prev => ({
+        ...prev,
+        _id: session.user._id || '',
+        name: session.user.name || '',
+        email: session.user.email || '',
+        image: session.user.image || ''
+      }));
+    }
+  }, [session]);
+
+  useEffect(() => {
+    setEditedProfile({ ...userProfile });
+  }, [userProfile]);
+
+  if (status === "loading") {
+    return <Loading />;
+  }
+
+  if (status === "unauthenticated") {
+    return <Loading />;
+  }
 
   const handleSave = () => {
-    setUserProfile({...editedProfile});
+    setUserProfile({ ...editedProfile });
     setIsEditing(false);
   };
 
   const handleCancel = () => {
-    setEditedProfile({...userProfile});
+    setEditedProfile({ ...userProfile });
     setIsEditing(false);
   };
 
