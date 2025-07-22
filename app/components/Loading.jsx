@@ -1,21 +1,17 @@
 "use client"
 import React from 'react';
-import { MagnifyingGlass } from 'react-loader-spinner';
+
 
 
 const Loading = () => {
   return (
     <div className="flex justify-center items-center h-screen">
-      <MagnifyingGlass
-        visible={true}
-        height="80"
-        width="80"
-        ariaLabel="magnifying-glass-loading"
-        wrapperStyle={{}}
-        wrapperClass="magnifying-glass-wrapper"
-        glassColor="#c0efff"
-        color="#2563EB"
-      />
+        <div className="min-h-screen bg-gray-50 mt-12 flex items-center justify-center">
+        <div className="text-center">
+          <div className="animate-spin rounded-full h-12 w-12 border-b-2 border-blue-600 mx-auto mb-4"></div>
+          <p className="text-gray-600">Loading ..</p>
+        </div>
+      </div>
     </div>
   );
 };
