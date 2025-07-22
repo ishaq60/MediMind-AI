@@ -61,12 +61,13 @@ const Doctors = () => {
       color: "from-teal-500 to-blue-500",
     },
   ];
-const port = process.env.NEXT_PUBLIC_API_PORT || "3000";
+
 
 useEffect(() => {
   const fetchDoctors = async () => {
     try {
-      const res = await fetch(`http://localhost:${port}/services/api/get-all`);
+      const baseUrl = process.env.NEXT_PUBLIC_API_URL;  // get from env
+      const res = await fetch(`${baseUrl}/services/api/get-all`);
       const data = await res.json();
       console.log("✅ Doctors fetched:", data);
       setDoctors(data.res || data);

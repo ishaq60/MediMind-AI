@@ -261,7 +261,9 @@ const DoctorDetailsClient = ({ doctorData }) => {
                           ))}
                         </div>
                       </div>
-
+                      <div>
+                        ddd
+                      </div>
                       <div className="flex space-x-4 justify-end">
                         <button
                           onClick={() => setbookingtoogle(false)}

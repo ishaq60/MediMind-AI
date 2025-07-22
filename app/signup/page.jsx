@@ -16,28 +16,28 @@ const SignUp = () => {
   let password = e.target.password.value;
 
   const formData = { name, email, password };
-const port = process.env.NEXT_PUBLIC_API_PORT || "3000";
-  try {
-    const resp = await fetch(`http://localhost:${port}/signup/new-user`, {
-      method: 'POST',
-      body: JSON.stringify(formData),
-      headers: { 'Content-Type': 'application/json' },
-    });
+const baseUrl = process.env.NEXT_PUBLIC_API_URL || `http://localhost:${process.env.NEXT_PUBLIC_API_PORT || "3000"}`;
 
-    const result = await resp.json();
+try {
+  const resp = await fetch(`${baseUrl}/signup/new-user`, {
+    method: 'POST',
+    body: JSON.stringify(formData),
+    headers: { 'Content-Type': 'application/json' },
+  });
 
-    if (!resp.ok) {
-      toast.error(result.error || "Signup failed");
-      return; // ✅ valid and necessary
-    }
+  const result = await resp.json();
 
-    toast.success("User created successfully");
-  } catch (error) {
-    console.error('Error during signup:', error);
-    toast.error("Network error. Please try again.");
+  if (!resp.ok) {
+    toast.error(result.error || "Signup failed");
+    return;
   }
-};
 
+  toast.success("User created successfully");
+} catch (error) {
+  console.error('Error during signup:', error);
+  toast.error("Network error. Please try again.");
+}
+ }
   return (
     <div className='max-w-7xl mx-auto min-h-screen flex items-center justify-center'>
       <div className='w-full max-w-md space-y-6'>
