@@ -1,7 +1,7 @@
 "use client";
 
 import React, { useState } from "react";
-import { signIn } from "next-auth/react";
+import { signIn, useSession } from "next-auth/react";
 import { useRouter, useSearchParams } from "next/navigation";
 import Link from "next/link";
 import { Eye, EyeOff, Heart, Lock, Mail } from "lucide-react";
@@ -33,6 +33,8 @@ const Login = () => {
     }
   };
 
+  const {session}=useSession()
+  console.log(session)
   return (
     <div className="max-w-7xl mx-auto min-h-screen flex items-center justify-center">
       <div className="w-full max-w-md space-y-6">

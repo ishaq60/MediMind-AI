@@ -3,12 +3,14 @@
 import React, { useState, useEffect } from 'react';
 import { Menu, X, Stethoscope } from 'lucide-react';
 import Link from 'next/link';
-import { useSession, signOut, signIn } from 'next-auth/react'; // ✅ Added signOut, signIn
+import { useSession, signOut, signIn } from 'next-auth/react';
 import { Button } from '@/components/ui/button';
+import { usePathname } from 'next/navigation';
 
 const Navbar = () => {
   const { data: session, status } = useSession();
-  
+  const pathname = usePathname();
+
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   const [scrollY, setScrollY] = useState(0);
 
@@ -19,23 +21,23 @@ const Navbar = () => {
   }, []);
 
   const navItems = [
-    { item: 'Home', path: '#home' },
+    { item: 'Home', path: '/' },
     { item: 'Features', path: '#features' },
     { item: 'How It Works', path: '#how-it-works' },
     { item: 'Doctors', path: '/doctor' },
     { item: 'Contact', path: '#contact' },
-    {
-      item:"Dashboard",path:"/dashboard"
-    }
+    { item: 'Dashboard', path: '/dashboard' },
   ];
 
   return (
     <div>
       <nav
         className={`fixed w-full z-50 transition-all duration-300 ${
-          scrollY > 50
-            ? 'bg-black/80 backdrop-blur-lg shadow-lg'
-            : 'bg-transparent'
+          pathname === '/'
+            ? scrollY > 50
+              ? 'bg-black/80 backdrop-blur-lg shadow-lg'
+              : 'bg-transparent'
+            : 'bg-white shadow-lg'
         }`}
       >
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
@@ -46,7 +48,9 @@ const Navbar = () => {
                 <Stethoscope className="w-6 h-6 text-white" />
               </div>
               <div>
-                <Link href="/"><span className="text-2xl font-bold text-white">MedAI</span></Link>
+                <Link href="/">
+                  <span className="text-2xl font-bold text-white">MedAI</span>
+                </Link>
                 <div className="text-xs text-white -mt-1">Diagnosis Assistant</div>
               </div>
             </div>
@@ -57,14 +61,15 @@ const Navbar = () => {
                 <Link
                   key={item}
                   href={path}
-                  className="text-white hover:text-blue-300 transition-colors duration-200 font-medium relative group"
+                  className={`${
+                    pathname === '/' ? 'text-white' : 'text-black'
+                  } hover:text-blue-500 transition-colors duration-200 font-medium relative group`}
                 >
                   {item}
                   <span className="absolute -bottom-1 left-0 w-0 h-0.5 bg-gradient-to-r from-blue-600 to-indigo-600 group-hover:w-full transition-all duration-300"></span>
                 </Link>
-                
               ))}
-               
+
               {status === 'authenticated' && session?.user ? (
                 <div className="flex items-center space-x-3">
                   {session.user.image && (
@@ -74,7 +79,9 @@ const Navbar = () => {
                       className="w-8 h-8 rounded-full"
                     />
                   )}
-                  <span className="text-white text-sm">{session.user.name}</span>
+                  <span className={`${pathname === '/' ? 'text-white' : 'text-black'} text-sm`}>
+                    {session.user.name}
+                  </span>
                   <Button
                     onClick={() => signOut()}
                     className="px-4 py-2 bg-gradient-to-r from-red-500 to-red-700 text-white rounded-full font-semibold hover:shadow-md"
@@ -97,7 +104,7 @@ const Navbar = () => {
               type="button"
               onClick={() => setIsMenuOpen(!isMenuOpen)}
               aria-label="Toggle menu"
-              className="md:hidden text-white p-2 rounded-lg hover:bg-white/10 transition-colors"
+              className={`md:hidden ${pathname === '/' ? 'text-white' : 'text-black'} p-2 rounded-lg hover:bg-black/10 transition-colors`}
             >
               {isMenuOpen ? <X className="w-6 h-6" /> : <Menu className="w-6 h-6" />}
             </button>
