@@ -1,35 +1,29 @@
 "use client";
 import React, { useState } from "react";
-import { Filter, MapPin, Clock, Star, User, Phone, Video } from "lucide-react";
-import Link from "next/link";
+import { Filter } from "lucide-react";
+import { toast } from "react-toastify";
+import { useSession } from "next-auth/react";
+import { useRouter } from "next/navigation";
+
 import useDoctors from "@/hooks/useDoctors";
 import DoctorHeader from "../components/doctorDetails/doctorHeader";
 import DoctorCard from "../components/doctorDetails/DoctorCard";
 import Loading from "../components/Loading";
 import ShowBookingModal from "../components/doctorDetails/ShowBookingModal";
-import { toast } from "react-toastify";
-import { useSession } from "next-auth/react";
-import { useRouter } from "next/navigation";
-
-
-
 
 const DoctorAppointmentSection = () => {
-const router = useRouter();
-  const session=useSession()
-  
+  const router = useRouter();
+  const session = useSession();
 
   const [selectedCategory, setSelectedCategory] = useState("all");
   const [searchTerm, setSearchTerm] = useState("");
   const [selectedType, setSelectedType] = useState("");
-
   const [selectedDoctor, setSelectedDoctor] = useState(null);
   const [showBookingModal, setShowBookingModal] = useState(false);
   const [selectedDate, setSelectedDate] = useState("");
   const [selectedTime, setSelectedTime] = useState("");
 
   const [doctors, refetch, isLoading] = useDoctors();
-  console.log(doctors);
 
   // Filter doctors by category and search term
   const filteredDoctors = doctors.filter((doctor) => {
@@ -45,58 +39,78 @@ const router = useRouter();
   });
 
   const handleBooking = (doctor) => {
-     if (session.status !== "authenticated") {
-    toast.error("Please log in to book an appointment.");
-     router.push("/login"); 
-     return
-  }
+    if (session.status !== "authenticated") {
+      toast.error("Please log in to book an appointment.");
+      router.push("/login");
+      return;
+    }
     setSelectedDoctor(doctor);
     setShowBookingModal(true);
   };
 
-const bookingdata = {
-  Dname: selectedDoctor,
-  appointmentTime: selectedTime,
-  bookingtype: selectedType,
-  date: selectedDate,
- user: session
-};
-
-console.log("booking data form", bookingdata);
-
-const confirmBooking = async () => {
-  try {
-    const response = await fetch("/api/booking", {
-      method: "POST",
-      headers: {
-        "Content-Type": "application/json",
-      },
-      body: JSON.stringify(bookingdata),
-    });
-
-    const result = await response.json();
-
-    if (response.ok) {
-     
-      toast.success(
-        `Appointment booked with ${selectedDoctor.name} on ${selectedDate} at ${selectedTime}`
-      );
-
-      setShowBookingModal(false);
-      setSelectedDate("");
-      setSelectedTime("");
-    } else {
-      toast.error("Booking failed: " + result.error);
+  const confirmBooking = async () => {
+    if (!selectedDoctor) {
+      toast.error("No doctor selected.");
+      return;
     }
-  } catch (error) {
-    console.error("Booking error:", error);
-    toast.error("Something went wrong while booking.");
+    if (!selectedDate || !selectedTime || !selectedType) {
+      toast.error("Please fill in all booking details.");
+      return;
+    }
+    if (session.status !== "authenticated") {
+      toast.error("You must be logged in to book an appointment.");
+      router.push("/login");
+      return;
+    }
+
+    const bookingdata = {
+      doctor: selectedDoctor,
+      appointmentTime: selectedTime,
+      bookingtype: selectedType,
+      date: selectedDate,
+      user: session.data?.user || null,
+    };
+
+    console.log("booking data form", bookingdata);
+
+    try {
+      const response = await fetch("/api/booking", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify(bookingdata),
+      });
+
+      const result = await response.json();
+
+      if (response.ok) {
+        toast.success(
+          `Appointment booked with ${selectedDoctor.name} on ${selectedDate} at ${selectedTime}`
+        );
+
+        setShowBookingModal(false);
+        setSelectedDate("");
+        setSelectedTime("");
+        setSelectedType("");
+        setSelectedDoctor(null);
+      } else {
+        toast.error("Booking failed: " + result.error);
+      }
+    } catch (error) {
+      console.error("Booking error:", error);
+      toast.error("Something went wrong while booking.");
+    }
+  };
+
+  // Optional: show loading while session is loading
+  if (session.status === "loading") {
+    return (
+      <div className="min-h-screen flex justify-center items-center">
+        <Loading />
+      </div>
+    );
   }
-};
-
-
-
-
 
   return (
     <div className="min-h-screen bg-gradient-to-br from-blue-50 via-white to-indigo-50 py-12 px-4">
@@ -122,13 +136,8 @@ const confirmBooking = async () => {
           </div>
         </div>
 
-        {/* Doctor Card */}
-        <DoctorCard
-          filteredDoctors={filteredDoctors}
-          handleBooking={handleBooking}
-        >
-          {" "}
-        </DoctorCard>
+        {/* Doctor Cards */}
+        <DoctorCard filteredDoctors={filteredDoctors} handleBooking={handleBooking} />
 
         {/* Booking Modal */}
         {showBookingModal && selectedDoctor && (
@@ -145,12 +154,14 @@ const confirmBooking = async () => {
           />
         )}
 
+        {/* Loading state */}
         {isLoading && (
           <div className="flex justify-center items-center mt-10">
-            <Loading></Loading>
+            <Loading />
           </div>
         )}
 
+        {/* No results */}
         {filteredDoctors.length === 0 && !isLoading && (
           <p className="text-center text-gray-500 mt-10">
             No doctors found for your criteria.

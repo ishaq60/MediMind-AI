@@ -309,10 +309,7 @@ Based on your symptoms, here are some **potential causes**:
                 placeholder="Describe your symptoms or ask a medical question..."
                 className="w-full px-3 sm:px-4 py-2 pr-10 sm:pr-12 border border-blue-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-blue-500 resize-none overflow-y-auto text-sm sm:text-base"
                 rows={1}
-                style={{ 
-                  minHeight: "44px", 
-                  maxHeight: window.innerWidth < 640 ? "88px" : "120px" 
-                }}
+              style={{ maxHeight: "150px", overflowY: "auto" }}
               />
               <button
                 onClick={toggleRecording}

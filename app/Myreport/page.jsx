@@ -1,6 +1,7 @@
 "use client"
 import React from 'react';
-import Myreport from '../dashboard/user/Myreport';
+import Myreport from '../dashboard/user/reports/page';
+
 
 const page = () => {
     return (
