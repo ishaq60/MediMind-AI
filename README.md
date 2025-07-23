@@ -1,184 +1,192 @@
-# 🧠 MediMind AI
+![Next.js](https://img.shields.io/badge/Next.js-13-blue)
+![TailwindCSS](https://img.shields.io/badge/TailwindCSS-2.0-38B2AC?logo=tailwindcss)
+![MongoDB](https://img.shields.io/badge/MongoDB-Atlas-green?logo=mongodb)
+![License](https://img.shields.io/badge/License-MIT-lightgrey)
+![Vercel](https://img.shields.io/badge/Deployed%20on-Vercel-black?logo=vercel)
 
-Smart Health. AI Powered. Human Centered.
+<p align="center">
+  <img src="https://i.ibb.co/0Rxkj3b4/Banner.png" alt="MediMind AI Banner" width="100%" />
+</p>
+
+# 🧠 MediMind AI  
+**Smart Health. AI Powered. Human Centered.**
 
 ---
 
 ## 📌 Project Overview
 
-**MediMind AI** is a full-stack medical web platform designed for smart diagnostics, appointment scheduling, patient records, and AI-driven insights using Google Gemini API. It supports three distinct user roles:
+**MediMind AI** is a full-stack medical web platform for:
+- 🧠 AI-powered smart diagnostics (Google Gemini API)
+- 📅 Appointment booking & management
+- 🗂️ Patient record keeping
+- ☁️ Weather-based health alerts
+- 🔒 Secure role-based dashboards for **Admin**, **Doctor**, **Patient**
 
-* **Admin** – manage users, doctors, and reports
-* **Doctor** – manage appointments, view diagnosis reports
-* **Patient/User** – book appointments, view AI-generated results, and access health records
+---
 
-The platform integrates AI-powered analytics, weather alerts, modern UI components, and secure role-based access.
+## 👥 Roles & Demo Passwords
+
+| Role   | Email | Password | Access |
+|--------|-------|----------|--------|
+| 🛡️ **Admin** | `admin@medimind.ai` | `Admin@123` | Manage users, doctors, reports, AI analytics |
+| 👨‍⚕️ **Doctor** | `doctor@medimind.ai` | `Doctor@123` | Manage appointments, patient records, view AI reports |
+| 👤 **Patient** | `user@medimind.ai` | `User@123` | Book appointments, view AI diagnosis, use AI chatbot |
+
+> 🔑 *Use these credentials for demo/testing. Replace with your own when live.*
 
 ---
 
 ## 🚀 Tech Stack
 
-| Tech             | Description                                     |
-| ---------------- | ----------------------------------------------- |
-| **Next.js**      | React framework for building SSR/SSG apps       |
-| **React**        | UI Library                                      |
-| **MongoDB**      | NoSQL database for storing users, reports, etc. |
-| **Tailwind CSS** | Utility-first CSS framework                     |
-| **JWT**          | For secure authentication and role-based access |
-| **NextAuth**     | Session and authentication handling             |
-| **Gemini API**   | AI-driven medical diagnosis & insights          |
-| **shadcn/ui**    | Beautiful, accessible components                |
-| **Lucide-react** | Icons                                           |
-| **Axios**        | HTTP client for API requests                    |
+| Tech | Purpose |
+|------|---------|
+| **Next.js** | Full-stack React framework (SSR/SSG) |
+| **React** | UI Library |
+| **MongoDB** | NoSQL DB for users & records |
+| **Tailwind CSS** | Utility-first styling |
+| **NextAuth** | Secure session auth |
+| **JWT** | Token-based authentication |
+| **Gemini API** | AI-driven medical chatbot |
+| **shadcn/ui** | Modern UI components |
+| **Lucide-react** | Icon set |
+| **Axios** | HTTP requests |
 
 ---
 
-## 📂 Folder Structure (Simplified)
+## 📂 Folder Structure
 
-```bash
 mediMind-ai/
 ├── app/
-│   ├── layout.tsx (global layout)
-│   ├── page.tsx (homepage)
-│   ├── dashboard/
-│   │   ├── admin/
-│   │   ├── doctor/
-│   │   └── user/
+│ ├── layout.tsx
+│ ├── page.tsx
+│ └── dashboard/
+│ ├── admin/
+│ ├── doctor/
+│ └── user/
 ├── components/
-│   ├── Sidebar.tsx
-│   ├── Header.tsx
-│   ├── WeatherWidget.tsx
-│   └── AIChat.tsx
+│ ├── Sidebar.tsx
+│ ├── Header.tsx
+│ ├── WeatherWidget.tsx
+│ └── AIChat.tsx
 ├── lib/
-│   ├── auth.ts
-│   ├── db.ts
-│   └── ai.ts (Gemini logic)
+│ ├── auth.ts
+│ ├── db.ts
+│ └── ai.ts
 ├── models/
-│   ├── userModel.ts
-│   ├── appointmentModel.ts
-│   └── reportModel.ts
+│ ├── userModel.ts
+│ ├── appointmentModel.ts
+│ └── reportModel.ts
+├── utils/
+│ └── roles.ts
 ├── public/
 ├── styles/
-│   └── globals.css
-├── utils/
-│   └── roles.ts
+│ └── globals.css
 ├── .env.local
 ├── package.json
 └── README.md
-```
+
+yaml
+Copy
+Edit
 
 ---
 
 ## 🔐 Environment Variables
 
-Create a `.env.local` file at the root of the project:
+Create a **`.env.local`** file in your project root:
 
 ```env
 MONGODB_URI=mongodb+srv://<username>:<password>@cluster.mongodb.net/medimind?retryWrites=true&w=majority
-NEXTAUTH_SECRET=your_jwt_secret_here
-GEMINI_API_KEY=your_gemini_api_key
-WEATHER_API_KEY=your_openweather_api_key (optional)
-```
-
----
-
-## 🛠️ Installation
-
-```bash
+NEXTAUTH_SECRET=your_nextauth_jwt_secret
+GEMINI_API_KEY=your_google_gemini_api_key
+WEATHER_API_KEY=your_openweather_api_key
+🛠️ Installation
+bash
+Copy
+Edit
+# Clone this repository
 git clone https://github.com/yourusername/medimind-ai.git
+
+# Go to the project folder
 cd medimind-ai
+
+# Install dependencies
 npm install
+
+# Run development server
 npm run dev
-```
 
-Visit: `http://localhost:3000`
+# Open in browser
+# http://localhost:3000
+🤖 Gemini AI Chatbot
+The AIChat component connects to Google Gemini API:
 
----
+Ask health questions naturally
 
-## 👥 Roles and Features
+Get smart symptom analysis & advice
 
-### 👩‍⚕️ User (Patient)
+Receive personalized tips
 
-* Book and manage appointments
-* View AI-based diagnosis reports
-* Get weather alerts and health tips
+Example:
 
-### 🧑‍⚕️ Doctor
+User: “I have a fever and sore throat. What should I do?”
+Gemini AI: Suggests possible causes, precautions & next steps.
 
-* View appointment schedule
-* Review patient records
-* Collaborate with AI for diagnosis
+🌦️ Smart Features
+✅ Weather Alerts: Warn patients about weather-related health risks
+✅ Role-Based Dashboards: Admin, Doctor, Patient
+✅ AI Analytics: Track reports & trends
+✅ Secure Authentication: NextAuth + JWT
 
-### 🛡️ Admin
+🖼️ Screenshots
+Description	Preview
+Banner	
+Admin Dashboard	
+Doctor Dashboard	
+User Dashboard	
+Diagnosis Report	
+AI Chatbox	
 
-* Manage all users and roles
-* Control data and access
-* Oversee AI analytics and trends
+🚀 Deployment
+1️⃣ Push code to GitHub
 
----
+bash
+Copy
+Edit
+git add .
+git commit -m "Initial commit"
+git push origin main
+2️⃣ Deploy on Vercel
 
-## ✨ Gemini AI Integration
+Go to vercel.com/import
 
-* Uses Google Gemini API for:
+Link your GitHub repo
 
-  * Symptom-based diagnosis
-  * Smart health tips and precautions
-  * Personalized recommendation engine
+Add Environment Variables
 
----
+Click Deploy
 
-## 🌦️ Smart Features
-
-* **Weather Alerts:** Warn users of severe weather with health implications
-* **AI Chatbot:** Conversational medical assistant
-* **Analytics Dashboard:** Track health data & trends
-
----
-
-## 🖼️ UI Components (shadcn/ui)
-
-* Reusable form, cards, tabs, dialog modals, and dashboards
-* Modern UX with Tailwind + shadcn/ui
-
----
-
-## 🚀 Deployment
-
-### Deploy to Vercel
-
-1. Push to GitHub
-2. Visit [vercel.com/import](https://vercel.com/import)
-3. Link GitHub repo
-4. Set environment variables
-5. Click **Deploy**
-
----
-
-## 📸 Screenshots / Banner
-
-*A banner or logo can be generated upon request (e.g., gradient with heart/brain icon)*
-
----
-
-## 🧠 Contributing
-
-1. Fork this repo
-2. Create a feature branch
-3. Push changes and open a PR
-
----
-
-## 📜 License
-
+🤝 Contributing
+bash
+Copy
+Edit
+# Contribute steps:
+1️⃣ Fork this repo  
+2️⃣ Create a new branch: git checkout -b feature/YourFeature  
+3️⃣ Make your changes  
+4️⃣ Commit & push: git commit -m "Add feature"  
+5️⃣ Open Pull Request
+📜 License
 MIT License © 2025 MediMind AI
 
----
+🔗 Useful Links
+Next.js Docs
 
-## 🔗 Useful Links
+Tailwind CSS
 
-* [Next.js Docs](https://nextjs.org/docs)
-* [Tailwind CSS](https://tailwindcss.com/)
-* [shadcn/ui](https://ui.shadcn.com/)
-* [Gemini API](https://ai.google.dev/)
-* [MongoDB Atlas](https://www.mongodb.com/atlas)
+shadcn/ui
+
+Gemini API
+
+MongoDB Atlas
 
