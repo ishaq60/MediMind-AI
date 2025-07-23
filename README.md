@@ -178,7 +178,7 @@ Visit: `http://localhost:3000`
 ## 📸 Some UI Screenshots
 
 ### USER Dashboard  
-https://i.ibb.co/gMYGTRXs/user-dashboard.png
+![AI Chatbox](https://i.ibb.co/Xk2jfPK8/Screenshot-2025-07-23-214327.png)
 
 ### AI Chatbox  
 ![AI Chatbox](https://i.ibb.co/F4R5gfd8/ai-chatbox.png)
