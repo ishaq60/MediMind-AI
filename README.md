@@ -177,23 +177,22 @@ Visit: `http://localhost:3000`
 
 ## 📸 Some UI Screenshots
 
-# USER Dashboard  
+### USER Dashboard  
 ![User Dashboard](https://i.ibb.co/gMYGTRXs/user-dashboard.png)
 
 
-
-# AI Chatbox  
+### AI Chatbox  
 ![AI Chatbox](https://i.ibb.co/F4R5gfd8/ai-chatbox.png)
 
 
 
-# Diagnosis Page  
+### Diagnosis Page  
 ![Diagnosis](https://i.ibb.co/JjHwSpYb/diagones.png)
 
-# Admin Dashboard  
+### Admin Dashboard  
 ![Admin Dashboard](https://i.ibb.co/Ng3H28Hb/admin-dashboard.png)
 
-# Doctor Dashboard  
+### Doctor Dashboard  
 ![Doctor Dashboard](https://i.ibb.co/zVtRWq1n/doctor-dashboard.png)
 
 
