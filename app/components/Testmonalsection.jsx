@@ -9,19 +9,19 @@ import 'swiper/css/pagination';
 const Testmonalsection = () => {
   const testimonials = [
     {
-      name: "Dr. Sarah Johnson",
+      name: "Dr. Kamrul Islam",
       role: "Cardiologist, Mayo Clinic",
       text: "This AI assistant has revolutionized how we approach preliminary diagnosis. The accuracy is remarkable.",
       rating: 5
     },
     {
-      name: "Michael Chen",
+      name: "Abdur Rahaman",
       role: "Patient",
       text: "Got my symptoms analyzed in minutes and connected with the right specialist. Incredible technology!",
       rating: 5
     },
     {
-      name: "Dr. Emily Rodriguez",
+      name: "Dr. Fahim Asrtaf",
       role: "Emergency Medicine, Johns Hopkins",
       text: "The AI-powered report analysis saves us hours of work and helps us focus on patient care.",
       rating: 5
@@ -33,7 +33,7 @@ const Testmonalsection = () => {
       <div className="max-w-4xl mx-auto text-center">
         <h2 className="text-4xl lg:text-5xl font-bold mb-16 text-gray-900">
           Trusted by Healthcare
-          <span className="bg-gradient-to-r from-blue-600 to-indigo-600 bg-clip-text text-transparent"> Professionals</span>
+          <span className="bg-gradient-to-r from-blue-500 to-purple-600 bg-clip-text text-transparent"> Professionals</span>
         </h2>
 
         <Swiper

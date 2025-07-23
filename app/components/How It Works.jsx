@@ -20,7 +20,7 @@ const HowItWorks= () => {
               { step: 3, title: "Get Results", desc: "Receive detailed insights, possible conditions, and recommendations for next steps", icon: Stethoscope }
             ].map((step, idx) => (
               <div key={idx} className="relative text-center group">
-                <div className="w-20 h-20 bg-gradient-to-r from-blue-600 to-indigo-600 rounded-full flex items-center justify-center mx-auto mb-6 group-hover:scale-110 transition-transform shadow-lg">
+                <div className="w-20 h-20 bg-gradient-to-r from-blue-500 to-purple-600 rounded-full flex items-center justify-center mx-auto mb-6 group-hover:scale-110 transition-transform shadow-lg">
                   <step.icon className="w-10 h-10 text-white" />
                 </div>
                 <h3 className="text-2xl font-semibold text-gray-900 mb-4">

@@ -33,7 +33,7 @@ const DoctorHeader = ({ searchTerm, selectedCategory, setSelectedCategory,setSea
       <div className="text-center mb-12">
         <h1 className="text-4xl lg:text-5xl font-bold mb-6 text-gray-900">
           Find Your
-          <span className="bg-gradient-to-r from-blue-600 to-indigo-600 bg-clip-text text-transparent">
+          <span className="bg-gradient-to-r from-blue-500 to-purple-600 bg-clip-text text-transparent">
             {' '}Perfect Doctor
           </span>
         </h1>

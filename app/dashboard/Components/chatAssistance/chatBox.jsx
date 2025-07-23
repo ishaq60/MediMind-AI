@@ -123,7 +123,7 @@ Based on your symptoms, here are some **potential causes**:
       <div className="hidden sm:block bg-white shadow-sm border-b border-gray-200 p-4">
         <div className="max-w-4xl mx-auto flex items-center justify-between">
           <div className="flex items-center space-x-3">
-            <div className="w-10 h-10 bg-gradient-to-r from-blue-600 to-indigo-600 rounded-full flex items-center justify-center">
+            <div className="w-10 h-10 bg-gradient-to-r from-blue-500 to-purple-600 rounded-full flex items-center justify-center">
               <Heart className="h-5 w-5 text-white" />
             </div>
             <div>
@@ -145,7 +145,7 @@ Based on your symptoms, here are some **potential causes**:
       {/* Mobile Header */}
       <div className="sm:hidden bg-white shadow-sm border-b border-gray-200 p-3">
         <div className="flex items-center space-x-2">
-          <div className="w-8 h-8 bg-gradient-to-r from-blue-600 to-indigo-600 rounded-full flex items-center justify-center">
+          <div className="w-8 h-8 bg-gradient-to-r from-blue-500 to-purple-600 rounded-full flex items-center justify-center">
             <Heart className="h-4 w-4 text-white" />
           </div>
           <div>
