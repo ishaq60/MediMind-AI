@@ -109,9 +109,9 @@ Visit: `http://localhost:3000`
 
 | Role             | Description                              | **Email**               | **Password**   |
 |------------------|------------------------------------------|--------------------------|----------------|
-| 🧑‍💼 User (Patient) | Book appointments, view AI reports         | `user@medimind.ai`       | `user@123`     |
-| 🧑‍⚕️ Doctor         | Manage appointments, patients, reports     | `doctor@medimind.ai`     | `doctor@123`   |
-| 🛡️ Admin           | Manage users, doctors, analytics, data     | `admin@medimind.ai`      | `admin@123`    |
+| 🧑‍💼 User (Patient) | Book appointments, view AI reports         | `user@gmail.com`       | `user@123`     |
+| 🧑‍⚕️ Doctor         | Manage appointments, patients, reports     | `doctor@gmail.com`     | `doctor@123`   |
+| 🛡️ Admin           | Manage users, doctors, analytics, data     | `admin@gmail.com`      | `admin@123`    |
 
 > ⚠️ **Note:** These are sample/demo credentials. Do not use them in production environments without modification.
 
@@ -175,18 +175,28 @@ Visit: `http://localhost:3000`
 
 ---
 
-## 📸 Screenshots / Banner
+## 📸 Some UI Screenshots
+
+# Admin Dashboard  
 ![Admin Dashboard](https://i.ibb.co/Ng3H28Hb/admin-dashboard.png)
 
+# AI Chatbox  
 ![AI Chatbox](https://i.ibb.co/F4R5gfd8/ai-chatbox.png)
 
+# Banner  
 ![Banner](https://i.ibb.co/0Rxkj3b4/Banner.png)
 
+# Diagnosis Page  
 ![Diagnosis](https://i.ibb.co/JjHwSpYb/diagones.png)
 
+# Doctor Dashboard  
 ![Doctor Dashboard](https://i.ibb.co/zVtRWq1n/doctor-dashboard.png)
 
+# USER Dashboard  
 ![User Dashboard](https://i.ibb.co/gMYGTRXs/user-dashboard.png)
+
+---
+
 
 ---
 
