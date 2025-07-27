@@ -1,9 +1,10 @@
 import Link from 'next/link';
 import React from 'react';
 import ReactMarkdown from 'react-markdown';
+import Loading from '../../loading';
 
 const Result = ({ result }) => {
-  if (!result?.raw) return null;
+  if (!result?.raw) return <Loading></Loading>;
 
   return (
     <div className="bg-white border border-gray-200 rounded-xl p-6 mt-6 shadow-sm">

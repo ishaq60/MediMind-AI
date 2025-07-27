@@ -3,7 +3,8 @@ import { Camera, Upload, Brain } from "lucide-react";
 import React from "react";
 
 const ImagineFile = ({ 
-  uploadedFiles, 
+  uploadedFiles,
+  
   handleFileUpload, 
   handleAnalyzeImages, 
   result, 
@@ -71,17 +72,14 @@ const ImagineFile = ({
               disabled={isAnalyzingFiles}
               className="mt-4 w-full bg-gradient-to-r from-indigo-600 to-purple-600 text-white py-3 px-6 rounded-lg font-semibold hover:from-indigo-700 hover:to-purple-700 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2 transition-all duration-200 flex items-center justify-center space-x-2 disabled:opacity-50 disabled:cursor-not-allowed"
             >
-              {isAnalyzingFiles ? (
+             
                 <>
                   <div className="animate-spin rounded-full h-5 w-5 border-b-2 border-white"></div>
-                  <span>Analyzing Images...</span>
-                </>
-              ) : (
-                <>
+            
                   <Brain className="w-5 h-5" />
                   <span>Analyze Images</span>
                 </>
-              )}
+
             </button>
           </div>
         )}

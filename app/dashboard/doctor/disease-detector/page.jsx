@@ -392,10 +392,12 @@ Please format your response clearly with sections and bullet points.
             {activeTab === "imaging" && (
               <ImagineFile
                 uploadedFiles={uploadedFiles.filter(f => f.type === "image")}
+                removeFile={removeFile}
                 handleFileUpload={(event) => handleFileUpload(event, "imaging")}
                 handleAnalyzeImages={() => handleAnalyzeImages()}
                 result={result}
                 isAnalyzingFiles={isAnalyzingFiles}
+                isAnalyzing={isAnalyzing}
               />
             )}
 
@@ -407,6 +409,8 @@ Please format your response clearly with sections and bullet points.
                 formatFileSize={formatFileSize}
                 handleAnalyzeFiles={handleAnalyzeFiles}
                 isAnalyzingFiles={isAnalyzingFiles}
+                result={result}
+                isAnalyzing={isAnalyzing}
               />
             )}
 

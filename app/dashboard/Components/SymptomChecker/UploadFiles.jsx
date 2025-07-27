@@ -1,4 +1,4 @@
-import { Brain, FileText, X } from "lucide-react";
+import { Brain, FileText, X, Camera } from "lucide-react";
 
 const UploadFiles = ({
   uploadedFiles,
@@ -6,7 +6,6 @@ const UploadFiles = ({
   formatFileSize,
   handleAnalyzeFiles,
   isAnalyzingFiles,
-  result
 }) => {
   return (
     <div>
@@ -47,20 +46,15 @@ const UploadFiles = ({
 
         <button
           onClick={handleAnalyzeFiles}
-          disabled={isAnalyzingFiles || uploadedFiles.length === 0}
-          className="mt-4 w-full bg-gradient-to-r from-green-600 to-blue-600 text-white py-3 px-6 rounded-lg font-semibold hover:from-green-700 hover:to-blue-700 focus:outline-none focus:ring-2 focus:ring-green-500 focus:ring-offset-2 transition-all duration-200 flex items-center justify-center space-x-2 disabled:opacity-50 disabled:cursor-not-allowed"
+          disabled={isAnalyzingFiles}
+          className="mt-4 w-full bg-gradient-to-r from-indigo-600 to-purple-600 text-white py-3 px-6 rounded-lg font-semibold hover:from-indigo-700 hover:to-purple-700 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2 transition-all duration-200 flex items-center justify-center space-x-2 disabled:opacity-50 disabled:cursor-not-allowed"
         >
           {isAnalyzingFiles ? (
-            <>
-              <div className="animate-spin rounded-full h-5 w-5 border-b-2 border-white"></div>
-              <span>Analyzing Files...</span>
-            </>
+            <div className="animate-spin rounded-full h-5 w-5 border-b-2 border-white"></div>
           ) : (
-            <>
-              <Brain className="w-5 h-5" />
-              <span>Analyze Uploaded Files</span>
-            </>
+            <Brain className="w-5 h-5" />
           )}
+          <span>Analyze File</span>
         </button>
       </div>
     </div>
