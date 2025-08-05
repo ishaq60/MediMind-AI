@@ -125,7 +125,7 @@ const DoctorCard = ({ filteredDoctors = [], handleBooking }) => {
                     Book Appointment
                   </Button>
                   <Link
-                    href={`/doctor/${doctor._id}`}
+                    href={`/doctors/${doctor._id}`}
                     className="px-6 py-3 border-2 border-blue-600 text-blue-600 rounded-xl font-semibold hover:bg-blue-50 transition-all duration-200"
                   >
                     View Profile

@@ -8,10 +8,10 @@ const useOneDoctorFindId= (id) => {
     error,
     refetch,
   } = useQuery({
-    queryKey: ['doctor', name],
-    enabled: !!name, // only runs if `email` is provided
+    queryKey: ['doctor',id],
+    enabled: !!id, // only runs if `email` is provided
     queryFn: async () => {
-      const res = await axios.get(`/api/onedoctor/${id}`);
+      const res = await axios.get(`/api/ondoctorbyid/${id}`);
       console.log(res.data)
       return res.data;
     },

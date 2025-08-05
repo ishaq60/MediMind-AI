@@ -7,10 +7,10 @@ import { useRouter } from "next/navigation";
 
 import useDoctors from "@/hooks/useDoctors";
 
-import DoctorCard from "../components/doctorDetails/DoctorCard";
+import DoctorCard from "../components/doctorsrelated/DoctorsCard";
 import Loading from "../components/Loading";
-import ShowBookingModal from "../components/doctorDetails/ShowBookingModal";
-import DoctorHeader from "../components/doctorDetails/DoctorHeader";
+import ShowBookingModal from "../components/doctorsrelated/ShowBookingModal";
+import DoctorHeader from "../components/doctorsrelated/DoctorsHeader";
 
 const DoctorAppointmentSection = () => {
   const router = useRouter();

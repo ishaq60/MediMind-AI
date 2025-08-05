@@ -19,7 +19,7 @@ import Link from "next/link";
 import Image from "next/image";
 import { Button } from "@/components/ui/button";
 
-const Doctors = () => {
+const DoctorInmain = () => {
   const [doctors, setDoctors] = useState([]);
   const [sliceDoc, setslicdoc] = useState(2);
 
@@ -233,7 +233,7 @@ useEffect(() => {
                       Book Appointment
                     </button> */}
                     <Link
-                      href={`/doctor/${doctor._id}`}
+                      href={`/doctors/${doctor._id}`}
                       className="flex-1 text-center px-6 py-3 border-2 border-purple-600 text-text- rounded-xl font-semibold hover:bg-blue-50 transition-all duration-200"
                     >
                       View Details
@@ -245,7 +245,7 @@ useEffect(() => {
           ))}
         </div>
         <div className="w-full flex justify-center mt-8">
-        <Link href={"/doctor"} className="w-full">
+        <Link href={"/doctors"} className="w-full">
         
           <button
            
@@ -261,4 +261,4 @@ useEffect(() => {
   );
 };
 
-export default Doctors;
+export default DoctorInmain;

@@ -7,7 +7,7 @@ import { useRouter } from 'next/navigation';
 import { useSession } from 'next-auth/react';
 import { toast } from 'react-toastify';
 
-const DoctorDetailsClient = ({ doctorData }) => {
+const Doctordetailsview = ({ doctor }) => {
   const [bookingtoggle, setbookingtoogle] = useState(false);
   const [selectedDate, setSelectedDate] = useState('');
   const [selectedTime, setSelectedTime] = useState('');
@@ -18,7 +18,6 @@ const DoctorDetailsClient = ({ doctorData }) => {
   const router = useRouter();
   const session = useSession();
 
-  // ✅ Redirect if not logged in when booking toggle is active
   useEffect(() => {
     if (bookingtoggle && session.status === "unauthenticated") {
       toast.error("You must be logged in to book an appointment.");
@@ -27,7 +26,7 @@ const DoctorDetailsClient = ({ doctorData }) => {
   }, [bookingtoggle, session.status, router]);
 
   const confirmBooking = async () => {
-    if (!doctorData) {
+    if (!doctor) {
       toast.error("No doctor selected.");
       return;
     }
@@ -42,7 +41,7 @@ const DoctorDetailsClient = ({ doctorData }) => {
     }
 
     const bookingdata = {
-      doctor: doctorData,
+      doctor: doctor,
       appointmentTime: selectedTime,
       bookingtype: selectedType,
       date: selectedDate,
@@ -64,7 +63,7 @@ const DoctorDetailsClient = ({ doctorData }) => {
 
       if (response.ok) {
         toast.success(
-          `Appointment booked with ${doctorData.name} on ${selectedDate} at ${selectedTime}`
+          `Appointment booked with ${doctor.name} on ${selectedDate} at ${selectedTime}`
         );
 
         setbookingtoogle(false);
@@ -80,7 +79,7 @@ const DoctorDetailsClient = ({ doctorData }) => {
     }
   };
 
-  if (!doctorData) {
+  if (!doctor) {
     return (
       <div className="min-h-screen bg-gray-50 mt-24 flex items-center justify-center">
         <Loading />
@@ -96,8 +95,8 @@ const DoctorDetailsClient = ({ doctorData }) => {
           <div className="flex flex-col lg:flex-row gap-6">
             <div className="flex-shrink-0">
               <img
-                src={doctorData.image}
-                alt={doctorData.name}
+                src={doctor.image}
+                alt={doctor.name}
                 className="w-32 h-32 md:w-40 md:h-40 rounded-lg object-cover border-2 border-gray-100"
                 onError={(e) => {
                   e.target.src = 'https://via.placeholder.com/160x160?text=Doctor';
@@ -109,24 +108,24 @@ const DoctorDetailsClient = ({ doctorData }) => {
               <div className="flex flex-col md:flex-row md:justify-between md:items-start mb-4">
                 <div>
                   <h1 className="text-2xl md:text-3xl font-bold text-gray-900 mb-2">
-                    {doctorData.name}
+                    {doctor.name}
                   </h1>
                   <p className="text-lg text-blue-600 font-medium mb-1">
-                    {doctorData.specialty}
+                    {doctor.specialty}
                   </p>
                   <div className="flex items-center text-gray-600 mb-2">
                     <MapPin className="w-4 h-4 mr-1" />
-                    <span className="text-sm">{doctorData.hospital}</span>
+                    <span className="text-sm">{doctor.hospital}</span>
                   </div>
                   <div className="flex items-center text-gray-600 mb-4">
                     <MapPin className="w-4 h-4 mr-1" />
-                    <span className="text-sm">{doctorData.location}</span>
+                    <span className="text-sm">{doctor.location}</span>
                   </div>
                 </div>
 
                 <div className="text-right">
                   <div className="text-2xl font-bold text-green-600 mb-1">
-                    {doctorData.price}
+                    {doctor.price}
                   </div>
                   <div className="text-sm text-gray-500">Consultation Fee</div>
                 </div>
@@ -136,25 +135,25 @@ const DoctorDetailsClient = ({ doctorData }) => {
                 <div className="flex items-center bg-green-50 px-3 py-1 rounded-full">
                   <Star className="w-4 h-4 text-yellow-400 fill-current mr-1" />
                   <span className="font-medium text-green-700">
-                    {doctorData.rating}
+                    {doctor.rating}
                   </span>
                   <span className="text-sm text-gray-600 ml-1">
-                    ({doctorData.reviews} reviews)
+                    ({doctor.reviews} reviews)
                   </span>
                 </div>
                 <div className="flex items-center bg-blue-50 px-3 py-1 rounded-full">
                   <Award className="w-4 h-4 text-blue-600 mr-1" />
                   <span className="text-sm font-medium text-blue-700">
-                    {doctorData.experience} experience
+                    {doctor.experience} experience
                   </span>
                 </div>
               </div>
 
-              {doctorData.nextSlot && (
+              {doctor.nextSlot && (
                 <div className="flex items-center bg-orange-50 px-4 py-2 rounded-lg border border-orange-200">
                   <Clock className="w-5 h-5 text-orange-600 mr-2" />
                   <span className="font-medium text-orange-800">
-                    Next available: {doctorData.nextSlot}
+                    Next available: {doctor.nextSlot}
                   </span>
                 </div>
               )}
@@ -166,20 +165,20 @@ const DoctorDetailsClient = ({ doctorData }) => {
           <div className="lg:col-span-2 space-y-6">
             <div className="bg-white rounded-lg shadow-sm p-6">
               <h2 className="text-xl font-semibold text-gray-900 mb-4">
-                About Dr. {doctorData.name?.split(' ')[1] || 'Doctor'}
+                About Dr. {doctor.name?.split(' ')[1] || 'Doctor'}
               </h2>
               <p className="text-gray-700 leading-relaxed">
-                {doctorData.description}
+                {doctor.description}
               </p>
             </div>
 
-            {doctorData.conditions && doctorData.conditions.length > 0 && (
+            {doctor.conditions && doctor.conditions.length > 0 && (
               <div className="bg-white rounded-lg shadow-sm p-6">
                 <h2 className="text-xl font-semibold text-gray-900 mb-4">
                   Conditions Treated
                 </h2>
                 <div className="flex flex-wrap gap-2">
-                  {doctorData.conditions.map((condition, index) => (
+                  {doctor.conditions.map((condition, index) => (
                     <span
                       key={index}
                       className="bg-blue-50 text-blue-700 px-3 py-2 rounded-lg text-sm font-medium border border-blue-200"
@@ -196,7 +195,7 @@ const DoctorDetailsClient = ({ doctorData }) => {
             <div className="bg-white rounded-lg shadow-sm p-6 sticky top-6">
               <button
                 onClick={() => {
-                  setSelectedDoctor(doctorData);
+                  setSelectedDoctor(doctor);
                   setbookingtoogle(true);
                 }}
                 className="w-full px-6 py-3 bg-gradient-to-r from-blue-500 to-purple-600 text-white rounded-xl font-semibold hover:shadow-lg transform hover:scale-105 transition-all duration-200"
@@ -209,14 +208,14 @@ const DoctorDetailsClient = ({ doctorData }) => {
                   <div className="bg-white border border-blue-600 rounded-3xl max-w-md w-full p-8">
                     <div className="text-center mb-6">
                       <h2 className="text-2xl font-bold text-gray-900 mb-2">Book Appointment</h2>
-                      <p className="text-gray-600">with {doctorData.name}</p>
+                      <p className="text-gray-600">with {doctor.name}</p>
                     </div>
 
                     <div className="space-y-6">
                       <div>
                         <label className="block text-sm font-semibold text-gray-900 mb-3">Select Date</label>
                         <div className="grid grid-cols-3 gap-2">
-                          {doctorData.availability?.length ? doctorData.availability.map((date) => (
+                          {doctor.availability?.length ? doctor.availability.map((date) => (
                             <button
                               key={date}
                               onClick={() => setSelectedDate(date)}
@@ -254,7 +253,7 @@ const DoctorDetailsClient = ({ doctorData }) => {
                       <div>
                         <label className="block text-sm font-semibold text-gray-900 mb-3">Consultation Type</label>
                         <div className="space-y-3">
-                          {doctorData.consultationTypes?.map((type) => (
+                          {doctor.consultationTypes?.map((type) => (
                             <label
                               key={type}
                               className="flex items-center p-3 border border-gray-200 rounded-xl hover:bg-gray-50 cursor-pointer"
@@ -307,4 +306,4 @@ const DoctorDetailsClient = ({ doctorData }) => {
   );
 };
 
-export default DoctorDetailsClient;
+export default Doctordetailsview;

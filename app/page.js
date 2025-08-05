@@ -9,9 +9,10 @@ import Testmonalsection from "./components/Testmonalsection";
 import Priceing from "./components/Priceing";
 import HowItWorks from "./components/How It Works";
 import Contact from "./components/Contact";
-import Doctors from "./components/Doctors";
+
 
 import { motion } from "framer-motion";
+import DoctorInmain from "./components/Doctors";
 
 const fadeUp = {
   initial: { opacity: 0, y: 40 },
@@ -40,7 +41,7 @@ export default function Home() {
       </motion.div>
 
       <motion.div {...fadeUp}>
-        <Doctors />
+        <DoctorInmain />
       </motion.div>
 
       <motion.div {...fadeUp}>

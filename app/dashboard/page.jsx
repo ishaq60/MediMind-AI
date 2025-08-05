@@ -1,5 +1,6 @@
 import React from 'react';
-import DashboardMainPage from '../components/doctorDetails/DashboardMainPage';
+import DashboardMainPage from '../components/dashboardrelatedcomponent/DashboardMainPage';
+
 
 const page = () => {
   return (
