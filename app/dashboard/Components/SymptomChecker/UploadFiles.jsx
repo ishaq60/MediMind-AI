@@ -1,4 +1,5 @@
 import { Brain, FileText, X, Camera } from "lucide-react";
+import Loading from "../../loading";
 
 const UploadFiles = ({
   uploadedFiles,
@@ -47,15 +48,21 @@ const UploadFiles = ({
         <button
           onClick={handleAnalyzeFiles}
           disabled={isAnalyzingFiles}
-          className="mt-4 w-full bg-gradient-to-r from-indigo-600 to-purple-600 text-white py-3 px-6 rounded-lg font-semibold hover:from-indigo-700 hover:to-purple-700 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2 transition-all duration-200 flex items-center justify-center space-x-2 disabled:opacity-50 disabled:cursor-not-allowed"
+          className="mt-4 w-full bg-gradient-to-r from-indigo-600 to-purple-600 text-white py-3 px-6 rounded-lg font-semibold hover:from-indigo-700 hover:to-purple-700 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2 transition-all duration-200 flex items-center justify-center space-x-2 disabled:opacity-50 disabled:cursor-not-allowed active:scale-95"
         >
           {isAnalyzingFiles ? (
             <div className="animate-spin rounded-full h-5 w-5 border-b-2 border-white"></div>
           ) : (
             <Brain className="w-5 h-5" />
           )}
-          <span>Analyze File</span>
+          <span>{isAnalyzingFiles ? "Analyzing..." : "Analyze File"}</span>
         </button>
+       <div className="justify-center items-center text-center">
+         <span className="text-red-500 text-center ">
+          Note:waiting some time after clickeing button
+        </span>
+       </div>
+        {!isAnalyzingFiles && <div className="mt-1 flex justify-center"></div>}
       </div>
     </div>
   );

@@ -7,7 +7,7 @@ const ImagineFile = ({
   
   handleFileUpload, 
   handleAnalyzeImages, 
-  result, 
+
   isAnalyzingFiles 
 }) => {
   return (
@@ -74,13 +74,18 @@ const ImagineFile = ({
             >
              
                 <>
-                  <div className="animate-spin rounded-full h-5 w-5 border-b-2 border-white"></div>
+                  <div className="rounded-full h-5 w-5 border-b-2 border-white"></div>
             
                   <Brain className="w-5 h-5" />
                   <span>Analyze Images</span>
                 </>
 
             </button>
+             <div className="justify-center items-center text-center">
+         <span className="text-red-500 text-center ">
+          Note:waiting some time after clicking button
+        </span>
+       </div>
           </div>
         )}
       </div>

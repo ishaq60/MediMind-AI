@@ -1,7 +1,8 @@
 import Link from "next/link";
 import React, { useState } from "react";
 import MyTypeAnimation from "./MyTypeAnimation";
-
+import image from "../../public/assets/image/AdobeStock_658147333_Preview.jpeg"
+import image2 from "../../public/assets/image/close-up-people-wearing-lab-coats.jpg"
 const Banner = () => {
   const [showVideoModal, setShowVideoModal] = useState(false);
 
@@ -15,7 +16,18 @@ const Banner = () => {
 
   return (
     <>
-      <div className="relative mt-4 min-h-[800px] bg-gradient-to-r from-slate-900 via-blue-900 to-indigo-800 overflow-hidden">
+      <div className="relative pt-20 min-h-[800px] overflow-hidden">
+        {/* Background Image */}
+        <div 
+          className="absolute inset-0 bg-cover bg-center bg-no-repeat"
+         style={{
+    backgroundImage: `url(${image2.src})`,
+  }}
+        >
+          {/* Dark overlay for better text readability */}
+          <div className="absolute inset-0 bg-black/50"></div>
+        </div>
+
         {/* Background decorative elements */}
         <div className="absolute inset-0">
           <div className="absolute top-10 right-20 w-32 h-32 bg-blue-400/10 rounded-full blur-xl"></div>
@@ -27,7 +39,7 @@ const Banner = () => {
         <div className="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 h-full">
           <div className="flex flex-col lg:flex-row items-center justify-between h-full min-h-[700px] gap-8">
             {/* Left Content */}
-            <div className="flex-1 text-white z-20 pt-16 mt-8 lg:pt-0">
+            <div className="flex-1 text-white z-20 pt-8">
               <h1 className="text-5xl lg:text-7xl font-bold mb-6 leading-tight">
                 <span className="text-white">&nbsp;</span>
                 <MyTypeAnimation></MyTypeAnimation>
@@ -118,68 +130,127 @@ const Banner = () => {
       </div>
 
       {/* Video Modal */}
-      {showVideoModal && (
-        <div className="fixed top-28 left-0 right-0 flex justify-center z-50 p-4 pt-4">
-          <div className="relative bg-white rounded-lg shadow-2xl max-w-4xl w-full overflow-hidden backdrop-blur-sm">
-            {/* Modal Header */}
-            <div className="flex items-center justify-between p-6 border-b border-gray-200">
-              <h3 className="text-2xl text-purple-500 font-semibold">
-                Demo Video
-              </h3>
-              <button
-                onClick={closeVideoModal}
-                className="text-red-400 hover:text-gray-600 text-xl transition-colors"
+   {showVideoModal && (
+  <div className="fixed inset-0 bg-black/60 backdrop-blur-sm flex items-center justify-center z-50 p-4">
+    <div className="relative bg-white rounded-xl shadow-2xl max-w-5xl w-full max-h-[90vh] overflow-hidden">
+      {/* Modal Header */}
+      <div className="flex items-center justify-between px-6 py-4 border-b border-gray-100 bg-gradient-to-r from-purple-50 to-blue-50">
+        <div className="flex items-center space-x-3">
+          <div className="w-8 h-8 bg-purple-100 rounded-full flex items-center justify-center">
+            <svg className="w-4 h-4 text-purple-600" fill="currentColor" viewBox="0 0 20 20">
+              <path d="M8 5v10l7-5-7-5z"/>
+            </svg>
+          </div>
+          <h3 className="text-xl font-semibold text-gray-800">
+            AI Health Assistant Demo
+          </h3>
+        </div>
+        <button
+          onClick={closeVideoModal}
+          className="w-8 h-8 flex items-center justify-center rounded-full hover:bg-gray-100 text-red-500 hover:text-gray-600 transition-all duration-200"
+        >
+          <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M6 18L18 6M6 6l12 12" />
+          </svg>
+        </button>
+      </div>
+
+      {/* Video Content */}
+      <div className="p-6 max-h-[calc(90vh-140px)] overflow-y-auto">
+        <div className="space-y-4">
+          {/* Video Player */}
+          <div className="relative rounded-lg overflow-hidden shadow-lg">
+            <div className="aspect-video bg-gradient-to-br from-gray-900 to-gray-700 relative">
+              <video
+                className="w-full h-full object-cover rounded-lg"
+                controls
+                poster="/assets/demo-thumbnail.jpg"
+                preload="metadata"
               >
-                <svg
-                  className="w-6 h-6"
-                  fill="none"
-                  stroke="currentColor"
-                  viewBox="0 0 24 24"
-                >
-                  <path
-                    strokeLinecap="round"
-                    strokeLinejoin="round"
-                    strokeWidth={2}
-                    d="M6 18L18 6M6 6l12 12"
-                  />
-                </svg>
-              </button>
-            </div>
-
-            {/* Video Content */}
-            <div className="p-6">
-              <div className="aspect-video bg-gray-100 rounded-lg relative overflow-hidden">
-                {/* Replace this with your actual video */}
-
-                {/* Alternative: If you have a local video file */}
-
-                <div className="aspect-video bg-gray-100 rounded-lg relative overflow-hidden">
-                  <video
-                    className="w-full h-full object-cover"
-                    controls
-                    poster="/assets/demo-thumbnail.jpg" // optional thumbnail
-                  >
-                    <source src="/assets/Demo.mp4" type="video/mp4" />
-                    Your browser does not support the video tag.
-                  </video>
+                <source src="/assets/Demo.mp4" type="video/mp4" />
+                <div className="absolute inset-0 flex items-center justify-center text-white">
+                  <div className="text-center">
+                    <svg className="w-16 h-16 mx-auto mb-4 text-white/80" fill="currentColor" viewBox="0 0 20 20">
+                      <path d="M8 5v10l7-5-7-5z"/>
+                    </svg>
+                    <p>Your browser does not support the video tag.</p>
+                  </div>
+                </div>
+              </video>
+              
+              {/* Custom play button overlay (optional) */}
+              <div className="absolute inset-0 flex items-center justify-center pointer-events-none">
+                <div className="w-16 h-16 bg-white/20 backdrop-blur-sm rounded-full flex items-center justify-center opacity-0 hover:opacity-100 transition-opacity duration-300">
+                  <svg className="w-8 h-8 text-white ml-1" fill="currentColor" viewBox="0 0 20 20">
+                    <path d="M8 5v10l7-5-7-5z"/>
+                  </svg>
                 </div>
               </div>
+            </div>
+          </div>
 
-              {/* Video Description */}
-              <div className="mt-4">
-                <h4 className="text-lg font-medium text-gray-900 mb-2">
+          {/* Video Info */}
+          <div className="bg-gradient-to-r from-blue-50/50 to-purple-50/50 rounded-lg p-4 border border-gray-100">
+            <div className="flex items-start space-x-3">
+              <div className="w-10 h-10 bg-blue-100 rounded-lg flex items-center justify-center flex-shrink-0">
+                <svg className="w-5 h-5 text-blue-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M13 16h-1v-4h-1m1-4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z" />
+                </svg>
+              </div>
+              <div className="flex-1 min-w-0">
+                <h4 className="text-lg font-semibold text-gray-900 mb-2">
                   How Our AI Health Assistant Works
                 </h4>
-                <p className="text-gray-600">
-                  Watch this demo to see how our advanced AI analyzes symptoms,
+                <p className="text-gray-600 text-sm leading-relaxed">
+                  Watch this comprehensive demo to see how our advanced AI analyzes symptoms,
                   medical reports, and X-rays to provide instant health insights
-                  and connect you with the right specialists.
+                  and connect you with the right specialists. Duration: 3:45
                 </p>
               </div>
             </div>
           </div>
+
+          {/* Features highlight */}
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-3">
+            <div className="flex items-center space-x-2 text-sm text-gray-600 bg-gray-50 rounded-lg p-3">
+              <svg className="w-4 h-4 text-green-500 flex-shrink-0" fill="currentColor" viewBox="0 0 20 20">
+                <path fillRule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clipRule="evenodd" />
+              </svg>
+              <span>Symptom Analysis</span>
+            </div>
+            <div className="flex items-center space-x-2 text-sm text-gray-600 bg-gray-50 rounded-lg p-3">
+              <svg className="w-4 h-4 text-green-500 flex-shrink-0" fill="currentColor" viewBox="0 0 20 20">
+                <path fillRule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clipRule="evenodd" />
+              </svg>
+              <span>X-ray Reading</span>
+            </div>
+            <div className="flex items-center space-x-2 text-sm text-gray-600 bg-gray-50 rounded-lg p-3">
+              <svg className="w-4 h-4 text-green-500 flex-shrink-0" fill="currentColor" viewBox="0 0 20 20">
+                <path fillRule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clipRule="evenodd" />
+              </svg>
+              <span>Specialist Matching</span>
+            </div>
+          </div>
         </div>
-      )}
+      </div>
+
+      {/* Optional Footer */}
+      <div className="px-6 py-3 bg-gray-50 border-t border-gray-100">
+        <div className="flex items-center justify-between text-sm text-gray-500">
+          <span>Video quality: HD • Subtitles available</span>
+          <div className="flex items-center space-x-4">
+            <button className="text-blue-600 hover:text-blue-700 font-medium">
+              Download
+            </button>
+            <button className="text-blue-600 hover:text-blue-700 font-medium">
+              Share
+            </button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+)}
     </>
   );
 };

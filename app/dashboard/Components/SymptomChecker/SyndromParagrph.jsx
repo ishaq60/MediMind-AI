@@ -9,10 +9,10 @@ const SyndromParagrph = ({handleSymptomSubmit,setSymptoms,symptoms,isAnalyzing, 
              <div className="space-y-2">
                 <div className="text-center mb-8">
                   <Activity className="w-16 h-12 text-blue-500 mx-auto mb-2" />
-                  <h2 className="text-3xl font-bold text-gray-900 mb-2">
+                  <h2 className="text-3xl font-bold text-black mb-2">
                     Describe Your Symptoms
                   </h2>
-                  <p className="text-gray-600 max-w-2xl mx-auto">
+                  <p className="text-black max-w-2xl mx-auto">
                     Tell us about what you're experiencing. Our AI will analyze
                     your symptoms and provide insights into possible conditions.
                   </p>
@@ -22,7 +22,7 @@ const SyndromParagrph = ({handleSymptomSubmit,setSymptoms,symptoms,isAnalyzing, 
                   <div>
                     <label
                       htmlFor="symptoms"
-                      className="block text-sm font-medium text-gray-700 mb-2"
+                      className="block text-sm font-medium text-black mb-2"
                     >
                       What symptoms are you experiencing?
                     </label>

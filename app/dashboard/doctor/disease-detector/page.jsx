@@ -191,18 +191,17 @@ Analyze the uploaded medical image and describe:
 
   // ✅ PDF/DOCUMENT ANALYSIS
   const delay = (ms) => new Promise((resolve) => setTimeout(resolve, ms));
+const handleAnalyzeFiles = async () => {
+  const documentFiles = uploadedFiles.filter(
+    (file) => file.type === "pdf" || file.type === "document"
+  );
 
-  const handleAnalyzeFiles = async () => {
-    const documentFiles = uploadedFiles.filter((file) => 
-      file.type === "pdf" || file.type === "document"
-    );
-    
-    if (documentFiles.length === 0) return;
+  if (documentFiles.length === 0) return;
 
-    setIsAnalyzingFiles(true);
-    setResults(null);
+  setIsAnalyzingFiles(true);
+  setResults(null);
 
-    const structuredPrompt = `
+  const structuredPrompt = `
 You are a caring and professional medical AI assistant.
 
 Analyze this medical document and provide:
@@ -216,7 +215,9 @@ Analyze this medical document and provide:
 Please format your response clearly with sections and bullet points.
 `;
 
-    for (const file of documentFiles) {
+  // Convert each file processing to a Promise
+  const analysisTasks = documentFiles.map((file) => {
+    return new Promise((resolve) => {
       const reader = new FileReader();
 
       reader.onloadend = async () => {
@@ -226,11 +227,11 @@ Please format your response clearly with sections and bullet points.
           setResults((prev) => ({
             raw: (prev?.raw || "") + `\n📄 ${file.name}: File is empty or corrupted.`,
           }));
-          return;
+          return resolve();
         }
 
         try {
-          await delay(1000); // Small delay to prevent overwhelming the API
+          await delay(1000); // Prevent API flooding
 
           const res = await fetch("/api/pdf", {
             method: "POST",
@@ -259,13 +260,20 @@ Please format your response clearly with sections and bullet points.
             raw: (prev?.raw || "") + `\n📄 ${file.name}: Something went wrong.`,
           }));
         }
+
+        resolve();
       };
 
       reader.readAsDataURL(file.file);
-    }
+    });
+  });
 
-    setIsAnalyzingFiles(false);
-  };
+  // Wait for all files to be processed
+  await Promise.all(analysisTasks);
+
+  setIsAnalyzingFiles(false);
+};
+
 
 //post result
 

@@ -1,24 +1,14 @@
 'use client';
 
-import React, { useState, useEffect } from 'react';
+import React, { useState } from 'react';
 import { Menu, X, Stethoscope } from 'lucide-react';
 import Link from 'next/link';
 import { useSession, signOut, signIn } from 'next-auth/react';
 import { Button } from '@/components/ui/button';
-import { usePathname } from 'next/navigation';
 
 const Navbar = () => {
   const { data: session, status } = useSession();
-  const pathname = usePathname();
-
   const [isMenuOpen, setIsMenuOpen] = useState(false);
-  const [scrollY, setScrollY] = useState(0);
-
-  useEffect(() => {
-    const handleScroll = () => setScrollY(window.scrollY);
-    window.addEventListener('scroll', handleScroll);
-    return () => window.removeEventListener('scroll', handleScroll);
-  }, []);
 
   const navItems = [
     { item: 'Home', path: '/' },
@@ -31,15 +21,7 @@ const Navbar = () => {
 
   return (
     <div>
-      <nav
-        className={`fixed w-full z-50 transition-all duration-300 ${
-          pathname === '/'
-            ? scrollY > 50
-              ? 'bg-black/80 backdrop-blur-lg shadow-lg'
-              : 'bg-transparent'
-            : 'bg-white shadow-lg'
-        }`}
-      >
+      <nav className="fixed top-0 left-0 w-full z-50 bg-white shadow-lg">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="flex justify-between items-center py-4">
             {/* Logo */}
@@ -49,9 +31,13 @@ const Navbar = () => {
               </div>
               <div>
                 <Link href="/">
-                  <span className="text-2xl font-bold text-white">MediMind AI</span>
+                  <span className="text-2xl font-bold text-gray-800">
+                    MediMind AI
+                  </span>
                 </Link>
-                <div className="text-xs text-white -mt-1">AI-Powered Clinical Decision Support System</div>
+                <div className="text-xs text-gray-600 -mt-1">
+                  AI-Powered Clinical Decision Support System
+                </div>
               </div>
             </div>
 
@@ -61,9 +47,7 @@ const Navbar = () => {
                 <Link
                   key={item}
                   href={path}
-                  className={`${
-                    pathname === '/' ? 'text-white' : 'text-black'
-                  } hover:text-blue-500 transition-colors duration-200 font-medium relative group`}
+                  className="text-gray-700 hover:text-blue-500 transition-colors duration-200 font-medium relative group"
                 >
                   {item}
                   <span className="absolute -bottom-1 left-0 w-0 h-0.5 bg-gradient-to-r from-blue-500 to-purple-600 group-hover:w-full transition-all duration-300"></span>
@@ -79,7 +63,7 @@ const Navbar = () => {
                       className="w-8 h-8 rounded-full"
                     />
                   )}
-                  <span className={`${pathname === '/' ? 'text-white' : 'text-black'} text-sm`}>
+                  <span className="text-gray-700 text-sm">
                     {session.user.name}
                   </span>
                   <Button
@@ -104,7 +88,7 @@ const Navbar = () => {
               type="button"
               onClick={() => setIsMenuOpen(!isMenuOpen)}
               aria-label="Toggle menu"
-              className={`md:hidden ${pathname === '/' ? 'text-white' : 'text-black'} p-2 rounded-lg hover:bg-black/10 transition-colors`}
+              className="md:hidden text-gray-700 p-2 rounded-lg hover:bg-gray-100 transition-colors"
             >
               {isMenuOpen ? <X className="w-6 h-6" /> : <Menu className="w-6 h-6" />}
             </button>
@@ -112,13 +96,13 @@ const Navbar = () => {
 
           {/* Mobile Menu */}
           {isMenuOpen && (
-            <div className="md:hidden absolute top-full left-0 w-full bg-black/90 backdrop-blur-lg border-t border-gray-700 shadow-lg">
+            <div className="md:hidden absolute top-full left-0 w-full bg-white border-t border-gray-200 shadow-lg">
               <div className="px-4 py-6 space-y-4">
                 {navItems.map(({ item, path }) => (
                   <Link
                     key={item}
                     href={path}
-                    className="block w-full text-left text-white hover:text-blue-400 py-2 transition-colors font-medium"
+                    className="block w-full text-left text-gray-700 hover:text-blue-500 py-2 transition-colors font-medium"
                     onClick={() => setIsMenuOpen(false)}
                   >
                     {item}
@@ -134,7 +118,7 @@ const Navbar = () => {
                         className="w-8 h-8 rounded-full"
                       />
                     )}
-                    <span className="text-white text-sm">{session.user.name}</span>
+                    <span className="text-gray-700 text-sm">{session.user.name}</span>
                     <Button
                       onClick={() => signOut()}
                       className="ml-2 px-4 py-2 bg-gradient-to-r from-red-500 to-red-700 text-white rounded-full font-semibold"
