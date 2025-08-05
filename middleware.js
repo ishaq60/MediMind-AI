@@ -4,16 +4,22 @@ import { getToken } from "next-auth/jwt";
 const secret = process.env.NEXTAUTH_SECRET;
 
 export async function middleware(request) {
+  // ✅ Correct way to pass request and secret
   const token = await getToken({ req: request, secret });
-console.log(token)
+
+  // ❌ Remove console.log in production
+  if (process.env.NODE_ENV !== "production") {
+    console.log("Token:", token);
+  }
 
   const url = request.nextUrl.pathname;
 
-  // Must be authenticated for admin or doctor dashboard
+  // ✅ Redirect unauthenticated users
   if (!token) {
     return NextResponse.redirect(new URL("/login", request.url));
   }
 
+  // ✅ Role-based access control
   if (url.startsWith("/dashboard/admin") && token.type !== "admin") {
     return NextResponse.redirect(new URL("/unauthorized", request.url));
   }

@@ -35,24 +35,24 @@ const DashboardMainPage = () => {
     fetchUser();
   }, [session, status]);
 console.log(session)
-console.log(users?.type)
+console.log(session?.user?.type)
   // Redirect based on user type
   useEffect(() => {
     if (status === "loading" || !users);  
 
     if (!session) {
       router.push("/dashboard/user");
-    } else if (users?.type === "admin") {
+    } else if (session?.user?.type === "admin") {
       router.push("/dashboard/admin");
-    } else if (users?.type === "user") {
+    } else if (session?.user?.type === "user") {
       router.push("/dashboard/user");
-    } else if (users?.type === "doctor") {
+    } else if (session?.user?.type === "doctor") {
       router.push("/dashboard/doctor");
     }
   }, [session, status, router, users]);
 
   return (
-    <div className="container mx-auto min-h-screen flex flex-col items-center justify-center p-4">
+    <div className="container  mx-auto min-h-screen flex flex-col items-center justify-center p-4">
       {users ? (
       <Loading></Loading>
       ) : (

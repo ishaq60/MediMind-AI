@@ -3,11 +3,12 @@
 import React, { useState } from 'react';
 import { Eye, EyeOff, Mail, Lock, User } from 'lucide-react';
 import { toast } from 'react-toastify';
+import { useRouter } from 'next/navigation';
 ;
 
 const SignUp = () => {
   const [showPassword, setShowPassword] = useState(false);
-
+const router = useRouter();
  const handleSubmit = async (e) => {
   e.preventDefault();
 
@@ -33,6 +34,7 @@ try {
   }
 
   toast.success("User created successfully");
+  router.push("/login");
 } catch (error) {
   console.error('Error during signup:', error);
   toast.error("Network error. Please try again.");
