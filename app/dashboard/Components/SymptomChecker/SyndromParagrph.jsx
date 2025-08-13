@@ -31,7 +31,7 @@ const SyndromParagrph = ({handleSymptomSubmit,setSymptoms,symptoms,isAnalyzing, 
                       rows={6}
                       value={symptoms}
                       onChange={(e) => setSymptoms(e.target.value)}
-                      className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent resize-none transition-all duration-200"
+                      className="w-full px-4 py-3 border border-black text-black rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent resize-none transition-all duration-200"
                       placeholder="Describe your symptoms in detail..."
                     />
                   </div>

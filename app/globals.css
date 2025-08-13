@@ -60,11 +60,7 @@
   /* all your light mode color variables... */
 }
 
-.dark {
-  --background: oklch(0.145 0 0);
-  --foreground: oklch(0.985 0 0);
-  /* all your dark mode overrides... */
-}
+
 
 /* === 5. Tailwind Base Layer === */
 @layer base {
