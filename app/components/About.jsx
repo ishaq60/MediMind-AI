@@ -41,13 +41,13 @@ const About = () => {
 
                         {/* Doctor Profile */}
                         <div className="flex items-center">
-                            <div className="w-16 h-16 bg-gradient-to-br from-blue-400 to-blue-600 rounded-full flex items-center justify-center mr-4">
+                            <div className="w-16 h-16 bg-gradient-to-br bg-teal-500 text-white rounded-full flex items-center justify-center mr-4">
                                 <svg className="w-8 h-8 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                                     <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M16 7a4 4 0 11-8 0 4 4 0 018 0zM12 14a7 7 0 00-7 7h14a7 7 0 00-7-7z" />
                                 </svg>
                             </div>
                             <div>
-                                <h4 className="text-lg font-semibold text-purple-500">David Ambrose</h4>
+                                <h4 className="text-lg font-semibold text-teal-500">David Ambrose</h4>
                                 <p className="text-gray-600">Founder & Director</p>
                             </div>
                         </div>
@@ -55,8 +55,8 @@ const About = () => {
 
                     {/* Right Sidebar - Weekly Timetable */}
                     <div className="lg:col-span-1">
-                        <div className="bg-white border-2 border-purple-400 rounded-lg p-6">
-                            <h4 className="text-xl font-semibold text-purple-500 mb-6">Weekly Timetable</h4>
+                        <div className="bg-white border-2 border-teal-400 rounded-lg p-6">
+                            <h4 className="text-xl font-semibold text-teal-500 mb-6">Weekly Timetable</h4>
                             
                             <div className="space-y-4">
                                 {[
@@ -85,7 +85,7 @@ const About = () => {
                                     </div>
                                     <div>
                                         <p className="text-sm text-gray-600">Call Now</p>
-                                        <p className="text-lg font-semibold text-purple-500">(+01) - 234 567 890</p>
+                                        <p className="text-lg font-semibold text-teal-500">(+01) - 234 567 890</p>
                                     </div>
                                 </div>
                             </div>

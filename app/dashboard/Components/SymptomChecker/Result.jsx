@@ -16,7 +16,7 @@ const Result = ({ result }) => {
               const text = String(children).toLowerCase();
 
               let color = '';
-              if (text.includes('possible')) color = 'text-blue-600';
+              if (text.includes('possible')) color = 'text-teal-600';
               else if (text.includes('what you can')) color = 'text-green-600';
               else if (text.includes('emergency') || text.includes('seek')) color = 'text-red-600';
 

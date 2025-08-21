@@ -123,7 +123,7 @@ Based on your symptoms, here are some **potential causes**:
       <div className="hidden sm:block bg-white shadow-sm border-b border-gray-200 p-4">
         <div className="max-w-4xl mx-auto flex items-center justify-between">
           <div className="flex items-center space-x-3">
-            <div className="w-10 h-10 bg-gradient-to-r from-blue-500 to-purple-600 rounded-full flex items-center justify-center">
+            <div className="w-10 h-10 bg-teal-500 hover:bg-teal-600 text-white rounded-full flex items-center justify-center">
               <Heart className="h-5 w-5 text-white" />
             </div>
             <div>
@@ -145,7 +145,7 @@ Based on your symptoms, here are some **potential causes**:
       {/* Mobile Header */}
       <div className="sm:hidden bg-white shadow-sm border-b border-gray-200 p-3">
         <div className="flex items-center space-x-2">
-          <div className="w-8 h-8 bg-gradient-to-r from-blue-500 to-purple-600 rounded-full flex items-center justify-center">
+          <div className="w-8 h-8 bg-teal-500 hover:bg-teal-600 text-white rounded-full flex items-center justify-center">
             <Heart className="h-4 w-4 text-white" />
           </div>
           <div>
@@ -200,7 +200,7 @@ Based on your symptoms, here are some **potential causes**:
                             h2: ({ node, children }) => {
                               const text = String(children).toLowerCase();
                               let color = "";
-                              if (text.includes("possible")) color = "text-blue-600";
+                              if (text.includes("possible")) color = "text-teal-600";
                               else if (text.includes("what you can"))
                                 color = "text-green-600";
                               else if (
@@ -300,35 +300,37 @@ Based on your symptoms, here are some **potential causes**:
               <Paperclip className="h-5 w-5" />
             </button>
 
-            <div className="flex-1 relative min-w-0">
-              <textarea
-                ref={inputRef}
-                value={inputMessage}
-                onChange={(e) => setInputMessage(e.target.value)}
-                onKeyPress={handleKeyPress}
-                placeholder="Describe your symptoms or ask a medical question..."
-                className="w-full px-3 sm:px-4 py-2 pr-10 sm:pr-12 border border-blue-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-blue-500 resize-none overflow-y-auto text-sm sm:text-base"
-                rows={1}
-                style={{ 
-                  minHeight: "44px", 
-                  maxHeight: window.innerWidth < 640 ? "88px" : "120px" 
-                }}
-              />
-              <button
-                onClick={toggleRecording}
-                className={`absolute right-2 top-2 p-1 rounded-full transition-colors ${
-                  isRecording
-                    ? "bg-red-500 text-white"
-                    : "text-gray-500 hover:text-gray-700"
-                }`}
-              >
-                {isRecording ? (
-                  <MicOff className="h-3 w-3 sm:h-4 sm:w-4" />
-                ) : (
-                  <Mic className="h-3 w-3 sm:h-4 sm:w-4" />
-                )}
-              </button>
-            </div>
+          <div className="flex-1 relative min-w-0">
+<textarea
+  ref={inputRef}
+  value={inputMessage}
+  onChange={(e) => setInputMessage(e.target.value)}
+  onKeyPress={handleKeyPress}
+  placeholder="Describe your symptoms or ask a medical question..."
+  className="w-full px-3 sm:px-4 py-4 sm:py-6 pr-10 sm:pr-12 border border-blue-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-blue-500 resize-none overflow-y-auto text-sm sm:text-base"
+  rows={1}
+  style={{
+    minHeight: "80px",
+    maxHeight: "200px", // allows it to grow on all devices
+  }}
+/>
+
+  <button
+    onClick={toggleRecording}
+    className={`absolute right-2 top-2 p-1 rounded-full transition-colors ${
+      isRecording
+        ? "bg-red-500 text-white"
+        : "text-gray-500 hover:text-gray-700"
+    }`}
+  >
+    {isRecording ? (
+      <MicOff className="h-3 w-3 sm:h-4 sm:w-4" />
+    ) : (
+      <Mic className="h-3 w-3 sm:h-4 sm:w-4" />
+    )}
+  </button>
+</div>
+
 
             <button
               onClick={handleSendMessage}

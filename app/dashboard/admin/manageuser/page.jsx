@@ -182,7 +182,7 @@ const handleCreateDoctor = () => {
               onClick={handleCreate}
               className="inline-flex items-center px-4 py-2 bg-blue-600 text-white rounded-lg hover:bg-blue-700 transition-colors shadow-sm"
             >
-              <Plus className="w-5 h-5 mr-2 rounded-xl p-2   bg-gradient-to-r from-blue-500 to-purple-600 text-white" />
+              <Plus className="w-5 h-5 mr-2 rounded-xl p-2   bg-teal-500 hover:bg-teal-600 text-white text-white" />
               Add New User
             </button>
            <Link href="/dashboard/admin/addoctor">
@@ -190,7 +190,7 @@ const handleCreateDoctor = () => {
               onClick={handleCreate}
               className="inline-flex items-center px-4 py-2 bg-blue-600 text-white rounded-lg hover:bg-blue-700 transition-colors shadow-sm"
             >
-              <Plus className="w-5 h-5 mr-2 rounded-xl p-2   bg-gradient-to-r from-blue-500 to-purple-600 text-white" />
+              <Plus className="w-5 h-5 mr-2 rounded-xl p-2   bg-teal-500 hover:bg-teal-600 text-white text-white" />
               Add New Doctor
             </button>
            
@@ -295,7 +295,7 @@ const handleCreateDoctor = () => {
                           </td>
                           <td className="py-4 px-4 text-right">
                             <div className="flex justify-end space-x-2">
-                              <button onClick={() => handleEdit(user._id)} className="inline-flex items-center p-2 text-blue-600 hover:text-blue-800 hover:bg-blue-50 rounded-lg transition-colors" title="Edit user">
+                              <button onClick={() => handleEdit(user._id)} className="inline-flex items-center p-2 text-teal-600 hover:text-blue-800 hover:bg-blue-50 rounded-lg transition-colors" title="Edit user">
                                 <Edit className="h-4 w-4" />
                               </button>
                               <button onClick={() => handleDelete(user._id, user.role)} className="inline-flex items-center p-2 text-red-600 hover:text-red-800 hover:bg-red-50 rounded-lg transition-colors" title="Delete user">
@@ -304,7 +304,7 @@ const handleCreateDoctor = () => {
                               {
                                 user?.type==="admin" ? 
                                  <button className='rounded-xl p-4  bg-indigo-400 text-white  '>{user.type}</button>
-                                :<button onClick={() => handleMakeAdmin(user._id, user.role)} className=' rounded-xl p-2   bg-gradient-to-r from-blue-500 to-purple-600 text-white'>MakeAdmin</button>
+                                :<button onClick={() => handleMakeAdmin(user._id, user.role)} className=' rounded-xl p-2   bg-teal-500 hover:bg-teal-600 text-white text-white'>MakeAdmin</button>
                               }
                             </div>
                           </td>

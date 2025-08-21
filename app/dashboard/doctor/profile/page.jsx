@@ -103,7 +103,7 @@ const DoctorDashboardProfile = () => {
       icon: Users,
       label: "Total Patients",
       value: "1,200",
-      color: "text-blue-600",
+      color: "text-teal-600",
       bg: "bg-blue-50",
     },
     {
@@ -174,7 +174,7 @@ const DoctorDashboardProfile = () => {
 
         {/* Profile Card */}
         <div className="bg-white rounded-xl shadow-lg overflow-hidden mb-8">
-          <div className="bg-gradient-to-r from-blue-500 to-purple-600 px-8 py-6">
+          <div className="bg-teal-500 hover:bg-teal-600 text-white px-8 py-6">
             <div className="flex flex-col md:flex-row items-center gap-6">
               <div className="relative">
                 <div className="w-32 h-32 rounded-full overflow-hidden border-4 border-white shadow-lg">
@@ -238,7 +238,7 @@ const DoctorDashboardProfile = () => {
           <div className="p-8">
             <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
               <div className="flex items-center gap-3 text-gray-600">
-                <MapPin className="w-5 h-5 text-blue-600" />
+                <MapPin className="w-5 h-5 text-teal-600" />
                 <div>
                   <p className="font-semibold text-gray-800">
                     {profileData.hospital}
@@ -270,7 +270,7 @@ const DoctorDashboardProfile = () => {
           {/* Professional Information */}
           <div className="bg-white rounded-xl shadow-lg p-8">
             <h2 className="text-2xl font-bold text-gray-800 mb-6 flex items-center gap-2">
-              <User className="w-6 h-6 text-blue-600" />
+              <User className="w-6 h-6 text-teal-600" />
               Professional Information
             </h2>
 
@@ -373,13 +373,13 @@ const DoctorDashboardProfile = () => {
                   className="flex items-center gap-3 p-4 bg-gradient-to-r from-blue-50 to-indigo-50 rounded-lg border border-blue-200"
                 >
                   {type === "In-person" && (
-                    <User className="w-5 h-5 text-blue-600" />
+                    <User className="w-5 h-5 text-teal-600" />
                   )}
                   {type === "Video Call" && (
-                    <Video className="w-5 h-5 text-blue-600" />
+                    <Video className="w-5 h-5 text-teal-600" />
                   )}
                   {type === "Phone Call" && (
-                    <Phone className="w-5 h-5 text-blue-600" />
+                    <Phone className="w-5 h-5 text-teal-600" />
                   )}
                   <span className="text-gray-700 font-medium">{type}</span>
                   <div className="ml-auto">
@@ -408,7 +408,7 @@ const DoctorDashboardProfile = () => {
                     <div className="w-3 h-3 bg-green-500 rounded-full"></div>
                     <span className="text-gray-700 font-medium">{slot}</span>
                   </div>
-                  <button className="text-blue-600 hover:text-blue-800 text-sm font-medium">
+                  <button className="text-teal-600 hover:text-blue-800 text-sm font-medium">
                     Edit Schedule
                   </button>
                 </div>
@@ -426,7 +426,7 @@ const DoctorDashboardProfile = () => {
           <div className="space-y-4">
             <div className="flex items-center gap-4 p-4 bg-gray-50 rounded-lg">
               <div className="w-10 h-10 bg-blue-100 rounded-full flex items-center justify-center">
-                <Calendar className="w-5 h-5 text-blue-600" />
+                <Calendar className="w-5 h-5 text-teal-600" />
               </div>
               <div className="flex-1">
                 <p className="font-medium text-gray-800">

@@ -23,9 +23,9 @@ const UploadFiles = ({
               <div className="flex items-center space-x-3">
                 <div className="bg-blue-100 p-2 rounded-lg">
                   {file.type === "pdf" || file.type === "document" ? (
-                    <FileText className="w-5 h-5 text-blue-600" />
+                    <FileText className="w-5 h-5 text-teal-600" />
                   ) : (
-                    <Camera className="w-5 h-5 text-blue-600" />
+                    <Camera className="w-5 h-5 text-teal-600" />
                   )}
                 </div>
                 <div>

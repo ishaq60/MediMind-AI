@@ -38,7 +38,7 @@ const Feature = () => {
         <div className="text-center mb-16">
           <h2 className="text-4xl lg:text-5xl font-bold mb-6 text-gray-900">
             Powerful Features for{" "}
-            <span className="bg-gradient-to-r from-blue-500 to-purple-600 bg-clip-text text-transparent">
+            <span className=" text-teal-500 bg-clip-text ">
               Better Healthcare
             </span>
           </h2>
@@ -69,7 +69,7 @@ const Feature = () => {
                 transition={{ duration: 0.6, delay: idx * 0.2 }}
                 viewport={{ once: true }}
               >
-                <Icon className="w-12 h-12 text-blue-600 mb-6 group-hover:scale-110 transition-transform" />
+                <Icon className="w-12 h-12 text-teal-500 mb-6 group-hover:scale-110 transition-transform" />
                 <h3 className="text-xl font-semibold text-gray-900 mb-4">
                   {feature.title}
                 </h3>

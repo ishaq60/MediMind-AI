@@ -110,7 +110,7 @@ const Doctordetailsview = ({ doctor }) => {
                   <h1 className="text-2xl md:text-3xl font-bold text-gray-900 mb-2">
                     {doctor.name}
                   </h1>
-                  <p className="text-lg text-blue-600 font-medium mb-1">
+                  <p className="text-lg text-teal-600 font-medium mb-1">
                     {doctor.specialty}
                   </p>
                   <div className="flex items-center text-gray-600 mb-2">
@@ -142,7 +142,7 @@ const Doctordetailsview = ({ doctor }) => {
                   </span>
                 </div>
                 <div className="flex items-center bg-blue-50 px-3 py-1 rounded-full">
-                  <Award className="w-4 h-4 text-blue-600 mr-1" />
+                  <Award className="w-4 h-4 text-teal-600 mr-1" />
                   <span className="text-sm font-medium text-blue-700">
                     {doctor.experience} experience
                   </span>
@@ -198,7 +198,7 @@ const Doctordetailsview = ({ doctor }) => {
                   setSelectedDoctor(doctor);
                   setbookingtoogle(true);
                 }}
-                className="w-full px-6 py-3 bg-gradient-to-r from-blue-500 to-purple-600 text-white rounded-xl font-semibold hover:shadow-lg transform hover:scale-105 transition-all duration-200"
+                className="w-full px-6 py-3 bg-teal-500 hover:bg-teal-600 text-white text-white rounded-xl font-semibold hover:shadow-lg transform hover:scale-105 transition-all duration-200"
               >
                 Book Appointment
               </button>
@@ -266,7 +266,7 @@ const Doctordetailsview = ({ doctor }) => {
                                 onChange={() => setSelectedType(type)}
                               />
                               <span className="text-gray-900">{type}</span>
-                              {type === 'Video Call' && <Video className="w-4 h-4 ml-auto text-blue-600" />}
+                              {type === 'Video Call' && <Video className="w-4 h-4 ml-auto text-teal-600" />}
                               {type === 'Phone Call' && <Phone className="w-4 h-4 ml-auto text-green-600" />}
                               {type === 'In-person' && <User className="w-4 h-4 ml-auto text-purple-600" />}
                             </label>

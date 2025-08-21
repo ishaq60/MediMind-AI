@@ -421,7 +421,7 @@ const DoctorOverviewDashboard = () => {
                   </div>
                   <div className="flex justify-between items-center">
                     <span className="text-sm text-gray-600">Avg. per Day</span>
-                    <span className="text-lg font-semibold text-blue-600">
+                    <span className="text-lg font-semibold text-teal-600">
                       {Math.round(dashboardData.weeklyStats.appointments.reduce((a, b) => a + b, 0) / 7)}
                     </span>
                   </div>

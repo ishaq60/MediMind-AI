@@ -33,7 +33,7 @@ const DoctorHeader = ({ searchTerm, selectedCategory, setSelectedCategory,setSea
       <div className="text-center mb-12">
         <h1 className="text-4xl lg:text-5xl font-bold mb-6 text-gray-900">
           Find Your
-          <span className="bg-gradient-to-r from-blue-500 to-purple-600 bg-clip-text text-transparent">
+          <span className="text-teal-500 hover:bg-teal-600   bg-clip-text ">
             {' '}Perfect Doctor
           </span>
         </h1>
@@ -44,14 +44,14 @@ const DoctorHeader = ({ searchTerm, selectedCategory, setSelectedCategory,setSea
 
       {/* Search Bar */}
       <div className="max-w-2xl mx-auto mb-12">
-        <div className="relative focus-within:ring-2 focus-within:ring-blue-300 rounded-2xl">
+        <div className="relative focus-within:ring-2 focus-within:ring-teal-300 rounded-2xl">
           <Search className="absolute left-4 top-1/2 transform -translate-y-1/2 text-gray-400 w-5 h-5" />
           <input
             type="text"
             placeholder="Search by condition, symptom, or doctor name..."
             value={debouncedSearch}
             onChange={(e) => setDebouncedSearch(e.target.value)}
-            className="w-full pl-12 pr-4 py-4 bg-white border border-gray-200 rounded-2xl text-gray-900 placeholder-gray-500 focus:border-blue-500 focus:outline-none focus:ring-2 focus:ring-blue-200 shadow-lg"
+            className="w-full pl-12 pr-4 py-4 bg-white border border-gray-200 rounded-2xl text-gray-900 placeholder-gray-500 focus:border-teal-500 focus:outline-none focus:ring-2 focus:ring-teal-200 shadow-lg"
           />
         </div>
       </div>
@@ -69,14 +69,14 @@ const DoctorHeader = ({ searchTerm, selectedCategory, setSelectedCategory,setSea
                 aria-pressed={selectedCategory === category.id}
                 className={`p-4 rounded-2xl border-2 min-w-[150px] transition-all duration-300 hover:scale-105 ${
                   selectedCategory === category.id
-                    ? 'border-blue-500 bg-blue-50 shadow-lg ring-2 ring-blue-100'
-                    : 'border-gray-200 bg-white hover:border-blue-300'
+                    ? 'border-teal-500 bg-teal-50 shadow-lg ring-2 ring-teal-100'
+                    : 'border-gray-200 bg-white hover:border-teal-300'
                 }`}
               >
                 {Icon && (
                   <Icon
                     className={`w-6 h-6 mx-auto mb-2 ${
-                      selectedCategory === category.id ? 'text-blue-600' : 'text-gray-600'
+                      selectedCategory === category.id ? 'text-teal-600' : 'text-gray-600'
                     }`}
                   />
                 )}

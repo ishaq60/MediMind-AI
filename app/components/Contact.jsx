@@ -18,14 +18,14 @@ const Contact = () => {
           <div className="grid md:grid-cols-2 gap-12">
             <div className="space-y-8">
               <div className="flex items-center space-x-4 p-6 bg-blue-50 rounded-2xl">
-                <Phone className="w-6 h-6 text-blue-600" />
+                <Phone className="w-6 h-6 text-teal-600" />
                 <div>
                   <p className="font-semibold text-gray-900">Phone Support</p>
                   <p className="text-gray-600">+1 (555) 123-4567</p>
                 </div>
               </div>
               <div className="flex items-center space-x-4 p-6 bg-blue-50 rounded-2xl">
-                <Mail className="w-6 h-6 text-blue-600" />
+                <Mail className="w-6 h-6 text-teal-600" />
                 <div>
                   <p className="font-semibold text-gray-900">Email Support</p>
                   <p className="text-gray-600">support@MediMind AI.com</p>
@@ -61,7 +61,7 @@ const Contact = () => {
               </div>
               <button
                 onClick={() => alert('Message sent! We\'ll get back to you soon.')}
-                className="w-full px-8 py-4   bg-gradient-to-r from-blue-500 to-purple-600 text-white  rounded-2xl font-semibold hover:shadow-lg transform hover:scale-105 transition-all duration-300"
+                className="w-full px-8 py-4   bg-teal-500 hover:bg-teal-600 text-white text-white  rounded-2xl font-semibold hover:shadow-lg transform hover:scale-105 transition-all duration-300"
               >
                 Send Message
               </button>

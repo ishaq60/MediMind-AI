@@ -56,7 +56,7 @@ export default function Sidebar({ setIsSidebarOpen }) {
           onClick={() => setIsSidebarOpen(false)}
           className={`w-full flex items-center gap-3 px-4 py-3 rounded-lg transition-all text-sm ${
             pathname === item.href
-              ? 'bg-gradient-to-r from-blue-500 to-purple-600 text-white shadow'
+              ? 'bg-teal-500 hover:bg-teal-600 text-white text-white shadow'
               : 'text-gray-700 hover:bg-gray-100'
           }`}
         >

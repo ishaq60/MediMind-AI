@@ -92,7 +92,7 @@ const quickActions = [
           </h1>
           <div>
             <Link href={"user/disease-detector"}>
-             <button className='text-2xl bg-gradient-to-r p-3 rounded-xl from-blue-500 to-purple-600 text-white '> Diagnosis</button>
+             <button className='text-2xl bg-gradient-to-r p-3 rounded-xl bg-teal-500 hover:bg-teal-600 text-white '> Diagnosis</button>
             </Link>
            
           </div>
@@ -120,7 +120,7 @@ const quickActions = [
                 <p className="text-sm font-medium text-gray-600">Upcoming Appointments</p>
                 <p className="text-2xl font-bold text-gray-900">{userData.upcomingAppointments}</p>
               </div>
-              <Calendar className="w-8 h-8 text-blue-600" />
+              <Calendar className="w-8 h-8 text-teal-600" />
             </div>
           </div>
           
@@ -173,7 +173,7 @@ const quickActions = [
                         activity.type === 'appointment' ? 'bg-blue-100' : 'bg-green-100'
                       }`}>
                         {activity.type === 'diagnosis' && <Brain className="w-5 h-5 text-purple-600" />}
-                        {activity.type === 'appointment' && <Calendar className="w-5 h-5 text-blue-600" />}
+                        {activity.type === 'appointment' && <Calendar className="w-5 h-5 text-teal-600" />}
                         {activity.type === 'report' && <FileText className="w-5 h-5 text-green-600" />}
                       </div>
                       <div className="flex-1">
@@ -206,13 +206,13 @@ const quickActions = [
             {/* AI Health Summary */}
             <div className="bg-gradient-to-br from-blue-50 to-purple-50 rounded-xl p-6 mb-6 border border-blue-100">
               <div className="flex items-center space-x-2 mb-3">
-                <Zap className="w-5 h-5 text-blue-600" />
+                <Zap className="w-5 h-5 text-teal-600" />
                 <h3 className="font-semibold text-gray-900">AI Health Summary</h3>
               </div>
               <p className="text-sm text-gray-700 mb-4">
                 Based on your recent diagnoses and reports, your health indicators are looking good. Consider scheduling a routine checkup.
               </p>
-              <button className="text-blue-600 text-sm font-medium hover:text-blue-700">
+              <button className="text-teal-600 text-sm font-medium hover:text-blue-700">
                 View Full Analysis →
               </button>
             </div>

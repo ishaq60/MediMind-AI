@@ -21,7 +21,7 @@ import { Button } from "@/components/ui/button";
 
 const DoctorInmain = () => {
   const [doctors, setDoctors] = useState([]);
-  const [sliceDoc, setslicdoc] = useState(2);
+  const [sliceDoc, setslicdoc] = useState(4);
 
   const categories = [
     {
@@ -91,7 +91,7 @@ useEffect(() => {
         <div className="text-center mb-16">
           <h2 className="text-4xl lg:text-5xl font-bold mb-6 text-gray-900">
             Find Specialists by{" "}
-            <span className="bg-gradient-to-r from-blue-500 to-purple-600 bg-clip-text text-transparent">
+            <span className="text-teal-500 hover:bg-teal-600  bg-clip-text ">
               Condition
             </span>
           </h2>
@@ -102,7 +102,7 @@ useEffect(() => {
         </div>
 
         {/* Categories */}
-        <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-6 gap-6 mb-12">
+        {/* <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-6 gap-6 mb-12">
           {categories.map((category, idx) => (
             <div key={idx} className="group cursor-pointer">
               <div
@@ -110,12 +110,12 @@ useEffect(() => {
               >
                 <category.icon className="w-10 h-10 text-white" />
               </div>
-              <h3 className="text-center font-semibold text-gray-900 group-hover:text-blue-600 transition-colors">
+              <h3 className="text-center font-semibold text-gray-900 group-hover:text-teal-600 transition-colors">
                 {category.name}
               </h3>
             </div>
           ))}
-        </div>
+        </div> */}
 
         {/* Doctors */}
         <div className="grid lg:grid-cols-2 gap-6">
@@ -145,7 +145,7 @@ useEffect(() => {
                       <h3 className="text-xl font-bold text-gray-900 mb-1">
                         {doctor.name}
                       </h3>
-                      <p className="text-blue-600 font-semibold">
+                      <p className="text-teal-600 font-semibold">
                         {doctor.specialty}
                       </p>
                       <p className="text-gray-600 text-sm">{doctor.hospital}</p>
@@ -182,7 +182,7 @@ useEffect(() => {
                       {doctor.conditions.slice(0, 3).map((condition, idx) => (
                         <span
                           key={idx}
-                          className="px-3 py-1 bg-blue-50 text-blue-700 text-xs rounded-full border border-blue-200"
+                          className="px-3 py-1 bg-blue-50 text-teal-700 text-xs rounded-full border border-blue-200"
                         >
                           {condition}
                         </span>
@@ -206,7 +206,7 @@ useEffect(() => {
                     <div className="flex space-x-2">
                       {doctor.consultationTypes.includes("Video Call") && (
                         <Video
-                          className="w-5 h-5 text-blue-600"
+                          className="w-5 h-5 text-teal-600"
                           title="Video consultation available"
                         />
                       )}
@@ -218,7 +218,7 @@ useEffect(() => {
                       )}
                       {doctor.consultationTypes.includes("In-person") && (
                         <User
-                          className="w-5 h-5 text-purple-600"
+                          className="w-5 h-5 text-teal-600"
                           title="In-person consultation available"
                         />
                       )}
@@ -228,13 +228,13 @@ useEffect(() => {
                   <div className="flex flex-col sm:flex-row sm:space-x-3 mt-6 gap-3">
                     {/* <button
                       onClick={() => handleBooking(doctor)}
-                      className="flex-1 px-6 py-3  bg-gradient-to-r from-blue-500 to-purple-600 text-white rounded-xl font-semibold hover:shadow-lg transform hover:scale-105 transition-all duration-200"
+                      className="flex-1 px-6 py-3  bg-teal-500 hover:bg-teal-600 text-white text-white rounded-xl font-semibold hover:shadow-lg transform hover:scale-105 transition-all duration-200"
                     >
                       Book Appointment
                     </button> */}
                     <Link
                       href={`/doctors/${doctor._id}`}
-                      className="flex-1 text-center px-6 py-3 border-2 border-purple-600 text-text- rounded-xl font-semibold hover:bg-blue-50 transition-all duration-200"
+                      className="flex-1 text-center px-6 py-3 border-2 border-teal-600 text-text- rounded-xl font-semibold hover:bg-blue-50 transition-all duration-200"
                     >
                       View Details
                     </Link>
@@ -248,8 +248,7 @@ useEffect(() => {
         <Link href={"/doctors"} className="w-full">
         
           <button
-           
-            className="flex-1 px-8 py-3 bg-gradient-to-r w-full from-blue-500 to-purple-600   text-white rounded-xl font-semibold hover:shadow-lg transform hover:scale-105 transition-all duration-200"
+            className="flex-1 px-8 py-3 w-full bg-teal-500 hover:bg-teal-600  text-white rounded-xl font-semibold hover:shadow-lg transform hover:scale-105 transition-all duration-200"
           >
             See All
           </button>

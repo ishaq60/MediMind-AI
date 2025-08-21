@@ -40,7 +40,7 @@ export default function NotFoundPage() {
             404
           </div>
           <div className="absolute inset-0 flex items-center justify-center">
-            <div className="w-20 h-20 sm:w-24 sm:h-24 bg-gradient-to-r from-blue-500 to-purple-600 rounded-full flex items-center justify-center animate-pulse">
+            <div className="w-20 h-20 sm:w-24 sm:h-24 bg-teal-500 hover:bg-teal-600 text-white rounded-full flex items-center justify-center animate-pulse">
               <FileQuestion className="w-10 h-10 sm:w-12 sm:h-12 text-white" />
             </div>
           </div>
@@ -68,7 +68,7 @@ export default function NotFoundPage() {
           
           <button
             onClick={handleGoHome}
-            className="flex items-center justify-center gap-2 px-6 py-3 bg-gradient-to-r from-blue-500 to-purple-600 text-white rounded-lg hover:from-blue-600 hover:to-purple-700 transition-all shadow-lg hover:shadow-xl"
+            className="flex items-center justify-center gap-2 px-6 py-3 bg-teal-500 hover:bg-teal-600 text-white text-white rounded-lg hover:from-blue-600 hover:to-purple-700 transition-all shadow-lg hover:shadow-xl"
           >
             <Home className="w-5 h-5" />
             Go Home
@@ -97,9 +97,9 @@ export default function NotFoundPage() {
               <button
                 key={index}
                 onClick={() => window.location.href = page.path}
-                className="flex flex-col items-center gap-2 p-4 rounded-lg bg-gray-50 hover:bg-blue-50 hover:text-blue-600 transition-all group"
+                className="flex flex-col items-center gap-2 p-4 rounded-lg bg-gray-50 hover:bg-blue-50 hover:text-teal-600 transition-all group"
               >
-                <page.icon className="w-6 h-6 text-gray-600 group-hover:text-blue-600" />
+                <page.icon className="w-6 h-6 text-gray-600 group-hover:text-teal-600" />
                 <span className="text-sm font-medium">{page.name}</span>
               </button>
             ))}
@@ -110,7 +110,7 @@ export default function NotFoundPage() {
         <div className="mt-8 text-sm text-gray-500">
           <p>
             Still can't find what you're looking for? 
-            <button className="ml-1 text-blue-600 hover:text-blue-700 font-medium">
+            <button className="ml-1 text-teal-600 hover:text-blue-700 font-medium">
               Contact Support
             </button>
           </p>

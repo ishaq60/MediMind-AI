@@ -152,7 +152,7 @@ const handleSubmit = async () => {
       <div className="max-w-4xl mx-auto">
         <div className="bg-white rounded-2xl shadow-xl overflow-hidden">
           {/* Header */}
-          <div className="bg-gradient-to-r from-blue-500 to-purple-600 px-8 py-4">
+          <div className="bg-teal-500 hover:bg-teal-600 text-white px-8 py-4">
             <h1 className="text-3xl font-bold text-white flex items-center gap-3">
               <Plus className="w-8 h-8" />
               Doctor Registration
@@ -485,7 +485,7 @@ const handleSubmit = async () => {
               <button
                 type="button"
                 onClick={handleSubmit}
-                className="px-8 py-2 bg-gradient-to-r from-blue-500 to-purple-600 text-white font-semibold rounded-lg hover:from-blue-700 hover:to-indigo-700 transition-all duration-200 shadow-lg hover:shadow-xl flex items-center gap-2"
+                className="px-8 py-2 bg-teal-500 hover:bg-teal-600 text-white text-white font-semibold rounded-lg hover:from-blue-700 hover:to-indigo-700 transition-all duration-200 shadow-lg hover:shadow-xl flex items-center gap-2"
               >
                 <Plus className="w-5 h-5" />
                 Register Doctor

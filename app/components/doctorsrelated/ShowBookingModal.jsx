@@ -76,7 +76,7 @@ confirmBooking,
                           disabled={!selectedDoctor.consultationTypes.includes(type)}
                         />
                         <span className="text-gray-900">{type}</span>
-                        {type === 'Video Call' && <Video className="w-4 h-4 ml-auto text-blue-600" />}
+                        {type === 'Video Call' && <Video className="w-4 h-4 ml-auto text-teal-600" />}
                         {type === 'Phone Call' && <Phone className="w-4 h-4 ml-auto text-green-600" />}
                         {type === 'In-person' && <User className="w-4 h-4 ml-auto text-purple-600" />}
                       </label>

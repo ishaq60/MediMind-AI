@@ -50,11 +50,11 @@ export default function UserDashboardLayout({ children }) {
       >
         <div className="flex items-center justify-between p-4 border-b">
           <div className="flex items-center gap-2">
-            <div className="w-7 h-7 bg-gradient-to-r from-blue-500 to-purple-600 rounded-lg flex items-center justify-center">
+            <div className="w-7 h-7 bg-teal-500 hover:bg-teal-600 text-white rounded-lg flex items-center justify-center">
               <Heart className="w-4 h-4 text-white" />
             </div>
             <Link href="/">
-              <span className="text-2xl font-bold bg-gradient-to-r from-blue-600 to-purple-600 bg-clip-text text-transparent">
+              <span className="text-2xl font-bold bg-teal-500 hover:bg-teal-600  bg-clip-text text-transparent">
                 MediAI
               </span>
             </Link>
@@ -76,7 +76,7 @@ export default function UserDashboardLayout({ children }) {
                 href={item.href}
                 className={`flex items-center gap-3 px-4 py-3 rounded-lg transition-all text-sm ${
                   isActive
-                    ? "bg-gradient-to-r from-blue-500 to-purple-600 text-white shadow"
+                    ? "bg-teal-500 hover:bg-teal-600  text-white shadow"
                     : "text-gray-700 hover:bg-gray-100"
                 }`}
                 onClick={() => setIsSidebarOpen(false)}
@@ -122,7 +122,7 @@ export default function UserDashboardLayout({ children }) {
 
               {/* Profile */}
               <div className="flex items-center gap-3 pl-4 border-l">
-                <div className="w-8 h-8 bg-gradient-to-r from-blue-500 to-purple-600 rounded-full flex items-center justify-center">
+                <div className="w-8 h-8 bg-teal-500 hover:bg-teal-600 text-white rounded-full flex items-center justify-center">
                   <span className="text-white text-sm font-medium">
                     {session?.user?.name?.[0] || "U"}
                   </span>

@@ -41,7 +41,7 @@ const Login = () => {
         <div className="text-center">
           <div className="flex justify-center mb-4">
             <div className="bg-blue-100 p-3 rounded-full">
-              <Heart className="w-8 h-8 text-blue-600" />
+              <Heart className="w-8 h-8 text-teal-600" />
             </div>
           </div>
           <h2 className="text-3xl font-bold text-gray-900 mb-2">Welcome Back</h2>
@@ -93,18 +93,18 @@ const Login = () => {
             <label className="flex items-center">
               <input
                 type="checkbox"
-                className="rounded border-gray-300 text-blue-600 focus:ring-blue-500"
+                className="rounded border-gray-300 text-teal-600 focus:ring-blue-500"
               />
               <span className="ml-2 text-sm text-gray-600">Remember me</span>
             </label>
-            <button className="text-sm text-blue-600 hover:text-blue-500" type="button">
+            <button className="text-sm text-teal-600 hover:text-blue-500" type="button">
               Forgot password?
             </button>
           </div>
 
           <button
             type="submit"
-            className="w-full bg-gradient-to-r from-blue-600 to-purple-600 text-white py-3 px-4 rounded-lg hover:from-blue-700 hover:to-purple-700 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-offset-2 transform transition-all duration-200 hover:scale-105 font-medium"
+            className="w-full bg-teal-500 hover:bg-teal-600 text-white py-3 px-4 rounded-lg hover:from-blue-700 hover:to-purple-700 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-offset-2 transform transition-all duration-200 hover:scale-105 font-medium"
           >
             Sign In
           </button>
@@ -152,7 +152,7 @@ const Login = () => {
         <div className="text-center">
           <p className="text-gray-600">
             Don't have an account?{" "}
-            <Link href={"/signup"} className="text-blue-600 hover:text-blue-500 font-medium">
+            <Link href={"/signup"} className="text-teal-600 hover:text-blue-500 font-medium">
               Sign up here
             </Link>
           </p>

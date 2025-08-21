@@ -33,7 +33,7 @@ const Testmonalsection = () => {
       <div className="max-w-4xl mx-auto text-center">
         <h2 className="text-4xl lg:text-5xl font-bold mb-16 text-gray-900">
           Trusted by Healthcare
-          <span className="bg-gradient-to-r from-blue-500 to-purple-600 bg-clip-text text-transparent"> Professionals</span>
+          <span className="text-teal-500 hover:bg-teal-600  bg-clip-text "> Professionals</span>
         </h2>
 
         <Swiper
@@ -45,10 +45,10 @@ const Testmonalsection = () => {
         >
           {testimonials.map((testimonial, index) => (
             <SwiperSlide key={index}>
-              <div className="bg-gradient-to-br from-blue-50 to-indigo-50 rounded-3xl p-12 border border-gray-100 shadow-xl">
+              <div className="bg-gradient-to-br  rounded-3xl p-12 border border-gray-100 shadow-xl">
                 <div className="flex justify-center mb-6">
                   {[...Array(testimonial.rating)].map((_, i) => (
-                    <Star key={i} className="w-6 h-6 text-yellow-400 fill-current" />
+                    <Star key={i} className="w-6 h-6 text-teal-400 fill-current" />
                   ))}
                 </div>
 

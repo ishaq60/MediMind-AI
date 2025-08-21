@@ -37,7 +37,7 @@ const DoctorCard = ({ filteredDoctors = [], handleBooking }) => {
                     <h3 className="text-xl font-bold text-gray-900 mb-1">
                       {doctor.name}
                     </h3>
-                    <p className="text-blue-600 font-semibold">{doctor.specialty}</p>
+                    <p className="text-teal-600 font-semibold">{doctor.specialty}</p>
                     <p className="text-gray-600 text-sm">{doctor.hospital}</p>
                   </div>
                   <div className="text-right">
@@ -73,7 +73,7 @@ const DoctorCard = ({ filteredDoctors = [], handleBooking }) => {
                     {(doctor.conditions || []).slice(0, 3).map((condition, idx) => (
                       <span
                         key={idx}
-                        className="px-3 py-1 bg-blue-50 text-blue-700 text-xs rounded-full border border-blue-200"
+                        className="px-3 py-1 bg-teal-100 text-blue-700 text-xs rounded-full border border-blue-200"
                       >
                         {condition}
                       </span>
@@ -98,7 +98,7 @@ const DoctorCard = ({ filteredDoctors = [], handleBooking }) => {
                   <div className="flex space-x-2">
                     {(doctor.consultationTypes || []).includes('Video Call') && (
                       <Video
-                        className="w-5 h-5 text-blue-600"
+                        className="w-5 h-5 text-teal-600"
                         title="Video consultation available"
                       />
                     )}
@@ -120,13 +120,13 @@ const DoctorCard = ({ filteredDoctors = [], handleBooking }) => {
                 <div className="flex space-x-3 mt-6">
                   <Button
                     onClick={() => handleBooking(doctor)}
-                    className="flex-1 px-6 py-3 bg-gradient-to-r from-blue-500 to-purple-600 text-white rounded-xl font-semibold hover:shadow-lg transform hover:scale-105 transition-all duration-200"
+                    className="flex-1 px-6 py-3 bg-teal-500 hover:bg-teal-600  text-white rounded-xl font-semibold hover:shadow-lg transform hover:scale-105 transition-all duration-200"
                   >
                     Book Appointment
                   </Button>
                   <Link
                     href={`/doctors/${doctor._id}`}
-                    className="px-6 py-3 border-2 border-blue-600 text-blue-600 rounded-xl font-semibold hover:bg-blue-50 transition-all duration-200"
+                    className="px-6 py-1 border-2 border-teal-600 text-teal-600 rounded-xl font-semibold hover:bg-teal-100 transition-all duration-200"
                   >
                     View Profile
                   </Link>
