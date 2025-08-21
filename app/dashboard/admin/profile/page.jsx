@@ -373,7 +373,7 @@ export default function AdminProfilePage() {
                 </h3>
                 <div className="space-y-4">
                   <div className="p-4 bg-blue-50 rounded-lg">
-                    <p className="text-sm text-blue-800">
+                    <p className="text-sm text-teal-800">
                       Configure your notification preferences to stay updated on
                       important events.
                     </p>

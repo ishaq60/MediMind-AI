@@ -92,7 +92,7 @@ const DoctorOverviewDashboard = () => {
   const getAppointmentTypeIcon = (type) => {
     switch(type.toLowerCase()) {
       case 'phone call':
-        return <Phone className="h-4 w-4 text-blue-500" />;
+        return <Phone className="h-4 w-4 text-teal-500" />;
       case 'video call':
         return <Video className="h-4 w-4 text-green-500" />;
       case 'in-person':
@@ -199,9 +199,9 @@ const DoctorOverviewDashboard = () => {
                 </div>
                 <div>
                   <h2 className="text-2xl font-bold">Dr. {session?.user?.name || "Doctor"}</h2>
-                  <p className="text-blue-100">General Practitioner</p>
+                  <p className="text-teal-100">General Practitioner</p>
                   {session?.user?.email && (
-                    <p className="text-blue-100 text-sm flex items-center mt-1">
+                    <p className="text-teal-100 text-sm flex items-center mt-1">
                       <Mail className="h-4 w-4 mr-1" />
                       {session.user.email}
                     </p>
@@ -213,7 +213,7 @@ const DoctorOverviewDashboard = () => {
                   <Star className="h-5 w-5 text-yellow-400 fill-current" />
                   <span className="text-xl font-bold">{dashboardData.patientSatisfaction.rating}</span>
                 </div>
-                <p className="text-blue-100 text-sm">{dashboardData.patientSatisfaction.reviews} reviews</p>
+                <p className="text-teal-100 text-sm">{dashboardData.patientSatisfaction.reviews} reviews</p>
               </div>
             </div>
           </div>
@@ -314,7 +314,7 @@ const DoctorOverviewDashboard = () => {
                   {dashboardData.recentActivity.map((activity, index) => (
                     <div key={index} className="flex items-center space-x-4">
                       <div className="flex-shrink-0">
-                        {activity.type === 'appointment' && <Calendar className="h-5 w-5 text-blue-500" />}
+                        {activity.type === 'appointment' && <Calendar className="h-5 w-5 text-teal-500" />}
                         {activity.type === 'patient' && <User className="h-5 w-5 text-green-500" />}
                         {activity.type === 'treatment' && <FileText className="h-5 w-5 text-purple-500" />}
                         {activity.type === 'lab' && <Activity className="h-5 w-5 text-orange-500" />}

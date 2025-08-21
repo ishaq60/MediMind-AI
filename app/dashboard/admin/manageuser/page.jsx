@@ -273,7 +273,7 @@ const handleCreateDoctor = () => {
                             <span className={`inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-medium ${
                               user.type === 'Doctor'
                                 ? 'bg-purple-100 text-purple-800'
-                                : 'bg-blue-100 text-blue-800'
+                                : 'bg-blue-100 text-teal-800'
                             }`}>
                               {user.type}
                             </span>
@@ -295,7 +295,7 @@ const handleCreateDoctor = () => {
                           </td>
                           <td className="py-4 px-4 text-right">
                             <div className="flex justify-end space-x-2">
-                              <button onClick={() => handleEdit(user._id)} className="inline-flex items-center p-2 text-teal-600 hover:text-blue-800 hover:bg-blue-50 rounded-lg transition-colors" title="Edit user">
+                              <button onClick={() => handleEdit(user._id)} className="inline-flex items-center p-2 text-teal-600 hover:text-teal-800 hover:bg-blue-50 rounded-lg transition-colors" title="Edit user">
                                 <Edit className="h-4 w-4" />
                               </button>
                               <button onClick={() => handleDelete(user._id, user.role)} className="inline-flex items-center p-2 text-red-600 hover:text-red-800 hover:bg-red-50 rounded-lg transition-colors" title="Delete user">

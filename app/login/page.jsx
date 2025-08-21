@@ -97,7 +97,7 @@ const Login = () => {
               />
               <span className="ml-2 text-sm text-gray-600">Remember me</span>
             </label>
-            <button className="text-sm text-teal-600 hover:text-blue-500" type="button">
+            <button className="text-sm text-teal-600 hover:text-teal-500" type="button">
               Forgot password?
             </button>
           </div>
@@ -152,7 +152,7 @@ const Login = () => {
         <div className="text-center">
           <p className="text-gray-600">
             Don't have an account?{" "}
-            <Link href={"/signup"} className="text-teal-600 hover:text-blue-500 font-medium">
+            <Link href={"/signup"} className="text-teal-600 hover:text-teal-500 font-medium">
               Sign up here
             </Link>
           </p>

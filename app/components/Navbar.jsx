@@ -32,7 +32,7 @@ const Navbar = () => {
               </div>
               <div className="min-w-0">
                 <a href="/" className="block">
-                  <span className="text-lg sm:text-xl lg:text-2xl text-teal-500 font-bold text-gray-800 leading-tight">
+                  <span className="text-lg sm:text-xl lg:text-2xl text-teal-500 font-bold 0leading-tight">
                     MediMind AI
                   </span>
                 </a>
@@ -41,7 +41,7 @@ const Navbar = () => {
                 </div>
                 {/* Mobile tagline */}
                 <div className="text-xs text-gray-600 -mt-0.5 block sm:hidden">
-                  AI Health Assistant
+                   AI-Powered Clinical Decision Support System
                 </div>
               </div>
             </div>
@@ -199,7 +199,7 @@ const Navbar = () => {
                 <div className="md:hidden space-y-2 pt-2 border-t border-gray-200">
                   <div className="text-xs text-gray-500 px-2">Quick Actions</div>
                   <div className="grid grid-cols-2 gap-2">
-                    <button className="px-3 py-2 bg-blue-50 text-blue-700 rounded-lg text-xs font-medium hover:bg-blue-100 transition-colors">
+                    <button className="px-3 py-2 bg-blue-50 text-teal-700 rounded-lg text-xs font-medium hover:bg-blue-100 transition-colors">
                       Emergency
                     </button>
                     <button className="px-3 py-2 bg-green-50 text-green-700 rounded-lg text-xs font-medium hover:bg-green-100 transition-colors">

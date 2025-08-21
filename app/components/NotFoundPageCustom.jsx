@@ -110,7 +110,7 @@ export default function NotFoundPage() {
         <div className="mt-8 text-sm text-gray-500">
           <p>
             Still can't find what you're looking for? 
-            <button className="ml-1 text-teal-600 hover:text-blue-700 font-medium">
+            <button className="ml-1 text-teal-600 hover:text-teal-700 font-medium">
               Contact Support
             </button>
           </p>

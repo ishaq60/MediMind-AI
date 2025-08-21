@@ -90,7 +90,7 @@ const UserAppoitment = () => {
     switch(bookingtype?.toLowerCase()) {
       case 'video call':
       case 'videocall':
-        return 'bg-blue-100 text-blue-700 border-blue-200';
+        return 'bg-blue-100 text-teal-700 border-blue-200';
       case 'phone call':
       case 'audio call':
       case 'audiocall':

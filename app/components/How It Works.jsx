@@ -29,7 +29,7 @@ const HowItWorks= () => {
                 <p className="text-gray-600 leading-relaxed max-w-sm mx-auto">{step.desc}</p>
                 
                 {idx < 2 && (
-                  <ArrowRight className="hidden md:block absolute top-10 -right-4 w-8 h-8 text-blue-300" />
+                  <ArrowRight className="hidden md:block absolute top-10 -right-4 w-8 h-8 text-teal-300" />
                 )}
               </div>
             ))}

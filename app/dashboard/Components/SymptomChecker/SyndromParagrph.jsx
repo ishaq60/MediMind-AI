@@ -8,7 +8,7 @@ const SyndromParagrph = ({handleSymptomSubmit,setSymptoms,symptoms,isAnalyzing, 
         <div>
              <div className="space-y-2">
                 <div className="text-center mb-8">
-                  <Activity className="w-16 h-12 text-blue-500 mx-auto mb-2" />
+                  <Activity className="w-16 h-12 text-teal-500 mx-auto mb-2" />
                   <h2 className="text-3xl font-bold text-black mb-2">
                     Describe Your Symptoms
                   </h2>

@@ -30,7 +30,7 @@ confirmBooking,
                         onClick={() => setSelectedDate(date)}
                         className={`p-3 rounded-xl border-2 text-sm font-medium transition-all ${
                           selectedDate === date
-                            ? 'border-blue-500 bg-blue-50 text-blue-700'
+                            ? 'border-blue-500 bg-blue-50 text-teal-700'
                             : 'border-gray-200 text-gray-700 hover:border-blue-300'
                         }`}
                       >
@@ -49,7 +49,7 @@ confirmBooking,
                         onClick={() => setSelectedTime(time)}
                         className={`p-3 rounded-xl border-2 text-sm font-medium transition-all ${
                           selectedTime === time
-                            ? 'border-blue-500 bg-blue-50 text-blue-700'
+                            ? 'border-blue-500 bg-blue-50 text-teal-700'
                             : 'border-gray-200 text-gray-700 hover:border-blue-300'
                         }`}
                       >

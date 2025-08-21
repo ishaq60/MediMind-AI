@@ -188,7 +188,7 @@ const quickActions = [
                     </div>
                     <span className={`px-3 py-1 rounded-full text-xs font-medium ${
                       activity.status === 'completed' ? 'bg-green-100 text-green-800' :
-                      activity.status === 'upcoming' ? 'bg-blue-100 text-blue-800' :
+                      activity.status === 'upcoming' ? 'bg-blue-100 text-teal-800' :
                       'bg-gray-100 text-gray-800'
                     }`}>
                       {activity.status}
@@ -212,7 +212,7 @@ const quickActions = [
               <p className="text-sm text-gray-700 mb-4">
                 Based on your recent diagnoses and reports, your health indicators are looking good. Consider scheduling a routine checkup.
               </p>
-              <button className="text-teal-600 text-sm font-medium hover:text-blue-700">
+              <button className="text-teal-600 text-sm font-medium hover:text-teal-700">
                 View Full Analysis →
               </button>
             </div>

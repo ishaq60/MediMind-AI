@@ -114,7 +114,7 @@ const DoctorPatientDashboard = () => {
   const getBookingTypeIcon = (type) => {
     switch(type.toLowerCase()) {
       case 'phone call':
-        return <Phone className="h-4 w-4 text-blue-500" />;
+        return <Phone className="h-4 w-4 text-teal-500" />;
       case 'video call':
         return <Video className="h-4 w-4 text-green-500" />;
       case 'in-person':
@@ -129,7 +129,7 @@ const DoctorPatientDashboard = () => {
       confirmed: { bg: 'bg-green-100', text: 'text-green-800', icon: CheckCircle },
       pending: { bg: 'bg-yellow-100', text: 'text-yellow-800', icon: AlertCircle },
       cancelled: { bg: 'bg-red-100', text: 'text-red-800', icon: XCircle },
-      completed: { bg: 'bg-blue-100', text: 'text-blue-800', icon: CheckCircle }
+      completed: { bg: 'bg-blue-100', text: 'text-teal-800', icon: CheckCircle }
     };
 
     const config = statusConfig[status?.toLowerCase()] || statusConfig.pending;
@@ -184,7 +184,7 @@ const DoctorPatientDashboard = () => {
           <div className="bg-white rounded-lg p-6 shadow-sm border border-gray-200">
             <div className="flex items-center">
               <div className="flex-shrink-0">
-                <User className="h-8 w-8 text-blue-500" />
+                <User className="h-8 w-8 text-teal-500" />
               </div>
               <div className="ml-4">
                 <p className="text-sm font-medium text-gray-600">Total Patients</p>
@@ -364,7 +364,7 @@ const DoctorPatientDashboard = () => {
                     
                     <td className="px-6 py-4 whitespace-nowrap text-right text-sm font-medium">
                       <div className="flex items-center space-x-2">
-                        <button className="text-teal-600 hover:text-blue-900">
+                        <button className="text-teal-600 hover:text-teal-900">
                           <Eye className="h-4 w-4" />
                         </button>
                         <button className="text-gray-600 hover:text-gray-900">

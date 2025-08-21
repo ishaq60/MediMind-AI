@@ -157,7 +157,7 @@ const handleSubmit = async () => {
               <Plus className="w-8 h-8" />
               Doctor Registration
             </h1>
-            <p className="text-blue-100 mt-2">Add a new doctor to the system</p>
+            <p className="text-teal-100 mt-2">Add a new doctor to the system</p>
           </div>
 
           <div className="p-8 space-y-4">

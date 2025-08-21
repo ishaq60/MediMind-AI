@@ -362,7 +362,7 @@ const UserProfile = () => {
                       <label className="block text-sm font-medium text-gray-700 mb-2">Current Medications</label>
                       <div className="space-y-2">
                         {userProfile.currentMedications.map((medication, index) => (
-                          <div key={index} className="bg-blue-50 text-blue-700 px-3 py-2 rounded-lg text-sm">
+                          <div key={index} className="bg-blue-50 text-teal-700 px-3 py-2 rounded-lg text-sm">
                             {medication}
                           </div>
                         ))}

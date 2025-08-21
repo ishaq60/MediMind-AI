@@ -241,7 +241,7 @@ Based on your symptoms, here are some **potential causes**:
                       <div className="text-sm sm:text-base leading-relaxed whitespace-pre-wrap">
                         {message.content}
                       </div>
-                      <p className="text-xs mt-1 text-blue-100">{message.timestamp}</p>
+                      <p className="text-xs mt-1 text-teal-100">{message.timestamp}</p>
                     </div>
                   )}
                 </div>

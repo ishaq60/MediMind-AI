@@ -73,7 +73,7 @@ const DoctorCard = ({ filteredDoctors = [], handleBooking }) => {
                     {(doctor.conditions || []).slice(0, 3).map((condition, idx) => (
                       <span
                         key={idx}
-                        className="px-3 py-1 bg-teal-100 text-blue-700 text-xs rounded-full border border-blue-200"
+                        className="px-3 py-1 bg-teal-100 text-teal-700 text-xs rounded-full border border-blue-200"
                       >
                         {condition}
                       </span>

@@ -355,7 +355,7 @@ Please format your response clearly with sections and bullet points.
                     <Icon
                       className={`${
                         activeTab === tab.id
-                          ? "text-blue-500"
+                          ? "text-teal-500"
                           : "text-gray-400 group-hover:text-gray-500"
                       } -ml-0.5 mr-2 h-5 w-5`}
                     />

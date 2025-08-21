@@ -42,10 +42,10 @@ const Banner = () => {
             <div className="text-white z-20 max-w-4xl mx-auto">
               <h1 className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl xl:text-7xl font-bold mb-4 sm:mb-6 leading-tight px-2">
                 <span className="block mb-2">AI-Powered Diagnoses</span>
-                <span className="block text-cyan-300">in Seconds</span>
+                <span className="block text-teal-300">in Seconds</span>
               </h1>
               
-              <p className="text-base sm:text-lg md:text-xl text-blue-100 mb-6 sm:mb-8 max-w-3xl mx-auto leading-relaxed px-4">
+              <p className="text-base sm:text-lg md:text-xl text-teal-100 mb-6 sm:mb-8 max-w-3xl mx-auto leading-relaxed px-4">
                 Get instant, accurate health insights with our advanced AI.
                 Upload symptoms, medical reports, or X-rays and receive
                 professional-grade analysis in seconds. Book appointments with
@@ -55,13 +55,13 @@ const Banner = () => {
               <div className="flex flex-col sm:flex-row gap-3 sm:gap-4 justify-center items-center px-4">
                 <button
                   onClick={() => window.location.href = "/dashboard"}
-                  className="w-full sm:w-auto bg-gradient-to-r from-cyan-400 to-blue-400 hover:from-cyan-300 hover:to-blue-300 text-white font-semibold px-6 sm:px-8 py-3 rounded-lg transition-all duration-300 transform hover:scale-105 shadow-lg text-sm sm:text-base"
+                  className="w-full sm:w-auto bg-teal-500 text-white hover:from-cyan-300 hover:to-blue-300  font-semibold px-6 sm:px-8 py-3 rounded-lg transition-all duration-300 transform hover:scale-105 shadow-lg text-sm sm:text-base"
                 >
                   Symptom Checker
                 </button>
                 <button
                   onClick={openVideoModal}
-                  className="w-full sm:w-auto bg-transparent border-2 border-cyan-300 text-cyan-300 hover:bg-cyan-300 hover:text-slate-900 font-semibold px-6 sm:px-8 py-3 rounded-lg transition-all duration-300 text-sm sm:text-base"
+                  className="w-full sm:w-auto bg-transparent border-2  border-teal-300 text-white  font-semibold px-6 sm:px-8 py-3 rounded-lg transition-all duration-300 text-sm sm:text-base"
                 >
                   See Demo Video
                 </button>
@@ -69,15 +69,15 @@ const Banner = () => {
 
               {/* Feature highlights - Only show on larger screens */}
               <div className="hidden md:flex justify-center items-center mt-12 lg:mt-16 space-x-6 lg:space-x-8">
-                <div className="flex items-center space-x-2 text-sm lg:text-base text-blue-200">
+                <div className="flex items-center space-x-2 text-sm lg:text-base text-teal-200">
                   <div className="w-2 h-2 bg-cyan-400 rounded-full"></div>
                   <span>Instant Analysis</span>
                 </div>
-                <div className="flex items-center space-x-2 text-sm lg:text-base text-blue-200">
+                <div className="flex items-center space-x-2 text-sm lg:text-base text-teal-200">
                   <div className="w-2 h-2 bg-cyan-400 rounded-full"></div>
                   <span>AI-Powered</span>
                 </div>
-                <div className="flex items-center space-x-2 text-sm lg:text-base text-blue-200">
+                <div className="flex items-center space-x-2 text-sm lg:text-base text-teal-200">
                   <div className="w-2 h-2 bg-cyan-400 rounded-full"></div>
                   <span>24/7 Available</span>
                 </div>
@@ -188,10 +188,10 @@ const Banner = () => {
               <div className="flex flex-col sm:flex-row items-center justify-between text-xs sm:text-sm text-gray-500 space-y-2 sm:space-y-0">
                 <span>Video quality: HD • Subtitles available</span>
                 <div className="flex items-center space-x-3 sm:space-x-4">
-                  <button className="text-teal-600 hover:text-blue-700 font-medium">
+                  <button className="text-teal-600 hover:text-teal-700 font-medium">
                     Download
                   </button>
-                  <button className="text-teal-600 hover:text-blue-700 font-medium">
+                  <button className="text-teal-600 hover:text-teal-700 font-medium">
                     Share
                   </button>
                 </div>
